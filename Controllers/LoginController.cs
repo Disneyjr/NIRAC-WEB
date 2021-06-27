@@ -1,9 +1,15 @@
 ﻿using System.Web.Mvc;
+using NIRAC_WEB.WebServices;
 
 namespace NIRAC_WEB.Controllers
 {
     public class LoginController : Controller
     {
+        private LoginService loginService;
+        public LoginController()
+        {
+            loginService = new LoginService();
+        }
         // GET: Login
         public ActionResult Index()
         {
@@ -12,12 +18,16 @@ namespace NIRAC_WEB.Controllers
         [HttpPost]
         public ActionResult Login(string User, string Password)
         {
-            /*
-             Autenticação basica verificar somente o nome do usuario e a senha.
-            Mandar para a api uma requisição e esperar a resposta.
-             */
-            TempData["success"] = "Mensagem de sucesso!!";
-            return RedirectToAction("Index","Login");
+            if (loginService.VerificaLogin(User, Password))
+            {
+                TempData["success"] = "Logado com Sucesso!";
+            }
+            else
+            {
+                TempData["error"] = "Erro ao tentar Logar!";
+            }
+
+            return RedirectToAction("Index", "Login");
         }
     }
 }

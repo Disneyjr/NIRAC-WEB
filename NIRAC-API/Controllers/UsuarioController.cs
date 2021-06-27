@@ -9,6 +9,7 @@ using NIRAC_BUSINESS.Services;
 
 namespace NIRAC_API.Controllers
 {
+    [RoutePrefix("api/Usuario")]
     public class UsuarioController : ApiController
     {
         private ContextDb cx;
@@ -31,6 +32,13 @@ namespace NIRAC_API.Controllers
         public UsuarioDTO Get(int id)
         {
             return this._usu.Get(id);
+        }
+        
+        [HttpGet]
+        [Route("{User}/{Password}")]
+        public UsuarioDTO GetUserPassword(string User, string Password)
+        {
+            return this._usu.GetAll().Find(u=>u.Nome ==  User && u.Senha == Password);
         }
         [HttpPost]
         public UsuarioDTO Post(UsuarioDAO dao)
