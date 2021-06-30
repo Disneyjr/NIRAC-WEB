@@ -37,6 +37,9 @@
     <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="BCrypt.Net, Version=0.1.4141.31969, Culture=neutral, PublicKeyToken=f3bc8f8c31beeb49, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net.0.1.0\lib\net35\BCrypt.Net.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -59,6 +62,7 @@
     <Compile Include="Interface\Repository\IRepository.cs" />
     <Compile Include="Interface\Repository\RepositoryBase.cs" />
     <Compile Include="Models\API CONFIG\ApiConfiguration.cs" />
+    <Compile Include="Models\API CONFIG\HashingSenha.cs" />
     <Compile Include="Models\Context\Context.cs" />
     <Compile Include="Models\DAO\UsuarioDAO.cs" />
     <Compile Include="Models\DTO\UsuarioDTO.cs" />

@@ -19,12 +19,15 @@ namespace NIRAC_BUSINESS.Interface
         }
         public T Add(T t)
         {
-            return this.cx.Set<T>().Add(t);
+            this.cx.Set<T>().Add(t);
+            this.cx.SaveChanges();
+            return t;
         }
 
         public T Delete(T t)
         {
             this.cx.Entry(t).State = EntityState.Deleted;
+            this.cx.SaveChanges();
             return t;
         }
 
@@ -41,6 +44,7 @@ namespace NIRAC_BUSINESS.Interface
         public T Update(T t)
         {
             this.cx.Entry(t).State = EntityState.Modified;
+            this.cx.SaveChanges();
             return t;
         }
     }

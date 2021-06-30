@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Cadastrar Usuario";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+<div class="card o-hidden border-0 shadow-lg my-5" style="margin-top:7rem !important">
+    <div class="card-body p-0">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Cadastrar Usuario</h1>
+                    </div>
+                    @using (Html.BeginForm("CadastroUsuario", "Login", FormMethod.Post, new { novalidate = "false", @class = "needs-validation" }))
+                    {
+                        <div class="form-group">
+                            <label for="User" class="form-label">Nome Completo</label>
+                            <input type="text" class="form-control" id="User" name="Usuario.Nome" placeholder="Nome Completo" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="cpf" class="form-label">CPF</label>
+                                <input type="number" class="form-control" id="cpf" name="Usuario.CPF" placeholder="CPF" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" id="email" name="Usuario.Email" placeholder="E-mail" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="mr-sm-2" for="inlineFormCustomSelect">Genero</label>
+                                <select class="custom-select mr-sm-2" id="Genero" name="Genero">
+                                    <option value="0" selected>Selecione...</option>
+                                    <option value="1">Masculino</option>
+                                    <option value="2">Feminino</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="mr-sm-2" for="inlineFormCustomSelect">Estado Civil</label>
+                                <select class="custom-select mr-sm-2" id="estadocivil" name="EstadoCivil">
+                                    <option value="0" selected>Selecione...</option>
+                                    <option value="1">Solteiro</option>
+                                    <option value="2">Casado</option>
+                                    <option value="3">Separado</option>
+                                    <option value="4">Divorciado</option>
+                                    <option value="5">Viúvo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4" class="form-label">Senha</label>
+                                <input type="password" class="form-control" id="Password" name="Usuario.Senha" placeholder="Senha" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="Password2" class="form-label">Confirmar Senha</label>
+                                <input type="password" class="form-control" id="Password2" name="Password2" placeholder="Confirmar Senha" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <button value="Save" name="action:Save" type="submit" class="btn btn-primary btn-user btn-block">
+                                    Cadastrar Usuario
+                                </button>
+                            </div>
+                            <div class="col-lg-6">
+                                <button value="Cancel" name="action:Cancel" type="submit" class="btn btn-danger btn-user btn-block">
+                                    Voltar
+                                </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NIRAC_BUSINESS.DAO
@@ -9,7 +10,11 @@ namespace NIRAC_BUSINESS.DAO
         [Column("Id"), Key]
         public int Id { get; set; }
         [Column("Nome")]
-        public string Nome { get; set; }
+        public string Nome { get; set; }  
+        [Column("Apelido")]
+        public string Apelido { get; set; }
+        [Column("Email")]
+        public string Email { get; set; }
         [Column("Tipo")]
         public string Tipo { get; set; }
         [Column("CPF")]
@@ -20,6 +25,10 @@ namespace NIRAC_BUSINESS.DAO
         public string EstadoCivil { get; set; }
         [Column("Senha")]
         public string Senha { get; set; }
+        [Column("Data_Cadastro")]
+        public DateTime Data_Cadastro { get; set; }
+        [Column("Data_Update")]
+        public DateTime Data_Update { get; set; }
         [Column("IdCidade")]
         public int? IdCidade { get; set; }
 

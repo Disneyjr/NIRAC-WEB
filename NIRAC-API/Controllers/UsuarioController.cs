@@ -35,10 +35,17 @@ namespace NIRAC_API.Controllers
         }
         
         [HttpGet]
-        [Route("{User}/{Password}")]
-        public UsuarioDTO GetUserPassword(string User, string Password)
+        [Route("ValidUserPassword/{username}")]
+        public UsuarioDTO ValidUserPassword(string username)
         {
-            return this._usu.GetAll().Find(u=>u.Nome ==  User && u.Senha == Password);
+            var user = this._usu.GetAll().Find(u => u.Apelido.Equals(username));
+            return user;
+        }
+        [HttpGet]
+        [Route("{email}")]
+        public UsuarioDTO GetUserbyEmail(string email)
+        {
+            return this._usu.GetAll().Find(u => u.Email == email);
         }
         [HttpPost]
         public UsuarioDTO Post(UsuarioDAO dao)
