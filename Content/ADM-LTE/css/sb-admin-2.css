@@ -10849,9 +10849,9 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("../../Imagens/Login/floresta.jpg");
-  background-position: center;
-  background-size: cover;
+    background: url("../../Imagens/LoyoutHome/logo600600.png");
+    background-position: center;
+    background-size: cover;
 }
 
 .bg-register-image {

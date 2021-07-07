@@ -10,27 +10,39 @@ namespace NIRAC_WEB.Controllers
         public string Funcionalidade { get; set; }
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            object Id = filterContext.HttpContext.Request.Cookies.Get("Id").Value;
-            object TipoUsuario = filterContext.HttpContext.Request.Cookies.Get("Tipo").Value;
-            if (Id == null || TipoUsuario == null)
+            if(filterContext.HttpContext.Request.Cookies.Count > 0)
             {
-                filterContext.Result = new RedirectToRouteResult(
-                    new System.Web.Routing.RouteValueDictionary(
-                            new { controller = "Login", action = "Index" }
-                        )
-                );
-            }
-            else
-            {
-                if (!Tipo.Equals(TipoUsuario))
+                object Id = filterContext.HttpContext.Request.Cookies.Get("Id").Value;
+                object TipoUsuario = filterContext.HttpContext.Request.Cookies.Get("Tipo").Value;
+                if (Id == null || TipoUsuario == null)
                 {
                     filterContext.Result = new RedirectToRouteResult(
                         new System.Web.Routing.RouteValueDictionary(
                                 new { controller = "Login", action = "Index" }
                             )
-                        );
+                    );
+                }
+                else
+                {
+                    if (!Tipo.Equals(TipoUsuario))
+                    {
+                        filterContext.Result = new RedirectToRouteResult(
+                            new System.Web.Routing.RouteValueDictionary(
+                                    new { controller = "Login", action = "Index" }
+                                )
+                            );
+                    }
                 }
             }
+            else
+            {
+                filterContext.Result = new RedirectToRouteResult(
+                            new System.Web.Routing.RouteValueDictionary(
+                                    new { controller = "Login", action = "Index" }
+                                )
+                            );
+            }
+            
         }
     }
 }

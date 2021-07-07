@@ -9,6 +9,10 @@ namespace NIRAC_WEB.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.GanhosMensal = "";
+            ViewBag.GanhosAnual = "";
+            ViewBag.RecebidoMensal = "";
+            ViewBag.Pendentes = "";
             return View();
         }
     }

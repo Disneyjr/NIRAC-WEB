@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using NIRAC_BUSINESS.API_CONFIG;
 using NIRAC_BUSINESS.DAO;
 using NIRAC_BUSINESS.Models.API_CONFIG;
@@ -16,16 +17,18 @@ namespace NIRAC_WEB.WebServices
         }
         public UsuarioDAO VerificaLogin(string User, string Password)
         {
-            bool retorno = false;
+            if (User == "" || Password == "")
+                throw new Exception("Usuario ou senha Nullo!");
             var response = this._ususerviceBase.GetUserPassword(User);
-            retorno = HashingSenha.ValidarSenha(Password, response.Senha);
-            if (retorno)
+            if (response == null)
+                return null;
+            if(HashingSenha.ValidarSenha(Password, response.Senha))
             {
                 return response;
             }
             else
             {
-                return null;
+                throw new Exception("Senha invalida!");
             }
             
         }
