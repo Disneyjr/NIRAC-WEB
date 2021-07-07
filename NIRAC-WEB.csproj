@@ -199,9 +199,13 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Autentica.cs" />
+    <Compile Include="Controllers\EmpresaController.cs" />
+    <Compile Include="Controllers\EmprestimoController.cs" />
+    <Compile Include="Controllers\FluxoCaixaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -227,6 +231,19 @@
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <Content Include="Views\Login\CadastroUsuario.cshtml" />
     <Content Include="Views\Perfil\PerfilUsuario.cshtml" />
+    <Content Include="Views\Empresa\Index.cshtml" />
+    <Content Include="Views\Empresa\Cadastrar.cshtml" />
+    <Content Include="Views\Empresa\Editar.cshtml" />
+    <Content Include="Views\FluxoCaixa\Index.cshtml" />
+    <Content Include="Views\Usuario\Funcionarios.cshtml" />
+    <Content Include="Views\Usuario\FuncionarioCadastrar.cshtml" />
+    <Content Include="Views\Usuario\FuncionarioEditar.cshtml" />
+    <Content Include="Views\Usuario\Clientes.cshtml" />
+    <Content Include="Views\Usuario\ClienteCadastrar.cshtml" />
+    <Content Include="Views\Usuario\ClienteEditar.cshtml" />
+    <Content Include="Views\Emprestimo\Cadastrar.cshtml" />
+    <Content Include="Views\Emprestimo\Editar.cshtml" />
+    <Content Include="Views\Emprestimo\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

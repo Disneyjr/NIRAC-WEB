@@ -36,9 +36,9 @@
                 <div id="collapseEmpresa" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Funções:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Cadastrar</a>
-                        <a class="collapse-item" href="utilities-color.html">Informações</a>
-                        <a class="collapse-item" href="utilities-color.html">Editar</a>
+                        <a class="collapse-item" href="@Url.Action("Cadastrar","Empresa")">Cadastrar</a>
+                        <a class="collapse-item" href="@Url.Action("Index","Empresa")">Informações</a>
+                        <a class="collapse-item" href="@Url.Action("Editar","Empresa")">Editar</a>
                     </div>
                 </div>
             </li>
@@ -50,6 +50,9 @@
                 <div id="collapseClientes" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Funções:</h6>
+                        <a class="collapse-item" href="@Url.Action("ClienteCadastrar","Usuario")">Cadastrar</a>
+                        <a class="collapse-item" href="@Url.Action("Clientes","Usuario")">Informações</a>
+                        <a class="collapse-item" href="@Url.Action("ClienteEditar","Usuario")">Editar</a>
                     </div>
                 </div>
             </li>
@@ -61,6 +64,9 @@
                 <div id="collapseFuncionarios" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Funções:</h6>
+                        <a class="collapse-item" href="@Url.Action("FuncionarioCadastrar","Usuario")">Cadastrar</a>
+                        <a class="collapse-item" href="@Url.Action("Funcionarios","Usuario")">Informações</a>
+                        <a class="collapse-item" href="@Url.Action("FuncionarioEditar","Usuario")">Editar</a>
                     </div>
                 </div>
             </li>
@@ -69,13 +75,22 @@
                 Financeiro
             </div>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEmpresa" aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-building"></i>
+                <a class="nav-link" href="@Url.Action("Index","FluxoCaixa")">
+                    <i class="fas fa-university"></i>
+                    <span>Fluxo de Caixa</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEmprestimos" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-credit-card"></i>
                     <span>Emprestimos</span>
                 </a>
-                <div id="collapseEmpresa" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div id="collapseEmprestimos" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Funções:</h6>
+                        <a class="collapse-item" href="@Url.Action("Cadastrar","Emprestimo")">Cadastrar</a>
+                        <a class="collapse-item" href="@Url.Action("Index","Emprestimo")">Informações</a>
+                        <a class="collapse-item" href="@Url.Action("Editar","Emprestimo")">Editar</a>
                     </div>
                 </div>
             </li>
