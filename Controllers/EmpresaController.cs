@@ -7,6 +7,7 @@ namespace NIRAC_WEB.Controllers
         // GET: Empresa
         public ActionResult Index()
         {
+            ViewBag.CadastrouEmpresa = false;
             return View();
         }
         public ActionResult Cadastrar()

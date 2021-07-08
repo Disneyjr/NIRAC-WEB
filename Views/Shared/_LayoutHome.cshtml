@@ -36,6 +36,7 @@
                 <div id="collapseEmpresa" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Funções:</h6>
+                        @if(!ViewBag.CadastrouEmpresa)
                         <a class="collapse-item" href="@Url.Action("Cadastrar","Empresa")">Cadastrar</a>
                         <a class="collapse-item" href="@Url.Action("Index","Empresa")">Informações</a>
                         <a class="collapse-item" href="@Url.Action("Editar","Empresa")">Editar</a>

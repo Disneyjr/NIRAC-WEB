@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using AutoMapper;
 using NIRAC_BUSINESS.Context;
+using NIRAC_BUSINESS.Interface.Map;
 using NIRAC_BUSINESS.Models.Map;
 
 namespace NIRAC_BUSINESS.Interface
@@ -28,7 +29,7 @@ namespace NIRAC_BUSINESS.Interface
             get { return this.configuration; }
             set { this.configuration = value; }
         } 
-        public ServiceBase(Context cx, Repository rep, UsuarioMap configuration):base()
+        public ServiceBase(Context cx, Repository rep, MapBase<TDao,TDto> configuration):base()
         {
             this.mapper = configuration.Registrar(this.Configuration);
             this.cx = cx;
