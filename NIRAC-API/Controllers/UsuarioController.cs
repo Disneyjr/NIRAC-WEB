@@ -15,52 +15,52 @@ namespace NIRAC_API.Controllers
         private ContextDb cx;
         private UsuarioMap map;
         private UsuarioRepository rep;
-        private UsuarioService _usu;
+        private UsuarioService _serv;
         public UsuarioController():base()
         {
             this.map = new UsuarioMap();
             this.cx = new ContextDb();
             this.rep = new UsuarioRepository(cx);
-            this._usu = new UsuarioService(this.cx, this.rep, this.map);
+            this._serv = new UsuarioService(this.cx, this.rep, this.map);
         }
         [HttpGet]
         public List<UsuarioDTO> GetAll()
         {
-            return this._usu.GetAll();
+            return this._serv.GetAll();
         }
         [HttpGet]
         public UsuarioDTO Get(int id)
         {
-            return this._usu.Get(id);
+            return this._serv.Get(id);
         }
         
         [HttpGet]
         [Route("ValidUserPassword/{username}")]
         public UsuarioDTO ValidUserPassword(string username)
         {
-            var user = this._usu.GetAll().Find(u => u.Apelido.Equals(username));
+            var user = this._serv.GetAll().Find(u => u.Apelido.Equals(username));
             return user;
         }
         [HttpGet]
         [Route("{email}")]
         public UsuarioDTO GetUserbyEmail(string email)
         {
-            return this._usu.GetAll().Find(u => u.Email == email);
+            return this._serv.GetAll().Find(u => u.Email == email);
         }
         [HttpPost]
         public UsuarioDTO Post(UsuarioDAO dao)
         {
-            return this._usu.Add(dao);
+            return this._serv.Add(dao);
         }
         [HttpPut]
         public UsuarioDTO Put(UsuarioDAO dao)
         {
-            return this._usu.Update(dao);
+            return this._serv.Update(dao);
         }
         [HttpDelete]
         public UsuarioDTO Delete(UsuarioDAO dao)
         {
-            return this._usu.Delete(dao);
+            return this._serv.Delete(dao);
         }
     }
 }
