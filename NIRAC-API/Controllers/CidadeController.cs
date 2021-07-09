@@ -9,6 +9,7 @@ using NIRAC_BUSINESS.Services;
 
 namespace NIRAC_API.Controllers
 {
+    [RoutePrefix("api/Cidade")]
     public class CidadeController : ApiController
     {
         private ContextDb cx;

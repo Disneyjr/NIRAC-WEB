@@ -14,15 +14,15 @@ namespace NIRAC_BUSINESS.Models.DAO
         public decimal DinheiroCaixa { get; set; }
         [Column("DataCriacao")]
         public DateTime DataCriacao { get; set; }
-        [Column("DataUpdate")]
+        [Column("DataAtualizacao")]
         public DateTime DataAtualizacao { get; set; }
-        [ForeignKey("empresaDAO")]
+        [ForeignKey("paisDAO")]
         public int? IdPais { get; set; }
         public PaisDAO paisDAO { get; set; }
-        [ForeignKey("empresaDAO")]
+        [ForeignKey("estadoDAO")]
         public int? IdEstado { get; set; }
         public EstadoDAO estadoDAO { get; set; }
-        [ForeignKey("empresaDAO")]
+        [ForeignKey("cidadeDAO")]
         public int? IdCidade { get; set; }
         public CidadeDAO cidadeDAO { get; set; }
     }

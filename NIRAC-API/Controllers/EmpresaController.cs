@@ -9,6 +9,7 @@ using NIRAC_BUSINESS.Services;
 
 namespace NIRAC_API.Controllers
 {
+    [RoutePrefix("api/Empresa")]
     public class EmpresaController : ApiController
     {
         private ContextDb cx;
