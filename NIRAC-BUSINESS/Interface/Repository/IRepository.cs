@@ -7,7 +7,7 @@ namespace NIRAC_BUSINESS.Interface
         T Add(T t);
         T Get(int id);
         List<T> GetAll();
-        T Delete(T t);
-        T Update(T t);
+        T Delete(T t, int id);
+        T Update(T t, int id);
     }
 }

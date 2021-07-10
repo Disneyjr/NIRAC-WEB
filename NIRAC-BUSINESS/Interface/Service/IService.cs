@@ -9,7 +9,10 @@ namespace NIRAC_BUSINESS.Interface
         TDto Get(int id);
         List<TDto> GetAll();
         TDto Add(TDao t);
-        TDto Update(TDao t);
-        TDto Delete(TDao t);
+        TDto Update(TDao t, int id);
+        TDto Delete(TDao t, int id);
+        TDto DAOToDTO(TDao t);
+        TDao DTOToDAO(TDto t);
+
     }
 }

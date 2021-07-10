@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -19,33 +20,75 @@ namespace NIRAC_BUSINESS.Interface
         }
         public T Add(T t)
         {
-            this.cx.Set<T>().Add(t);
-            this.cx.SaveChanges();
-            return t;
+            try
+            {
+                cx.Set<T>().Add(t);
+                cx.SaveChanges();
+                return t;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
-        public T Delete(T t)
+        public T Delete(T t, int id)
         {
-            this.cx.Entry(t).State = EntityState.Deleted;
-            this.cx.SaveChanges();
-            return t;
+            var tlocal = Get(id);
+            cx.Entry(tlocal).State = EntityState.Detached;
+            cx.Entry(t).State = EntityState.Deleted;
+            try
+            {
+                cx.SaveChanges();
+                return t;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         public T Get(int id)
         {
-            return this.cx.Set<T>().Find(id);
+            try
+            {
+                return cx.Set<T>().Find(id);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            
         }
 
         public List<T> GetAll()
         {
-            return this.cx.Set<T>().ToList();
+            try
+            {
+                return cx.Set<T>().ToList();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            
         }
 
-        public T Update(T t)
+        public T Update(T t, int id)
         {
-            this.cx.Entry(t).State = EntityState.Modified;
-            this.cx.SaveChanges();
-            return t;
+            var tlocal = Get(id);
+            cx.Entry(tlocal).State = EntityState.Detached;
+            cx.Entry(t).State = EntityState.Modified;
+            try
+            {
+                
+                cx.SaveChanges();
+                return t;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
     }
 }

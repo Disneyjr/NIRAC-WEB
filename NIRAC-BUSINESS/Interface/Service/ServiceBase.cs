@@ -57,18 +57,28 @@ namespace NIRAC_BUSINESS.Interface
             return dto;
         }
 
-        public TDto Update(TDao t)
+        public TDto Update(TDao t, int id)
         {
-            TDao dao = this.rep.Update(t);
+            TDao dao = this.rep.Update(t, id);
             TDto dto = this.mapper.Map<TDto>(dao);
             return dto;
         }
 
-        public TDto Delete(TDao t)
+        public TDto Delete(TDao t, int id)
         {
-            TDao dao = this.rep.Delete(t);
+            TDao dao = this.rep.Delete(t, id);
             TDto dto = this.mapper.Map<TDto>(dao);
             return dto;
+        }
+
+        public TDto DAOToDTO(TDao t)
+        {
+            return this.mapper.Map<TDto>(t);
+        }
+
+        public TDao DTOToDAO(TDto t)
+        {
+            return this.mapper.Map<TDao>(t);
         }
     }
 }

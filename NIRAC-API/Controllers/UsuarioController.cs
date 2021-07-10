@@ -15,7 +15,7 @@ namespace NIRAC_API.Controllers
         private ContextDb cx;
         private UsuarioMap map;
         private UsuarioRepository rep;
-        private UsuarioService _serv;
+        public UsuarioService _serv;
         public UsuarioController():base()
         {
             this.map = new UsuarioMap();
@@ -55,12 +55,12 @@ namespace NIRAC_API.Controllers
         [HttpPut]
         public UsuarioDTO Put(UsuarioDAO dao)
         {
-            return this._serv.Update(dao);
+            return this._serv.Update(dao, dao.Id);
         }
         [HttpDelete]
         public UsuarioDTO Delete(UsuarioDAO dao)
         {
-            return this._serv.Delete(dao);
+            return this._serv.Delete(dao, dao.Id);
         }
     }
 }

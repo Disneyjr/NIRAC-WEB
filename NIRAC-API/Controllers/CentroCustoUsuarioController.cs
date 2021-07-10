@@ -43,12 +43,12 @@ namespace NIRAC_API.Controllers
         [HttpPut]
         public CentroCustoUsuarioDTO Put(CentroCustoUsuarioDAO dao)
         {
-            return this._serv.Update(dao);
+            return this._serv.Update(dao, dao.Id);
         }
         [HttpDelete]
         public CentroCustoUsuarioDTO Delete(CentroCustoUsuarioDAO dao)
         {
-            return this._serv.Delete(dao);
+            return this._serv.Delete(dao, dao.Id);
         }
     }
 }

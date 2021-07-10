@@ -43,12 +43,12 @@ namespace NIRAC_API.Controllers
         [HttpPut]
         public EmpresaUsuarioDTO Put(EmpresaUsuarioDAO dao)
         {
-            return this._serv.Update(dao);
+            return this._serv.Update(dao, dao.Id);
         }
         [HttpDelete]
         public EmpresaUsuarioDTO Delete(EmpresaUsuarioDAO dao)
         {
-            return this._serv.Delete(dao);
+            return this._serv.Delete(dao, dao.Id);
         }
     }
 }
