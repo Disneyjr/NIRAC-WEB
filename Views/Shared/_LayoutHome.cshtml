@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>@ViewBag.Title</title>
+    <link href="~/Content/CSS/Home.css" />
     <link href="~/Content/ADM-LTE/css/sb-admin-2.css" rel="stylesheet">
     <link href="~/Content/ADM-LTE/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -28,18 +29,17 @@
             <div class="sidebar-heading">
                 Gerenciar
             </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEmpresa" aria-expanded="true" aria-controls="collapseUtilities">
+            <li class="nav-item @ViewBag.Empresa">
+                <a class="nav-link @ViewBag.NavEmpresa " href="#" data-toggle="collapse" data-target="#collapseEmpresa" aria-expanded="@ViewBag.AriaEmpresa" aria-controls="collapseUtilities">
                     <i class="fas fa-building"></i>
                     <span>Empresa</span>
                 </a>
-                <div id="collapseEmpresa" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div id="collapseEmpresa" class="collapse @ViewBag.Show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Funções:</h6>
-                        @if(!ViewBag.CadastrouEmpresa)
-                        <a class="collapse-item" href="@Url.Action("Cadastrar","Empresa")">Cadastrar</a>
-                        <a class="collapse-item" href="@Url.Action("Index","Empresa")">Informações</a>
-                        <a class="collapse-item" href="@Url.Action("Editar","Empresa")">Editar</a>
+                        <a class="collapse-item @ViewBag.CadastrarEmpresa" href="@Url.Action("Cadastrar","Empresa")">Cadastrar</a>
+                        <a class="collapse-item @ViewBag.IndexEmpresa" href="@Url.Action("Index","Empresa")">Informações</a>
+                        <a class="collapse-item @ViewBag.EditarEmpresa" href="@Url.Action("Editar","Empresa")">Editar</a>
                     </div>
                 </div>
             </li>
@@ -257,15 +257,17 @@
         </div>
     </div>
     <!-- Bootstrap core JavaScript-->
+
     <script src="~/Content/ADM-LTE/vendor/jquery/jquery.min.js"></script>
     <script src="~/Content/ADM-LTE/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <script src="~/Content/JS/jquery.mask.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="~/Content/ADM-LTE/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="~/Content/ADM-LTE/js/sb-admin-2.min.js"></script>
     <script src="~/Content/JS/toast.js"></script>
+    <script src="~/Content/JS/Mascaras.js"></script>
     @*Page level plugins
         <script src="~/Content/ADM-LTE/vendor/chart.js/Chart.min.js"></script>
 

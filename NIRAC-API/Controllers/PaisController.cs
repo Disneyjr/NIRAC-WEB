@@ -24,31 +24,32 @@ namespace NIRAC_API.Controllers
             this.rep = new PaisRepository(cx);
             this._serv = new PaisService(this.cx, this.rep, this.map);
         }
-
+        #region CRUD
         [HttpGet]
         public List<PaisDTO> GetAll()
         {
-            return this._serv.GetAll();
+            return _serv.GetAll();
         }
         [HttpGet]
         public PaisDTO Get(int id)
         {
-            return this._serv.Get(id);
+            return _serv.Get(id);
         }
         [HttpPost]
         public PaisDTO Post(PaisDAO dao)
         {
-            return this._serv.Add(dao);
+            return _serv.Add(dao);
         }
         [HttpPut]
         public PaisDTO Put(PaisDAO dao)
         {
-            return this._serv.Update(dao, dao.Id);
+            return _serv.Update(dao, dao.Id);
         }
         [HttpDelete]
         public PaisDTO Delete(PaisDAO dao)
         {
-            return this._serv.Delete(dao, dao.Id);
+            return _serv.Delete(dao, dao.Id);
         }
+        #endregion
     }
 }

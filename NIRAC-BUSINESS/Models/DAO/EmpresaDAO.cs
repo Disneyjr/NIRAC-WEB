@@ -16,6 +16,8 @@ namespace NIRAC_BUSINESS.Models.DAO
         public DateTime DataCriacao { get; set; }
         [Column("DataAtualizacao")]
         public DateTime DataAtualizacao { get; set; }
+        [Column("IdUsuario")]
+        public int? IdUsuario { get; set; }
         [ForeignKey("paisDAO")]
         public int? IdPais { get; set; }
         public PaisDAO paisDAO { get; set; }

@@ -24,31 +24,36 @@ namespace NIRAC_API.Controllers
             this.rep = new EstadoRepository(cx);
             this._serv = new EstadoService(this.cx, this.rep, this.map);
         }
-
+        [HttpGet]
+        [Route("EstadosIdPais/{idPais}")]
+        public List<EstadoDTO> EstadosIdPais(int idPais)
+        {
+            return _serv.GetAll().FindAll(e=>e.IdPais == idPais);
+        }
         [HttpGet]
         public List<EstadoDTO> GetAll()
         {
-            return this._serv.GetAll();
+            return _serv.GetAll();
         }
         [HttpGet]
         public EstadoDTO Get(int id)
         {
-            return this._serv.Get(id);
+            return _serv.Get(id);
         }
         [HttpPost]
         public EstadoDTO Post(EstadoDAO dao)
         {
-            return this._serv.Add(dao);
+            return _serv.Add(dao);
         }
         [HttpPut]
         public EstadoDTO Put(EstadoDAO dao)
         {
-            return this._serv.Update(dao, dao.Id);
+            return _serv.Update(dao, dao.Id);
         }
         [HttpDelete]
         public EstadoDTO Delete(EstadoDAO dao)
         {
-            return this._serv.Delete(dao, dao.Id);
+            return _serv.Delete(dao, dao.Id);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 using NIRAC_BUSINESS.API_CONFIG;
-using NIRAC_BUSINESS.DAO;
+using NIRAC_BUSINESS.Models.DAO;
 using NIRAC_BUSINESS.Models.API_CONFIG;
 
 namespace NIRAC_WEB.WebServices
@@ -13,13 +13,13 @@ namespace NIRAC_WEB.WebServices
         public LoginService()
         {
             this.api = new ApiConfiguration();
-            this._ususerviceBase = new WebServiceBase<UsuarioDAO>(this.api.URI_API, "Usuario");
+            this._ususerviceBase = new WebServiceBase<UsuarioDAO>(this.api.URI_API);
         }
         public UsuarioDAO VerificaLogin(string User, string Password)
         {
             if (User == "" || Password == "")
                 throw new Exception("Usuario ou senha Nullo!");
-            var response = this._ususerviceBase.GetUserPassword(User);
+            var response = this._ususerviceBase.GetEntitybyString(User, "Usuario/ValidUserPassword/");
             if (response == null)
                 return null;
             if(HashingSenha.ValidarSenha(Password, response.Senha))
@@ -35,7 +35,7 @@ namespace NIRAC_WEB.WebServices
         public bool ExistEmail(string Email)
         {
             bool retorno = false;
-            var response = this._ususerviceBase.GetUserbyEmail(Email);
+            var response = this._ususerviceBase.GetEntitybyString(Email, "Usuario/GetUserbyEmail/");
             if (response != null)
             {
                 retorno = true;
@@ -45,7 +45,7 @@ namespace NIRAC_WEB.WebServices
         public bool AdicionarUsuario(UsuarioDAO usuario)
         {
             bool retorno = false;
-            var response = this._ususerviceBase.Add(usuario);
+            var response = this._ususerviceBase.Add(usuario,"Usuario");
             if (response != null)
             {
                 retorno = true;

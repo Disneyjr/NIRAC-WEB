@@ -1,5 +1,4 @@
-﻿using NIRAC_BUSINESS.DAO;
-using NIRAC_BUSINESS.Models.DAO;
+﻿using NIRAC_BUSINESS.Models.DAO;
 
 namespace NIRAC_BUSINESS.Models.DTO
 {

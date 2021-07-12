@@ -1,9 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json;
-using NIRAC_BUSINESS.DAO;
-using NIRAC_BUSINESS.Models.API_CONFIG;
 
 namespace NIRAC_WEB.WebServices
 {
@@ -12,16 +11,15 @@ namespace NIRAC_WEB.WebServices
     {
         private WebClient wc;
         private string Url;
-        public WebServiceBase(string url,string obj)
+        public WebServiceBase(string url)
         {
             this.wc = new WebClient();
-            this.Url = url + "api/Usuario";
+            this.Url = url + "api/";
         }
-        
-        public T GetUserPassword(string User)
+        public T GetEntitybyString(string entity, string Pesquisa)
         {
-            this.wc.Encoding = Encoding.UTF8;
-            string url = this.Url + "/ValidUserPassword/" + User;
+            wc.Encoding = Encoding.UTF8;
+            string url = Url + Pesquisa + "/" + entity;
             try
             {
                 var response = wc.DownloadString(url);
@@ -33,13 +31,28 @@ namespace NIRAC_WEB.WebServices
                 return null;
             }
         }
-        public T GetUserbyEmail(string email)
+        public List<T> GetListId(int entity, string Pesquisa)
         {
-            this.wc.Encoding = Encoding.UTF8;
+            wc.Encoding = Encoding.UTF8;
+            string url = Url + Pesquisa + entity;
             try
             {
-                string url = this.Url + "/" + email;
-                var response = this.wc.DownloadString(url);
+                var response = wc.DownloadString(url);
+                List<T> t = JsonConvert.DeserializeObject<List<T>>(response);
+                return t;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public T GetEntitybyInt(int id, string Pesquisa)
+        {
+            wc.Encoding = Encoding.UTF8;
+            string url = Url + Pesquisa + "/" + id;
+            try
+            {
+                var response = wc.DownloadString(url);
                 T t = JsonConvert.DeserializeObject<T>(response);
                 return t;
             }
@@ -48,14 +61,46 @@ namespace NIRAC_WEB.WebServices
                 return null;
             }
         }
-        public T Add(T t)
+        #region CRUD
+        public T Get(int id, string obj)
         {
+            wc.Encoding = Encoding.UTF8;
+            string url = Url + obj + "/" + id;
+            try
+            {
+                var response = wc.DownloadString(url);
+                T t = JsonConvert.DeserializeObject<T>(response);
+                return t;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public List<T> GetAll(string obj)
+        {
+            wc.Encoding = Encoding.UTF8;
+            string url = Url + obj;
+            try
+            {
+                var response = wc.DownloadString(url);
+                List<T> t = JsonConvert.DeserializeObject<List<T>>(response);
+                return t;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public T Add(T t, string obj)
+        {
+            string url = Url + obj;
             try
             {
                 var upload = JsonConvert.SerializeObject(t);
-                this.wc.Headers[HttpRequestHeader.ContentType] = "application/json";
-                this.wc.Encoding = Encoding.UTF8;
-                var result = this.wc.UploadString(this.Url, upload);
+                wc.Headers[HttpRequestHeader.ContentType] = "application/json";
+                wc.Encoding = Encoding.UTF8;
+                var result = wc.UploadString(url, upload);
                 var mater = JsonConvert.DeserializeObject<T>(result);
                 return mater;
             }
@@ -64,15 +109,15 @@ namespace NIRAC_WEB.WebServices
                 return null;
             }
         }
-        public T Update(T t, int id)
+        public T Update(T t, int id, string obj)
         {
+            string url = Url + obj + "/" + id;
             try
             {
-                string urlPut = this.Url + "/" + id;
                 var upload = JsonConvert.SerializeObject(t);
-                this.wc.Headers[HttpRequestHeader.ContentType] = "application/json";
-                this.wc.Encoding = Encoding.UTF8;
-                var result = this.wc.UploadString(urlPut, "PUT", upload);
+                wc.Headers[HttpRequestHeader.ContentType] = "application/json";
+                wc.Encoding = Encoding.UTF8;
+                var result = wc.UploadString(url, "PUT", upload);
                 var mater = JsonConvert.DeserializeObject<T>(result);
                 return mater;
             }
@@ -81,15 +126,15 @@ namespace NIRAC_WEB.WebServices
                 return null;
             }
         }
-        public T Delete(T t, int id)
+        public T Delete(T t, int id, string obj)
         {
+            string url = Url + obj + "/" + id;
             try
             {
-                string urlDelete = this.Url + "/" + id;
                 var upload = JsonConvert.SerializeObject(t);
-                this.wc.Headers[HttpRequestHeader.ContentType] = "application/json";
-                this.wc.Encoding = Encoding.UTF8;
-                var result = this.wc.UploadString(urlDelete, "DELETE", upload);
+                wc.Headers[HttpRequestHeader.ContentType] = "application/json";
+                wc.Encoding = Encoding.UTF8;
+                var result = wc.UploadString(url, "DELETE", upload);
                 var mater = JsonConvert.DeserializeObject<T>(result);
                 return mater;
             }
@@ -98,5 +143,7 @@ namespace NIRAC_WEB.WebServices
                 return null;
             }
         }
+        #endregion
+
     }
 }

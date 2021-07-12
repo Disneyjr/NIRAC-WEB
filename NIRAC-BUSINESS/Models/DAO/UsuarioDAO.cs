@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace NIRAC_BUSINESS.DAO
+namespace NIRAC_BUSINESS.Models.DAO
 {
     [Table("Usuario")]
     public class UsuarioDAO

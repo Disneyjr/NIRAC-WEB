@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using NIRAC_BUSINESS.DAO;
 
 namespace NIRAC_BUSINESS.Models.DAO
 {

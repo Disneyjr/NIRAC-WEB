@@ -24,31 +24,38 @@ namespace NIRAC_API.Controllers
             this.rep = new EmpresaRepository(cx);
             this._serv = new EmpresaService(this.cx, this.rep, this.map);
         }
-
+        [HttpGet]
+        [Route("EmpresaCadastrada/{idUsuario}")]
+        public EmpresaDTO EmpresaCadastrada(int idUsuario)
+        {
+            return _serv.GetAll().Find(e=>e.IdUsuario == idUsuario);
+        }
+        #region CRUD
         [HttpGet]
         public List<EmpresaDTO> GetAll()
         {
-            return this._serv.GetAll();
+            return _serv.GetAll();
         }
         [HttpGet]
         public EmpresaDTO Get(int id)
         {
-            return this._serv.Get(id);
+            return _serv.Get(id);
         }
         [HttpPost]
         public EmpresaDTO Post(EmpresaDAO dao)
         {
-            return this._serv.Add(dao);
+            return _serv.Add(dao);
         }
         [HttpPut]
         public EmpresaDTO Put(EmpresaDAO dao)
         {
-            return this._serv.Update(dao, dao.Id);
+            return _serv.Update(dao, dao.Id);
         }
         [HttpDelete]
         public EmpresaDTO Delete(EmpresaDAO dao)
         {
-            return this._serv.Delete(dao, dao.Id);
+            return _serv.Delete(dao, dao.Id);
         }
+        #endregion
     }
 }

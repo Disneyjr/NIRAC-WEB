@@ -1,7 +1,7 @@
 ﻿using NIRAC_BUSINESS.Context;
-using NIRAC_BUSINESS.DAO;
-using NIRAC_BUSINESS.DTO;
 using NIRAC_BUSINESS.Interface;
+using NIRAC_BUSINESS.Models.DAO;
+using NIRAC_BUSINESS.Models.DTO;
 using NIRAC_BUSINESS.Models.Map;
 using NIRAC_BUSINESS.Repository;
 

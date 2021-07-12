@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NIRAC_BUSINESS.DTO
+namespace NIRAC_BUSINESS.Models.DTO
 {
     public class UsuarioDTO
     {

@@ -24,31 +24,36 @@ namespace NIRAC_API.Controllers
             this.rep = new CidadeRepository(cx);
             this._serv = new CidadeService(this.cx, this.rep, this.map);
         }
-
+        [HttpGet]
+        [Route("CidadesIdEstado/{idEstado}")]
+        public List<CidadeDTO> CidadesIdEstado(int idEstado)
+        {
+            return _serv.GetAll().FindAll(e => e.IdEstado == idEstado);
+        }
         [HttpGet]
         public List<CidadeDTO> GetAll()
         {
-            return this._serv.GetAll();
+            return _serv.GetAll();
         }
         [HttpGet]
         public CidadeDTO Get(int id)
         {
-            return this._serv.Get(id);
+            return _serv.Get(id);
         }
         [HttpPost]
         public CidadeDTO Post(CidadeDAO dao)
         {
-            return this._serv.Add(dao);
+            return _serv.Add(dao);
         }
         [HttpPut]
         public CidadeDTO Put(CidadeDAO dao)
         {
-            return this._serv.Update(dao, dao.Id);
+            return _serv.Update(dao, dao.Id);
         }
         [HttpDelete]
         public CidadeDTO Delete(CidadeDAO dao)
         {
-            return this._serv.Delete(dao, dao.Id);
+            return _serv.Delete(dao, dao.Id);
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NIRAC_BUSINESS.DAO;
+using NIRAC_BUSINESS.Models.DAO;
 using NIRAC_BUSINESS.Models.API_CONFIG;
 using NIRAC_WEB.Validations;
 using NIRAC_WEB.WebServices;

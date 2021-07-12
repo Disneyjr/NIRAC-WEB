@@ -28,27 +28,27 @@ namespace NIRAC_API.Controllers
         [HttpGet]
         public List<CentroCustoUsuarioDTO> GetAll()
         {
-            return this._serv.GetAll();
+            return _serv.GetAll();
         }
         [HttpGet]
         public CentroCustoUsuarioDTO Get(int id)
         {
-            return this._serv.Get(id);
+            return _serv.Get(id);
         }
         [HttpPost]
         public CentroCustoUsuarioDTO Post(CentroCustoUsuarioDAO dao)
         {
-            return this._serv.Add(dao);
+            return _serv.Add(dao);
         }
         [HttpPut]
         public CentroCustoUsuarioDTO Put(CentroCustoUsuarioDAO dao)
         {
-            return this._serv.Update(dao, dao.Id);
+            return _serv.Update(dao, dao.Id);
         }
         [HttpDelete]
         public CentroCustoUsuarioDTO Delete(CentroCustoUsuarioDAO dao)
         {
-            return this._serv.Delete(dao, dao.Id);
+            return _serv.Delete(dao, dao.Id);
         }
     }
 }
