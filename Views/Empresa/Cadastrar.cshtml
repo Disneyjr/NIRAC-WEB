@@ -4,7 +4,7 @@
     ViewBag.CadastrarEmpresa = "active";
     ViewBag.Empresa = "active";
     ViewBag.AriaEmpresa = "false";
-    ViewBag.Show = "show";
+    ViewBag.ShowEmpresa = "show";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 <h3 class="TitlePage">Cadastrar Empresa</h3>
@@ -19,7 +19,8 @@
             <label for="DinheiroCaixa" class="form-label">Capital Inicial</label>
             <input class="dinheiro form-control" id="DinheiroCaixa" name="EmpresaDAO.DinheiroCaixa" placeholder="Capital Inicial" required>
         </div>
-    </div><div class="form-row">
+    </div>
+<div class="form-row">
         <div class="col">
             <label for="pais">Pais</label>
             <select class="form-control" id="pais" onchange="UpdateEstado()" name="pais">

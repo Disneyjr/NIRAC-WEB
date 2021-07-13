@@ -34,7 +34,7 @@
                     <i class="fas fa-building"></i>
                     <span>Empresa</span>
                 </a>
-                <div id="collapseEmpresa" class="collapse @ViewBag.Show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div id="collapseEmpresa" class="collapse @ViewBag.ShowEmpresa" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Funções:</h6>
                         <a class="collapse-item @ViewBag.CadastrarEmpresa" href="@Url.Action("Cadastrar","Empresa")">Cadastrar</a>
@@ -43,31 +43,31 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClientes" aria-expanded="true" aria-controls="collapseUtilities">
+            <li class="nav-item" @ViewBag.Cliente>
+                <a class="nav-link @ViewBag.NavCliente" href="#" data-toggle="collapse" data-target="#collapseClientes" aria-expanded="@ViewBag.AriaCliente" aria-controls="collapseUtilities">
                     <i class="fas fa-user-plus"></i>
                     <span>Clientes</span>
                 </a>
-                <div id="collapseClientes" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div id="collapseClientes" class="collapse @ViewBag.ShowCliente" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Funções:</h6>
-                        <a class="collapse-item" href="@Url.Action("ClienteCadastrar","Usuario")">Cadastrar</a>
-                        <a class="collapse-item" href="@Url.Action("Clientes","Usuario")">Informações</a>
-                        <a class="collapse-item" href="@Url.Action("ClienteEditar","Usuario")">Editar</a>
+                        <a class="collapse-item @ViewBag.CadastrarCliente" href="@Url.Action("ClienteCadastrar","Usuario")">Cadastrar</a>
+                        <a class="collapse-item @ViewBag.IndexCliente" href="@Url.Action("Clientes","Usuario")">Informações</a>
+                        <a class="collapse-item @ViewBag.EditarCliente" href="@Url.Action("ClienteEditar","Usuario")">Editar</a>
                     </div>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFuncionarios" aria-expanded="true" aria-controls="collapseUtilities">
+            <li class="nav-item" @ViewBag.Funcionario>
+                <a class="nav-link @ViewBag.NavFuncionario" href="#" data-toggle="collapse" data-target="#collapseFuncionarios" aria-expanded="@ViewBag.AriaFuncionario" aria-controls="collapseUtilities">
                     <i class="fas fa-id-card"></i>
                     <span>Funcionarios</span>
                 </a>
-                <div id="collapseFuncionarios" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div id="collapseFuncionarios" class="collapse @ViewBag.ShowFuncionario" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Funções:</h6>
-                        <a class="collapse-item" href="@Url.Action("FuncionarioCadastrar","Usuario")">Cadastrar</a>
-                        <a class="collapse-item" href="@Url.Action("Funcionarios","Usuario")">Informações</a>
-                        <a class="collapse-item" href="@Url.Action("FuncionarioEditar","Usuario")">Editar</a>
+                        <a class="collapse-item @ViewBag.CadastrarFuncionario" href="@Url.Action("FuncionarioCadastrar","Usuario")">Cadastrar</a>
+                        <a class="collapse-item @ViewBag.IndexFuncionario" href="@Url.Action("Funcionarios","Usuario")">Informações</a>
+                        <a class="collapse-item @ViewBag.EditarFuncionario" href="@Url.Action("FuncionarioEditar","Usuario")">Editar</a>
                     </div>
                 </div>
             </li>

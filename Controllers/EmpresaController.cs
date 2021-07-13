@@ -8,13 +8,11 @@ namespace NIRAC_WEB.Controllers
 {
     public class EmpresaController : Controller
     {
-        int idUsuario;
         private Estado estado = new Estado();
         private EmpresaService empresaService;
         private Cidade cidade = new Cidade();
         public EmpresaController()
         {
-            this.idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
             empresaService = new EmpresaService();
         }
         // GET: Empresa
@@ -41,6 +39,7 @@ namespace NIRAC_WEB.Controllers
         [HttpPost]
         public ActionResult Cadastrar(FormCollection form)
         {
+            int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
             var empresacadastrada = empresaService.EmpresaCadastrada(idUsuario);
             if (empresacadastrada.Id > 0)
             {
@@ -75,6 +74,7 @@ namespace NIRAC_WEB.Controllers
         }
         public ActionResult Editar()
         {
+            int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
             return View(empresaService.EmpresaCadastrada(idUsuario));
         }
         [HttpPost]
