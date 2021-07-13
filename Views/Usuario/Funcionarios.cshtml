@@ -1,4 +1,4 @@
-﻿
+﻿@model List<NIRAC_BUSINESS.Models.DAO.UsuarioDAO>
 @{
     ViewBag.Title = "Lista de Funcionario";
     ViewBag.IndexFuncionario = "active";
@@ -9,4 +9,31 @@
 }
 
 <h2>Lista de Funcionarios</h2>
-
+@if (Model != null)
+{
+    <div class="table table-responsive-md  table-striped">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">Código</th>
+                    <th scope="col" class="text-center">Nome</th>
+                    <th scope="col" class="text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row" class="text-center">Disney</td>
+                    <td class="text-center">Disney</td>
+                    <td width="250px" class="text-center">
+                        <a class="btn btn-primary btn-sm">Editar</a>
+                        <a class="btn btn-primary btn-sm">Deletar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <h3 class="text-center">Nenhum funcionario cadastrado!</h3>
+}

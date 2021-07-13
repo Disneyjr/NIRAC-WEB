@@ -15,7 +15,6 @@ namespace NIRAC_WEB.Controllers
         {
             empresaService = new EmpresaService();
         }
-        // GET: Empresa
         public ActionResult Index()
         {
             int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
@@ -74,6 +73,7 @@ namespace NIRAC_WEB.Controllers
         }
         public ActionResult Editar()
         {
+            ViewBag.ListaPaises = empresaService.ListarPaises();
             int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
             return View(empresaService.EmpresaCadastrada(idUsuario));
         }

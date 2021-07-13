@@ -4,58 +4,90 @@
     ViewBag.Empresa = "active";
     ViewBag.IndexEmpresa = "active";
     ViewBag.AriaEmpresa = "false";
-    ViewBag.Show = "show";
+    ViewBag.ShowEmpresa = "show";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 <h3 class="TitlePage">Informações da Empresa</h3>
-<div class="form-row">
-    <div class="col">
-        <label for="Nome" class="form-label">Nome</label>
-        <input type="text" 
-               value="@Model.Nome" 
-               class="form-control" 
-               id="Nome"
-               style="color:black"
-               name="EmpresaDAO.Nome" 
-               placeholder="Nome" 
-               disabled>
+@if (Model != null)
+{
+    <div class="form-row">
+        <div class="col">
+            <label for="Nome" class="form-label">Nome</label>
+            <input type="text"
+                   value="@Model.Nome"
+                   class="form-control"
+                   id="Nome"
+                   style="color:black"
+                   name="EmpresaDAO.Nome"
+                   placeholder="Nome"
+                   disabled>
+        </div>
+        <div class="col">
+            <label for="DinheiroCaixa" class="form-label">Capital Inicial</label>
+            <input class="dinheiro form-control"
+                   value="@Model.DinheiroCaixa"
+                   id="DinheiroCaixa"
+                   style="color:black"
+                   name="EmpresaDAO.DinheiroCaixa"
+                   placeholder="Capital Inicial"
+                   disabled>
+        </div>
     </div>
-    <div class="col">
-        <label for="DinheiroCaixa" class="form-label">Capital Inicial</label>
-        <input class="dinheiro form-control" 
-               value="@Model.DinheiroCaixa" 
-               id="DinheiroCaixa" 
-               style="color:black"
-               name="EmpresaDAO.DinheiroCaixa" 
-               placeholder="Capital Inicial" 
-               disabled>
+    <div class="form-row">
+        <div class="col">
+            <label for="pais">Pais</label>
+            <select class="form-control"
+                    id="pais"
+                    name="pais"
+                    disabled>
+                @if (Model.paisDAO != null)
+                {
+                    <option value="0" selected>@Model.paisDAO.Nome</option>
+                }
+                else
+                {
+                    <option value="0">Nenhum pais selecionado</option>
+                }
+            </select>
+        </div>
+        <div class="col">
+            <label for="estado">Estado</label>
+            <select class="form-control"
+                    id="estado"
+                    name="estado"
+                    disabled>
+                @if (Model.estadoDAO != null)
+                {
+                    <option value="0" selected>@Model.estadoDAO.Nome</option>
+                }
+                else
+                {
+                    <option value="0">Nenhum estado selecionado</option>
+                }
+            </select>
+        </div>
+        <div class="col">
+            <label for="cidade">Cidade</label>
+            <select class="form-control"
+                    id="cidade"
+                    name="cidade"
+                    disabled>
+                @if (Model.cidadeDAO != null)
+                {
+                    <option value="0" selected>@Model.cidadeDAO.Nome</option>
+                }
+                else
+                {
+                    <option value="0">Nenhum cidade selecionado</option>
+                }
+
+
+
+            </select>
+        </div>
     </div>
-</div><div class="form-row">
-    <div class="col">
-        <label for="pais">Pais</label>
-        <select class="form-control" 
-                id="pais" 
-                name="pais"
-                disabled>
-            <option value="0" selected>Selecione um pais</option>
-        </select>
-    </div>
-    <div class="col">
-        <label for="estado">Estado</label>
-        <select class="form-control" 
-                id="estado" 
-                name="estado"
-                disabled>
-            <option value="0">Selecione um estado</option>
-        </select>
-    </div>
-    <div class="col">
-        <label for="cidade">Cidade</label>
-        <select class="form-control" 
-                id="cidade" 
-                name="cidade"
-                disabled>
-            <option value="0">Selecione uma cidade</option>
-        </select>
-    </div>
-</div>
+}
+else
+{
+    <h2 class="TitlePage">Nenhuma empresa cadastrada!</h2>
+}

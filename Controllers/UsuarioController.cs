@@ -4,7 +4,6 @@ namespace NIRAC_WEB.Controllers
 {
     public class UsuarioController : Controller
     {
-        // GET: Usuario
         public ActionResult Funcionarios()
         {
             return View();

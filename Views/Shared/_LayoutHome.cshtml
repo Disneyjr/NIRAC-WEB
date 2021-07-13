@@ -8,6 +8,8 @@
     <link href="~/Content/CSS/Home.css" />
     <link href="~/Content/ADM-LTE/css/sb-admin-2.css" rel="stylesheet">
     <link href="~/Content/ADM-LTE/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body class="bg-gradient-gray-dark" id="page-top">
@@ -52,8 +54,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Funções:</h6>
                         <a class="collapse-item @ViewBag.CadastrarCliente" href="@Url.Action("ClienteCadastrar","Usuario")">Cadastrar</a>
-                        <a class="collapse-item @ViewBag.IndexCliente" href="@Url.Action("Clientes","Usuario")">Informações</a>
-                        <a class="collapse-item @ViewBag.EditarCliente" href="@Url.Action("ClienteEditar","Usuario")">Editar</a>
+                        <a class="collapse-item @ViewBag.IndexCliente" href="@Url.Action("Clientes","Usuario")">Lista de Clientes</a>
                     </div>
                 </div>
             </li>
@@ -66,8 +67,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Funções:</h6>
                         <a class="collapse-item @ViewBag.CadastrarFuncionario" href="@Url.Action("FuncionarioCadastrar","Usuario")">Cadastrar</a>
-                        <a class="collapse-item @ViewBag.IndexFuncionario" href="@Url.Action("Funcionarios","Usuario")">Informações</a>
-                        <a class="collapse-item @ViewBag.EditarFuncionario" href="@Url.Action("FuncionarioEditar","Usuario")">Editar</a>
+                        <a class="collapse-item @ViewBag.IndexFuncionario" href="@Url.Action("Funcionarios","Usuario")">Lista de Funcionarios</a>
                     </div>
                 </div>
             </li>
@@ -266,6 +266,7 @@
     <script src="~/Content/ADM-LTE/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="~/Content/ADM-LTE/js/sb-admin-2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
     <script src="~/Content/JS/toast.js"></script>
     <script src="~/Content/JS/Mascaras.js"></script>
     @*Page level plugins
