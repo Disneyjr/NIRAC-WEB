@@ -24,7 +24,12 @@ namespace NIRAC_API.Controllers
             this.rep = new CentroCustoUsuarioRepository(cx);
             this._serv = new CentroCustoUsuarioService(this.cx, this.rep, this.map);
         }
-
+        [HttpGet]
+        [Route("GetDAO/{id}")]
+        public CentroCustoUsuarioDAO GetDAO(int id)
+        {
+            return _serv.GetDAO(id);
+        }
         [HttpGet]
         public List<CentroCustoUsuarioDTO> GetAll()
         {

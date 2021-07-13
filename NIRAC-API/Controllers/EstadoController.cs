@@ -40,6 +40,12 @@ namespace NIRAC_API.Controllers
         {
             return _serv.Get(id);
         }
+        [HttpGet]
+        [Route("GetDAO/{id}")]
+        public EstadoDAO GetDAO(int id)
+        {
+            return _serv.GetDAO(id);
+        }
         [HttpPost]
         public EstadoDTO Post(EstadoDAO dao)
         {

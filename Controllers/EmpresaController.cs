@@ -18,8 +18,8 @@ namespace NIRAC_WEB.Controllers
         // GET: Empresa
         public ActionResult Index()
         {
-            ViewBag.CadastrouEmpresa = false;
-            return View();
+            int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
+            return View(empresaService.EmpresaCadastrada(idUsuario));
         }
         public ActionResult Cadastrar()
         {

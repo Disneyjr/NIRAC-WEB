@@ -36,6 +36,12 @@ namespace NIRAC_API.Controllers
             return _serv.GetAll();
         }
         [HttpGet]
+        [Route("GetDAO/{id}")]
+        public CidadeDAO GetDAO(int id)
+        {
+            return _serv.GetDAO(id);
+        }
+        [HttpGet]
         public CidadeDTO Get(int id)
         {
             return _serv.Get(id);

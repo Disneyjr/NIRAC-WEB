@@ -7,6 +7,7 @@ namespace NIRAC_BUSINESS.Interface
         where TDao : class
     {
         TDto Get(int id);
+        TDao GetDAO(int id);
         List<TDto> GetAll();
         TDto Add(TDao t);
         TDto Update(TDao t, int id);

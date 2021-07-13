@@ -42,6 +42,11 @@ namespace NIRAC_BUSINESS.Interface
             TDto dto = this.mapper.Map<TDto>(dao);
             return dto;
         }
+        public TDao GetDAO(int id)
+        {
+            TDao dao = this.rep.Get(id);
+            return dao;
+        }
 
         public List<TDto> GetAll()
         {
