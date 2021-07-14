@@ -6,11 +6,11 @@ using NIRAC_BUSINESS.Models.API_CONFIG;
 
 namespace NIRAC_WEB.WebServices
 {
-    public class LoginService
+    public class LoginWebService
     {
         private ApiConfiguration api;
         private WebServiceBase<UsuarioDAO> _ususerviceBase;
-        public LoginService()
+        public LoginWebService()
         {
             this.api = new ApiConfiguration();
             this._ususerviceBase = new WebServiceBase<UsuarioDAO>(this.api.URI_API);
@@ -19,7 +19,7 @@ namespace NIRAC_WEB.WebServices
         {
             if (User == "" || Password == "")
                 throw new Exception("Usuario ou senha Nullo!");
-            var response = this._ususerviceBase.GetEntitybyString(User, "Usuario/ValidUserPassword/");
+            var response = this._ususerviceBase.GetEntityFindString(User, "Usuario/ValidUserPassword/");
             if (response == null)
                 return null;
             if(HashingSenha.ValidarSenha(Password, response.Senha))
@@ -35,7 +35,7 @@ namespace NIRAC_WEB.WebServices
         public bool ExistEmail(string Email)
         {
             bool retorno = false;
-            var response = this._ususerviceBase.GetEntitybyString(Email, "Usuario/GetUserbyEmail/");
+            var response = this._ususerviceBase.GetEntityFindString(Email, "Usuario/GetUserbyEmail/");
             if (response != null)
             {
                 retorno = true;

@@ -1,8 +1,8 @@
 ﻿@model List<NIRAC_BUSINESS.Models.DAO.UsuarioDAO>
 @{
     ViewBag.Title = "Lista de Cliente";
-    ViewBag.IndexCliente = "active";
     ViewBag.Cliente = "active";
+    ViewBag.IndexCliente = "active";
     ViewBag.AriaCliente = "false";
     ViewBag.ShowCliente = "show";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
@@ -21,14 +21,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td scope="row" class="text-center">Disney</td>
-                    <td class="text-center">Disney</td>
-                    <td width="250px" class="text-center">
-                        <a class="btn btn-primary btn-sm">Editar</a>
-                        <a class="btn btn-primary btn-sm">Deletar</a>
-                    </td>
-                </tr>
+                @foreach (var funcionario in Model)
+                {
+                    <tr>
+                        <td scope="row" class="text-center">@funcionario.Id</td>
+                        <td class="text-center">@funcionario.Nome</td>
+                        <td width="250px" class="text-center">
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("Editar","Usuario", new { id = funcionario.Id })">Editar</a>
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("Deletar","Usuario", new { id = funcionario.Id })">Deletar</a>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

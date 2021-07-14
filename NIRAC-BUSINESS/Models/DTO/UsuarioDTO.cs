@@ -11,6 +11,8 @@ namespace NIRAC_BUSINESS.Models.DTO
         public string Tipo { get; set; }
         public string CPF { get; set; }
         public string Genero { get; set; }
+        public string TipoAcesso { get; set; }
+        public string Status { get; set; }
         public string EstadoCivil { get; set; }
         public string Senha { get; set; }
         public DateTime Data_Cadastro { get; set; }

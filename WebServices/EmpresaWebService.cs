@@ -5,14 +5,14 @@ using NIRAC_BUSINESS.Models.DTO;
 
 namespace NIRAC_WEB.WebServices
 {
-    public class EmpresaService
+    public class EmpresaWebService
     {
         private ApiConfiguration api;
         private WebServiceBase<EmpresaDAO> _empresaBase;
         private WebServiceBase<PaisDTO> _paisBase;
         private WebServiceBase<EstadoDTO> _estadoBase;
         private WebServiceBase<CidadeDTO> _cidadeBase;
-        public EmpresaService()
+        public EmpresaWebService()
         {
             this.api = new ApiConfiguration();
             this._empresaBase = new WebServiceBase<EmpresaDAO>(this.api.URI_API);
@@ -29,7 +29,7 @@ namespace NIRAC_WEB.WebServices
         }
         public EmpresaDAO EmpresaCadastrada(int idUsuario)
         {
-            return _empresaBase.GetEntitybyInt(idUsuario, "Empresa/EmpresaCadastrada/");
+            return _empresaBase.GetEntityFindInt(idUsuario, "Empresa/EmpresaCadastrada/");
         }
         public List<PaisDTO> ListarPaises()
         {
@@ -37,11 +37,11 @@ namespace NIRAC_WEB.WebServices
         }
         public List<EstadoDTO> ListarEstados(int idPais)
         {
-            return _estadoBase.GetListId(idPais, "Estado/EstadosIdPais/");
+            return _estadoBase.GetListFindInt(idPais, "Estado/EstadosIdPais/");
         }
         public List<CidadeDTO> ListarCidades(int idEstado)
         {
-            return _cidadeBase.GetListId(idEstado, "Cidade/CidadesIdEstado/");
+            return _cidadeBase.GetListFindInt(idEstado, "Cidade/CidadesIdEstado/");
         }
     }
 }

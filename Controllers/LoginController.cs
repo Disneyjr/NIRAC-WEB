@@ -1,21 +1,25 @@
 ﻿using System;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NIRAC_BUSINESS.Models.DAO;
 using NIRAC_BUSINESS.Models.API_CONFIG;
 using NIRAC_WEB.Validations;
 using NIRAC_WEB.WebServices;
+using NIRAC_BUSINESS.Models.PrivateMethods;
 
 namespace NIRAC_WEB.Controllers
 {
     public class LoginController : Controller
     {
-        private LoginService loginService;
+        private LoginWebService loginService;
+        private ToFromGenero toFromGenero;
+        private ToFromEstadoCivil toFromEstadoCivil;
         private HashingSenha hashing;
         public LoginController()
         {
-            loginService = new LoginService();
+            toFromGenero = new ToFromGenero();
+            toFromEstadoCivil = new ToFromEstadoCivil();
+            loginService = new LoginWebService();
         }
         public ActionResult Index()
         {
@@ -34,7 +38,7 @@ namespace NIRAC_WEB.Controllers
                 cookie.Path = "/";
                 cookieUsuarioTipo.Path = "/";
                 cookie.Value = usuario.Id.ToString();
-                cookieUsuarioTipo.Value = usuario.Tipo;
+                cookieUsuarioTipo.Value = usuario.TipoAcesso;
                 Response.Cookies.Add(cookie);
                 Response.Cookies.Add(cookieUsuarioTipo);
                 TempData["success"] = "Logado com Sucesso!";
@@ -86,13 +90,14 @@ namespace NIRAC_WEB.Controllers
 
             string genero = form["Genero"].ToString();
             string estadoCivil = form["EstadoCivil"].ToString();
-            usuario.Genero = DeParaGenero(Convert.ToInt16((genero)));
-            usuario.EstadoCivil = DeParaEstadoCivil(Convert.ToInt16((estadoCivil)));
+            usuario.Genero = toFromGenero.Genero(Convert.ToInt16(genero));
+            usuario.EstadoCivil = toFromEstadoCivil.EstadoCivil(Convert.ToInt16(estadoCivil));
             int local = usuario.Nome.IndexOf(" ");
             usuario.Apelido = usuario.CPF.Substring(0, 3) + "_" + usuario.Nome.Remove(local);
             usuario.Data_Cadastro = DateTime.Now;
             usuario.Data_Update = DateTime.Now;
             usuario.Tipo = "Pre-Cadastrado";
+            usuario.TipoAcesso = "Pre-Cadastrado";
             usuario.IdCidade = 1;
             usuario.IdEstado = 1;
             usuario.IdPais = 1;
@@ -107,30 +112,6 @@ namespace NIRAC_WEB.Controllers
                 TempData["error"] = "Falha ao Cadastrar o Usuario!";
                 return RedirectToAction("CadastroUsuario", "Login");
             }
-        }
-        public string DeParaGenero(int genero)
-        {
-            string retorno = "";
-            if (genero == 1)
-                retorno = "Masculino";
-            if (genero == 2)
-                retorno = "Feminino";
-            return retorno;
-        }
-        public string DeParaEstadoCivil(int estadocivil)
-        {
-            string retorno = "";
-            if (estadocivil == 1)
-                retorno = "Solteiro";
-            if (estadocivil == 2)
-                retorno = "Casado";
-            if (estadocivil == 3)
-                retorno = "Separado";
-            if (estadocivil == 4)
-                retorno = "Divorciado";
-            if (estadocivil == 5)
-                retorno = "Viúvo";
-            return retorno;
         }
         public bool ValidacaoFomulario(UsuarioDAO usuario, string Password2)
         {

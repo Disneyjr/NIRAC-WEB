@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Web.Mvc;
 using NIRAC_BUSINESS.Models.DAO;
-using NIRAC_BUSINESS.Models.PrivateMethods;
 using NIRAC_WEB.WebServices;
 
 namespace NIRAC_WEB.Controllers
 {
+    [Autentica(Modulo = "Empresa", TipoAcesso = "NIRAC-ALL", Funcionalidade = "Empresa")]
     public class EmpresaController : Controller
     {
-        private Estado estado = new Estado();
-        private EmpresaService empresaService;
-        private Cidade cidade = new Cidade();
+        private EmpresaWebService empresaService;
         public EmpresaController()
         {
-            empresaService = new EmpresaService();
+            empresaService = new EmpresaWebService();
         }
         public ActionResult Index()
         {

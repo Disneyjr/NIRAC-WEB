@@ -17,6 +17,10 @@ namespace NIRAC_BUSINESS.Models.DAO
         public string Email { get; set; }
         [Column("Tipo")]
         public string Tipo { get; set; }
+        [Column("TipoAcesso")]
+        public string TipoAcesso { get; set; }
+        [Column("Status")]
+        public string Status { get; set; }
         [Column("CPF")]
         public string CPF { get; set; }
         [Column("Genero")]

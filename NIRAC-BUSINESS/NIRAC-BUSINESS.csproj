@@ -90,8 +90,9 @@
     <Compile Include="Models\Map\EstadoMap.cs" />
     <Compile Include="Models\Map\PaisMap.cs" />
     <Compile Include="Models\Map\UsuarioMap.cs" />
-    <Compile Include="Models\PrivateMethods\Cidade.cs" />
-    <Compile Include="Models\PrivateMethods\Estado.cs" />
+    <Compile Include="Models\PrivateMethods\ToFromEstadoCivil.cs" />
+    <Compile Include="Models\PrivateMethods\ToFromFuncionarios.cs" />
+    <Compile Include="Models\PrivateMethods\ToFromGenero.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CentroCustoRepository.cs" />
     <Compile Include="Repository\CentroCustoUsuarioRepository.cs" />
