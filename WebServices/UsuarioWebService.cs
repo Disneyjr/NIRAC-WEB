@@ -22,9 +22,9 @@ namespace NIRAC_WEB.WebServices
         {
             return _ususerviceBase.GetListFindString(FieldString, Research);
         }
-        public UsuarioDTO GetUsuario()
+        public UsuarioDTO GetUsuario(int id)
         {
-            return _ususerviceBase.Get(1,"");
+            return _ususerviceBase.Get(id, "Usuario");
         }
         public bool AdicionarUsuario(UsuarioDAO usuario)
         {

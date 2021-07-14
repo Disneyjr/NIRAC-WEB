@@ -65,16 +65,8 @@ namespace NIRAC_WEB.WebServices
         {
             wc.Encoding = Encoding.UTF8;
             string url = Url + Research + FieldString;
-            try
-            {
-                var response = wc.DownloadString(url);
-                List<T> t = JsonConvert.DeserializeObject<List<T>>(response);
-                return t;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
+            var response = wc.DownloadString(url);
+            return JsonConvert.DeserializeObject<List<T>>(response);
         }
         #region CRUD
         public T Get(int FieldInt, string Research)

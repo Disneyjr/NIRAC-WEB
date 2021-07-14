@@ -1,4 +1,4 @@
-﻿@model List<NIRAC_BUSINESS.Models.DAO.UsuarioDAO>
+﻿@model List<NIRAC_BUSINESS.Models.DTO.UsuarioDTO>
 @{
     ViewBag.Title = "Lista de Cliente";
     ViewBag.Cliente = "active";
@@ -9,9 +9,9 @@
 }
 
 <h2>Lista de Clientes</h2>
-@if (Model != null)
+@if (Model.Count > 0)
 {
-    <div class="table table-responsive-md  table-striped">
+    <div class="table table-responsive-md">
         <table class="table">
             <thead>
                 <tr>
@@ -27,7 +27,7 @@
                         <td scope="row" class="text-center">@funcionario.Id</td>
                         <td class="text-center">@funcionario.Nome</td>
                         <td width="250px" class="text-center">
-                            <a class="btn btn-primary btn-sm" href="@Url.Action("Editar","Usuario", new { id = funcionario.Id })">Editar</a>
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("ClienteEditar","Usuario", new { id = funcionario.Id })">Editar</a>
                             <a class="btn btn-primary btn-sm" href="@Url.Action("Deletar","Usuario", new { id = funcionario.Id })">Deletar</a>
                         </td>
                     </tr>

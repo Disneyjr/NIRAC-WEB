@@ -67,13 +67,12 @@ namespace NIRAC_WEB.Controllers
                 return RedirectToAction("FuncionarioCadastrar", "Usuario");
             }
         }
-        public ActionResult FuncionarioEditar()
+        public ActionResult FuncionarioEditar(int id)
         {
-            return View();
+            return View(usuarioService.GetUsuario(id));
         }
         public ActionResult Clientes()
         {
-            ViewBag.ListaPaises = usuarioService.ListarPaises();
             return View(usuarioService.GetUsuariosFindType("Cliente", "Usuario/GetUserType/"));
         }
         public ActionResult ClienteCadastrar()
@@ -118,9 +117,9 @@ namespace NIRAC_WEB.Controllers
                 return RedirectToAction("FuncionarioCadastrar", "Usuario");
             }
         }
-        public ActionResult ClienteEditar()
+        public ActionResult ClienteEditar(int id)
         {
-            return View();
+            return View(usuarioService.GetUsuario(id));
         }
     }
 }
