@@ -21,6 +21,7 @@ namespace NIRAC_WEB.Controllers
             toFromFuncionario = new ToFromFuncionarios();
             usuarioService = new UsuarioWebService();
         }
+        #region FUNCIONARIO
         public ActionResult Funcionarios()
         {
             return View(usuarioService.GetUsuariosFindType("Funcionario", "Usuario/GetUserType/"));
@@ -71,6 +72,12 @@ namespace NIRAC_WEB.Controllers
         {
             return View(usuarioService.GetUsuario(id));
         }
+        public ActionResult FuncionarioDetalhe(int id)
+        {
+            return View(usuarioService.GetUsuario(id));
+        }
+        #endregion
+        #region CLIENTE
         public ActionResult Clientes()
         {
             return View(usuarioService.GetUsuariosFindType("Cliente", "Usuario/GetUserType/"));
@@ -121,5 +128,10 @@ namespace NIRAC_WEB.Controllers
         {
             return View(usuarioService.GetUsuario(id));
         }
+        public ActionResult ClienteDetalhe(int id)
+        {
+            return View(usuarioService.GetUsuario(id));
+        }
+        #endregion
     }
 }

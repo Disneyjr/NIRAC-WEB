@@ -12,12 +12,51 @@
 {
     <div class="form-row">
         <div class="col">
-            <label for="Nome" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="Nome" name="EmpresaDAO.Nome" placeholder="Nome" required>
+            <label for="Nome" class="form-label">Nome Completo</label>
+            <input type="text" class="form-control" id="Nome" name="UsuarioDAO.Nome" placeholder="Nome Completo" required>
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <label for="CPF" class="form-label">CPF</label>
+            <input class="cpf form-control"
+                   id="CPF" name="UsuarioDAO.CPF" placeholder="CPF" required>
         </div>
         <div class="col">
-            <label for="DinheiroCaixa" class="form-label">Capital Inicial</label>
-            <input class="dinheiro form-control" id="DinheiroCaixa" name="EmpresaDAO.DinheiroCaixa" placeholder="Capital Inicial" required>
+            <label for="Email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="Email" name="UsuarioDAO.Email" placeholder="E-mail" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <label for="Senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="Senha" name="UsuarioDAO.Senha" placeholder="Senha" required>
+        </div>
+        <div class="col">
+            <label for="ConfirmarSenha" class="form-label">Confirmar Senha</label>
+            <input type="password" class="form-control" id="ConfirmarSenha" name="ConfirmarSenha" placeholder="Confirmar Senha" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <label for="estadocivil" class="form-label">Estado Civil</label>
+            <select class="form-control" id="estadocivil" name="estadocivil">
+                <option value="0" selected>Selecione...</option>
+                <option value="1">Solteiro</option>
+                <option value="2">Casado</option>
+                <option value="3">Separado</option>
+                <option value="4">Divorciado</option>
+                <option value="5">Viúvo</option>
+            </select>
+        </div>
+        <div class="col">
+            <label for="genero" class="form-label">Genero</label>
+            <select class="form-control" id="genero" name="genero">
+                <option value="0" selected>Selecione um genero</option>
+                <option value="1">Masculino</option>
+                <option value="2">Feminino</option>
+            </select>
         </div>
     </div>
     <div class="form-row">
@@ -47,13 +86,11 @@
             </select>
         </div>
     </div>
-
     <div class="text-center">
         <button class="btn btn-primary btn-user my-3">
             Cadastrar
         </button>
     </div>
-
 }
 <script type="text/javascript">
 

@@ -248,6 +248,8 @@
     <Content Include="Views\Emprestimo\Cadastrar.cshtml" />
     <Content Include="Views\Emprestimo\Editar.cshtml" />
     <Content Include="Views\Emprestimo\Index.cshtml" />
+    <Content Include="Views\Usuario\FuncionarioDetalhe.cshtml" />
+    <Content Include="Views\Usuario\ClienteDetalhe.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

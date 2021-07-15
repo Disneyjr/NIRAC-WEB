@@ -1,0 +1,70 @@
+﻿@model NIRAC_BUSINESS.Models.DTO.UsuarioDTO
+@{
+    ViewBag.Title = "Detalhe Cliente";
+    ViewBag.Cliente = "active";
+    ViewBag.IndexCliente = "active";
+    ViewBag.AriaCliente = "false";
+    ViewBag.ShowCliente = "show";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>Detalhe Cliente</h2>
+<div class="form-row">
+    <div class="col">
+        <label for="Nome" class="form-label">Nome Completo</label>
+        <input disabled type="text" value="@Model.Nome" class="form-control" id="Nome" name="UsuarioDAO.Nome" placeholder="Nome Completo">
+    </div>
+
+</div>
+<div class="form-row">
+    <div class="col">
+        <label for="CPF" class="form-label">CPF</label>
+        <input disabled class="cpf form-control"
+               id="CPF" value="@Model.CPF" name="UsuarioDAO.CPF" placeholder="CPF" required>
+    </div>
+    <div class="col">
+        <label for="Email" class="form-label">E-mail</label>
+        <input disabled type="email" value="@Model.Email" class="form-control" id="Email" name="UsuarioDAO.Email" placeholder="E-mail">
+    </div>
+</div>
+<div class="form-row">
+    <div class="col">
+        <label for="estadocivil" class="form-label">Estado Civil</label>
+        <select class="form-control" id="estadocivil" name="estadocivil" disabled>
+            @if (Model != null)
+            {
+                <option value="0" selected>@Model.EstadoCivil</option>
+            }
+            else
+            {
+                <option value="0">Nenhum Estado Civil selecionado</option>
+            }
+        </select>
+    </div>
+    <div class="col">
+        <label for="genero" class="form-label">Genero</label>
+        <select class="form-control" id="genero" name="genero" disabled>
+            @if (Model != null)
+            {
+                <option value="0" selected>@Model.Genero</option>
+            }
+            else
+            {
+                <option value="0">Nenhum Genero selecionado</option>
+            }
+        </select>
+    </div>
+    <div class="col">
+        <label for="tipo" class="form-label">Tipo</label>
+        <select class="form-control" id="tipo" name="tipo" disabled>
+            @if (Model != null)
+            {
+                <option value="0" selected>@Model.Tipo</option>
+            }
+            else
+            {
+                <option value="0">Nenhum Tipo selecionado</option>
+            }
+        </select>
+    </div>
+</div>

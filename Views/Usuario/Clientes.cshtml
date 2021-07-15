@@ -28,6 +28,7 @@
                         <td class="text-center">@funcionario.Nome</td>
                         <td width="250px" class="text-center">
                             <a class="btn btn-primary btn-sm" href="@Url.Action("ClienteEditar","Usuario", new { id = funcionario.Id })">Editar</a>
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("ClienteDetalhe","Usuario", new { id = funcionario.Id })">Detalhe</a>
                             <a class="btn btn-primary btn-sm" href="@Url.Action("Deletar","Usuario", new { id = funcionario.Id })">Deletar</a>
                         </td>
                     </tr>
