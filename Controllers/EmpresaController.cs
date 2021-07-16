@@ -50,7 +50,7 @@ namespace NIRAC_WEB.Controllers
             string pais = form["pais"].ToString();
             string estado = form["estado"].ToString();
             string cidade = form["cidade"].ToString();
-            empresaDAO.IdUsuario = idUsuario;
+            empresaDAO.IdUsuarioAdm = idUsuario;
             empresaDAO.DataAtualizacao = DateTime.Now;
             empresaDAO.DataCriacao = DateTime.Now;
             empresaDAO.Nome = nome;

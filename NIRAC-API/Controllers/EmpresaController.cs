@@ -41,7 +41,7 @@ namespace NIRAC_API.Controllers
         [Route("EmpresaCadastrada/{idUsuario}")]
         public EmpresaDTO EmpresaCadastrada(int idUsuario)
         {
-            return _serv.GetAll().Find(e=>e.IdUsuario == idUsuario);
+            return _serv.GetAll().Find(e=>e.IdUsuarioAdm == idUsuario);
         }
         #region CRUD
         [HttpGet]

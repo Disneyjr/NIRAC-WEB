@@ -17,6 +17,7 @@ namespace NIRAC_BUSINESS.Models.DTO
         public string Senha { get; set; }
         public DateTime Data_Cadastro { get; set; }
         public DateTime Data_Update { get; set; }
+        public int? IdUsuarioAdm { get; set; }
         public int? IdCidade { get; set; }
         public int? IdEstado { get; set; }
         public int? IdPais { get; set; }

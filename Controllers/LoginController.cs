@@ -14,7 +14,6 @@ namespace NIRAC_WEB.Controllers
         private LoginWebService loginService;
         private ToFromGenero toFromGenero;
         private ToFromEstadoCivil toFromEstadoCivil;
-        private HashingSenha hashing;
         public LoginController()
         {
             toFromGenero = new ToFromGenero();
