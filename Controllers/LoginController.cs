@@ -42,6 +42,7 @@ namespace NIRAC_WEB.Controllers
                 Response.Cookies.Add(cookieUsuarioTipo);
                 TempData["success"] = "Logado com Sucesso!";
                 Session["UsuarioLogado"] = usuario.Nome;
+                Session["IdUsuario"] = usuario.Id;
                 return RedirectToAction("Index", "Home");
             }
             catch

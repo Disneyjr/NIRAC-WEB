@@ -24,38 +24,51 @@ namespace NIRAC_WEB.Controllers
         #region FUNCIONARIO
         public ActionResult Funcionarios()
         {
-            return View(usuarioService.GetUsuariosFindType("Funcionario", "Usuario/GetUserType/"));
+            var idUsuario = Convert.ToInt16(Session["IdUsuario"]);
+            return View(usuarioService.GetUsuariosFindType("Funcionario/"+ idUsuario, "Usuario/GetUserType/"));
         }
         public ActionResult FuncionarioCadastrar()
         {
             ViewBag.ListaPaises = usuarioService.ListarPaises();
             return View();
         }
+        public ActionResult FuncionarioEditar(int id)
+        {
+            return View(usuarioService.GetUsuario(id));
+        }
+        public ActionResult FuncionarioDetalhe(int id)
+        {
+            return View(usuarioService.GetUsuario(id));
+        }
+        public ActionResult FuncionarioDeletar(int id)
+        {
+            var usuario = usuarioService.GetUsuario(id);
+            if (usuarioService.DeletarUsuario(id, usuario))
+            {
+                TempData["success"] = "Funcionario deletado com Sucesso!";
+                return RedirectToAction("Funcionarios", "Usuario");
+            }
+            else
+            {
+                TempData["error"] = "Falha ao Deletar o Funcionario!";
+                return RedirectToAction("Funcionarios", "Usuario");
+            }
+        }
         [HttpPost]
         public ActionResult FuncionarioCadastrar(UsuarioDAO usuarioDAO, FormCollection form, string confirmarSenha)
         {
-            if (!confirmarSenha.Equals(usuarioDAO.Senha))
-            {
-                TempData["error"] = "As senhas estão diferentes!";
-                return RedirectToAction("FuncionarioCadastrar", "Usuario");
-            }
-            string genero = form["genero"].ToString();
-            string estadocivil = form["estadocivil"].ToString();
-            string tipo = form["tipo"].ToString();
-            string pais = form["pais"].ToString();
-            string estado = form["estado"].ToString();
-            string cidade = form["cidade"].ToString();
-            usuarioDAO.IdPais = Convert.ToInt16(pais);
-            usuarioDAO.IdEstado = Convert.ToInt16(estado);
-            usuarioDAO.IdCidade = Convert.ToInt16(cidade);
-            usuarioDAO.Genero = toFromGenero.Genero(Convert.ToInt16(genero));
-            usuarioDAO.Tipo = toFromFuncionario.Funcionario(Convert.ToInt16(tipo));
-            usuarioDAO.EstadoCivil = toFromEstadoCivil.EstadoCivil(Convert.ToInt16(estadocivil));
+            usuarioDAO.IdPais = Convert.ToInt16(form["pais"]);
+            usuarioDAO.IdEstado = Convert.ToInt16(form["estado"]);
+            usuarioDAO.IdCidade = Convert.ToInt16(form["cidade"]);
+            usuarioDAO.Genero = toFromGenero.Genero(Convert.ToInt16(form["genero"]));
+            usuarioDAO.Tipo = toFromFuncionario.Funcionario(Convert.ToInt16(form["tipo"]));
+            usuarioDAO.EstadoCivil = toFromEstadoCivil.EstadoCivil(Convert.ToInt16(form["estadocivil"]));
             usuarioDAO.Data_Cadastro = DateTime.Now;
             usuarioDAO.Data_Update = DateTime.Now;
             usuarioDAO.TipoAcesso = "NIRAC-FUNCIONARIO";
             usuarioDAO.Status = "Ativo";
             usuarioDAO.Tipo = "Funcionario";
+            usuarioDAO.IdUsuarioAdm = Convert.ToInt16(Session["IdUsuario"]);
             usuarioDAO.Senha = HashingSenha.HashSenha(usuarioDAO.Senha);
             if (usuarioService.AdicionarUsuario(usuarioDAO))
             {
@@ -68,61 +81,17 @@ namespace NIRAC_WEB.Controllers
                 return RedirectToAction("FuncionarioCadastrar", "Usuario");
             }
         }
-        public ActionResult FuncionarioEditar(int id)
-        {
-            return View(usuarioService.GetUsuario(id));
-        }
-        public ActionResult FuncionarioDetalhe(int id)
-        {
-            return View(usuarioService.GetUsuario(id));
-        }
         #endregion
         #region CLIENTE
         public ActionResult Clientes()
         {
-            return View(usuarioService.GetUsuariosFindType("Cliente", "Usuario/GetUserType/"));
+            var idUsuario = Convert.ToInt16(Session["IdUsuario"]);
+            return View(usuarioService.GetUsuariosFindType("Cliente/"+ idUsuario, "Usuario/GetUserType/"));
         }
         public ActionResult ClienteCadastrar()
         {
             ViewBag.ListaPaises = usuarioService.ListarPaises();
             return View();
-        }
-        [HttpPost]
-        public ActionResult ClienteCadastrar(UsuarioDAO usuarioDAO, FormCollection form, string confirmarSenha)
-        {
-            if (!confirmarSenha.Equals(usuarioDAO.Senha))
-            {
-                TempData["error"] = "As senhas estão diferentes!";
-                return RedirectToAction("FuncionarioCadastrar", "Usuario");
-            }
-            string genero = form["genero"].ToString();
-            string estadocivil = form["estadocivil"].ToString();
-            string tipo = form["tipo"].ToString();
-            string pais = form["pais"].ToString();
-            string estado = form["estado"].ToString();
-            string cidade = form["cidade"].ToString();
-            usuarioDAO.IdPais = Convert.ToInt16(pais);
-            usuarioDAO.IdEstado = Convert.ToInt16(estado);
-            usuarioDAO.IdCidade = Convert.ToInt16(cidade);
-            usuarioDAO.Genero = toFromGenero.Genero(Convert.ToInt16(genero));
-            usuarioDAO.Tipo = toFromFuncionario.Funcionario(Convert.ToInt16(tipo));
-            usuarioDAO.EstadoCivil = toFromEstadoCivil.EstadoCivil(Convert.ToInt16(estadocivil));
-            usuarioDAO.Data_Cadastro = DateTime.Now;
-            usuarioDAO.Data_Update = DateTime.Now;
-            usuarioDAO.TipoAcesso = "NIRAC-CLIENTE";
-            usuarioDAO.Status = "Ativo";
-            usuarioDAO.Tipo = "Cliente";
-            usuarioDAO.Senha = HashingSenha.HashSenha(usuarioDAO.Senha);
-            if (usuarioService.AdicionarUsuario(usuarioDAO))
-            {
-                TempData["success"] = "Cliente Cadastrada com Sucesso!";
-                return RedirectToAction("Funcionarios", "Usuario");
-            }
-            else
-            {
-                TempData["error"] = "Falha ao Cadastrar o Cliente!";
-                return RedirectToAction("FuncionarioCadastrar", "Usuario");
-            }
         }
         public ActionResult ClienteEditar(int id)
         {
@@ -131,6 +100,47 @@ namespace NIRAC_WEB.Controllers
         public ActionResult ClienteDetalhe(int id)
         {
             return View(usuarioService.GetUsuario(id));
+        }
+        public ActionResult ClienteDeletar(int id)
+        {
+            var usuario = usuarioService.GetUsuario(id);
+            if (usuarioService.DeletarUsuario(id, usuario))
+            {
+                TempData["success"] = "Funcionario deletado com Sucesso!";
+                return RedirectToAction("Clientes", "Usuario");
+            }
+            else
+            {
+                TempData["error"] = "Falha ao Deletar o Funcionario!";
+                return RedirectToAction("Clientes", "Usuario");
+            }
+        }
+        [HttpPost]
+        public ActionResult ClienteCadastrar(UsuarioDAO usuarioDAO, FormCollection form, string confirmarSenha)
+        {
+            usuarioDAO.IdPais = Convert.ToInt16(form["pais"]);
+            usuarioDAO.IdEstado = Convert.ToInt16(form["estado"]);
+            usuarioDAO.IdCidade = Convert.ToInt16(form["cidade"]);
+            usuarioDAO.Genero = toFromGenero.Genero(Convert.ToInt16(form["genero"]));
+            usuarioDAO.Tipo = toFromFuncionario.Funcionario(Convert.ToInt16(form["tipo"]));
+            usuarioDAO.EstadoCivil = toFromEstadoCivil.EstadoCivil(Convert.ToInt16(form["estadocivil"]));
+            usuarioDAO.Data_Cadastro = DateTime.Now;
+            usuarioDAO.Data_Update = DateTime.Now;
+            usuarioDAO.TipoAcesso = "NIRAC-CLIENTE";
+            usuarioDAO.Status = "Ativo";
+            usuarioDAO.Tipo = "Cliente";
+            usuarioDAO.IdUsuarioAdm = Convert.ToInt16(Session["IdUsuario"]);
+
+            if (usuarioService.AdicionarUsuario(usuarioDAO))
+            {
+                TempData["success"] = "Cliente Cadastrada com Sucesso!";
+                return RedirectToAction("Clientes", "Usuario");
+            }
+            else
+            {
+                TempData["error"] = "Falha ao Cadastrar o Cliente!";
+                return RedirectToAction("ClienteCadastrar", "Usuario");
+            }
         }
         #endregion
     }

@@ -21,15 +21,15 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var funcionario in Model)
+                @foreach (var cliente in Model)
                 {
                     <tr>
-                        <td scope="row" class="text-center">@funcionario.Id</td>
-                        <td class="text-center">@funcionario.Nome</td>
+                        <td scope="row" class="text-center">@cliente.Id</td>
+                        <td class="text-center">@cliente.Nome</td>
                         <td width="250px" class="text-center">
-                            <a class="btn btn-primary btn-sm" href="@Url.Action("ClienteEditar","Usuario", new { id = funcionario.Id })">Editar</a>
-                            <a class="btn btn-primary btn-sm" href="@Url.Action("ClienteDetalhe","Usuario", new { id = funcionario.Id })">Detalhe</a>
-                            <a class="btn btn-primary btn-sm" href="@Url.Action("Deletar","Usuario", new { id = funcionario.Id })">Deletar</a>
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("ClienteEditar","Usuario", new { id = cliente.Id })">Editar</a>
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("ClienteDetalhe","Usuario", new { id = cliente.Id })">Detalhe</a>
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("ClienteDeletar","Usuario", new { id = cliente.Id })">Deletar</a>
                         </td>
                     </tr>
                 }

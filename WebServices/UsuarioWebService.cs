@@ -36,6 +36,16 @@ namespace NIRAC_WEB.WebServices
             }
             return retorno;
         }
+        public bool DeletarUsuario(int id, UsuarioDTO usuarioDTO)
+        {
+            bool retorno = false;
+            var response = _ususerviceBase.Delete(usuarioDTO, id, "Usuario");
+            if (response != null)
+            {
+                retorno = true;
+            }
+            return retorno;
+        }
         public List<PaisDTO> ListarPaises()
         {
             return _paisBase.GetAll("Pais");

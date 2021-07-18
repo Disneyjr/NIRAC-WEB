@@ -29,6 +29,14 @@ namespace NIRAC_BUSINESS.Models.DAO
         public string EstadoCivil { get; set; }
         [Column("Senha")]
         public string Senha { get; set; }
+        [Column("RG")]
+        public string RG { get; set; }
+        [Column("Telefone")]
+        public string Telefone { get; set; }
+        [Column("Endereco")]
+        public string Endereco { get; set; }
+        [Column("Observacao")]
+        public string Observacao { get; set; }
         [Column("Data_Cadastro")]
         public DateTime Data_Cadastro { get; set; }
         [Column("Data_Update")]

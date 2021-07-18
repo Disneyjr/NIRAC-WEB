@@ -40,10 +40,10 @@ namespace NIRAC_API.Controllers
             return _serv.Get(id);
         }
         [HttpGet]
-        [Route("GetUserType/{type}")]
-        public List<UsuarioDTO> GetUserType(string type)
+        [Route("GetUserType/{type}/{id}")]
+        public List<UsuarioDTO> GetUserType(string type, int id)
         {
-            return _serv.GetAll().FindAll(u => u.Tipo == type);
+            return _serv.GetAll().FindAll(u => u.Tipo == type && u.IdUsuarioAdm == id);
         }
         [HttpGet]
         [Route("ValidUserPassword/{username}")]
