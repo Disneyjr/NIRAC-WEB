@@ -106,12 +106,12 @@ namespace NIRAC_WEB.Controllers
             var usuario = usuarioService.GetUsuario(id);
             if (usuarioService.DeletarUsuario(id, usuario))
             {
-                TempData["success"] = "Funcionario deletado com Sucesso!";
+                TempData["success"] = "Cliente deletado com Sucesso!";
                 return RedirectToAction("Clientes", "Usuario");
             }
             else
             {
-                TempData["error"] = "Falha ao Deletar o Funcionario!";
+                TempData["error"] = "Falha ao Deletar o Cliente!";
                 return RedirectToAction("Clientes", "Usuario");
             }
         }

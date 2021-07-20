@@ -24,7 +24,7 @@ namespace NIRAC_WEB.WebServices
         }
         public UsuarioDTO GetUsuario(int id)
         {
-            return _ususerviceBase.Get(id, "Usuario");
+            return _ususerviceBase.Get(id, "Usuario/");
         }
         public bool AdicionarUsuario(UsuarioDAO usuario)
         {
@@ -39,7 +39,7 @@ namespace NIRAC_WEB.WebServices
         public bool DeletarUsuario(int id, UsuarioDTO usuarioDTO)
         {
             bool retorno = false;
-            var response = _ususerviceBase.Delete(usuarioDTO, id, "Usuario");
+            var response = _ususerviceBase.Delete(usuarioDTO, id, "Usuario/");
             if (response != null)
             {
                 retorno = true;

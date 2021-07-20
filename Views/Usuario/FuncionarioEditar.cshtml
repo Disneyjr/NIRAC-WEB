@@ -9,4 +9,24 @@
 }
 
 <h2>Funcionario Editar</h2>
-
+@if (Model != null)
+{
+    using (Html.BeginForm("Editar", "Funcionario", FormMethod.Post))
+    {
+        <div class="form-row">
+            <div class="col">
+                <label for="Nome" class="form-label">Nome Completo</label>
+                <input type="text" class="form-control" id="Nome" name="UsuarioDAO.Nome" placeholder="Nome Completo" required>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-user my-3">
+                Editar
+            </button>
+        </div>
+    }
+}
+else
+{
+    <h2 class="TitlePage">Nenhum funcionario cadastrado!</h2>
+}
