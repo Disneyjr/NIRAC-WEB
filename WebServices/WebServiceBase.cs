@@ -18,7 +18,7 @@ namespace NIRAC_WEB.WebServices
         }
         public T GetEntityFindString(string FieldString, string Research)
         {
-            string url = Url + Research + "/" + FieldString;
+            string url = Url + Research + FieldString;
             wc.Headers[HttpRequestHeader.ContentType] = "application/json";
             wc.Encoding = Encoding.UTF8;
             var response = wc.DownloadString(url);
@@ -27,7 +27,7 @@ namespace NIRAC_WEB.WebServices
         }
         public T GetEntityFindInt(int FieldInt, string Research)
         {
-            string url = Url + Research + "/" + FieldInt;
+            string url = Url + Research + FieldInt;
             wc.Headers[HttpRequestHeader.ContentType] = "application/json";
             wc.Encoding = Encoding.UTF8;
             var response = wc.DownloadString(url);
@@ -54,7 +54,7 @@ namespace NIRAC_WEB.WebServices
         #region CRUD
         public T Get(int FieldInt, string Research)
         {
-            string url = Url + Research + "/" + FieldInt;
+            string url = Url + Research + FieldInt;
             wc.Headers[HttpRequestHeader.ContentType] = "application/json";
             wc.Encoding = Encoding.UTF8;
             var response = wc.DownloadString(url);
@@ -82,7 +82,7 @@ namespace NIRAC_WEB.WebServices
         }
         public T Update(T Obj, int FieldInt, string Research)
         {
-            string url = Url + Research + "/" + FieldInt;
+            string url = Url + Research + FieldInt;
             var upload = JsonConvert.SerializeObject(Obj);
             wc.Headers[HttpRequestHeader.ContentType] = "application/json";
             wc.Encoding = Encoding.UTF8;
@@ -92,7 +92,7 @@ namespace NIRAC_WEB.WebServices
         }
         public T Delete(T Obj, int FieldInt, string Research)
         {
-            string url = Url + Research + "/" + FieldInt;
+            string url = Url + Research + FieldInt;
             var upload = JsonConvert.SerializeObject(Obj);
             wc.Headers[HttpRequestHeader.ContentType] = "application/json";
             wc.Encoding = Encoding.UTF8;

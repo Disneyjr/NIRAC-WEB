@@ -17,15 +17,9 @@ namespace NIRAC_API.Controllers
         private EmpresaMap map;
         private EmpresaRepository rep;
         private EmpresaService _serv;
-        private PaisController paisController;
-        private EstadoController estadoController;
-        private CidadeController cidadeController;
 
         public EmpresaController() : base()
         {
-            this.paisController = new PaisController();
-            this.estadoController = new EstadoController();
-            this.cidadeController = new CidadeController();
             this.map = new EmpresaMap();
             this.cx = new ContextDb();
             this.rep = new EmpresaRepository(cx);
@@ -57,9 +51,6 @@ namespace NIRAC_API.Controllers
         [HttpPost]
         public EmpresaDTO Post(EmpresaDAO dao)
         {
-            dao.paisDAO = paisController.GetDAO(Convert.ToInt16(dao.IdCidade));
-            dao.estadoDAO = estadoController.GetDAO(Convert.ToInt16(dao.IdCidade));
-            dao.cidadeDAO = cidadeController.GetDAO(Convert.ToInt16(dao.IdCidade));
             return _serv.Add(dao);
         }
         [HttpPut]

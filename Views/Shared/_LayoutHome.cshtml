@@ -9,14 +9,11 @@
     <link href="~/Content/ADM-LTE/css/sb-admin-2.css" rel="stylesheet">
     <link href="~/Content/ADM-LTE/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/CSS/boostrap.css">
 </head>
 <body class="bg-gradient-gray-dark" id="page-top">
-    <input type="hidden" id="success" value="@TempData["success"]" />
-    <input type="hidden" id="info" value="@TempData["info"]" />
-    <input type="hidden" id="warning" value="@TempData["warning"]" />
-    <input type="hidden" id="error" value="@TempData["error"]" />
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -162,27 +159,27 @@
                                     Alertas
                                 </h6>
                                 @*<a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-primary">
-                                                <i class="fas fa-file-alt text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">December 12, 2019</div>
-                                            <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-success">
-                                                <i class="fas fa-donate text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">December 7, 2019</div>
-                                            $290.29 has been deposited into your account!
-                                        </div>
-                                    </a>*@
+                            <div class="mr-3">
+                                <div class="icon-circle bg-primary">
+                                    <i class="fas fa-file-alt text-white"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="small text-gray-500">December 12, 2019</div>
+                                <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                            </div>
+                        </a>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <div class="mr-3">
+                                <div class="icon-circle bg-success">
+                                    <i class="fas fa-donate text-white"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="small text-gray-500">December 7, 2019</div>
+                                $290.29 has been deposited into your account!
+                            </div>
+                        </a>*@
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Todos os Alertas</a>
                             </div>
                         </li>
@@ -200,18 +197,18 @@
                                     Mensagens
                                 </h6>
                                 @*<a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
-                                            <div class="status-indicator bg-success"></div>
-                                        </div>
-                                        <div>
-                                            <div class="text-truncate">
-                                                Am I a good boy? The reason I ask is because someone
-                                                told me that people say this to all dogs, even if they aren't good...
-                                            </div>
-                                            <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                        </div>
-                                    </a>*@
+                            <div class="dropdown-list-image mr-3">
+                                <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
+                                <div class="status-indicator bg-success"></div>
+                            </div>
+                            <div>
+                                <div class="text-truncate">
+                                    Am I a good boy? The reason I ask is because someone
+                                    told me that people say this to all dogs, even if they aren't good...
+                                </div>
+                                <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                            </div>
+                        </a>*@
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
                         </li>
@@ -247,7 +244,10 @@
                     </ul>
                     <!-- TOP NAVBAR -->
                 </nav>
-
+                <input type="hidden" id="success" value="@TempData["success"]" />
+                <input type="hidden" id="info" value="@TempData["info"]" />
+                <input type="hidden" id="warning" value="@TempData["warning"]" />
+                <input type="hidden" id="error" value="@TempData["error"]" />
                 <div class="container-fluid">
 
                     @RenderBody()

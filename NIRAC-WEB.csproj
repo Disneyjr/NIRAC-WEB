@@ -170,6 +170,7 @@
     <Content Include="Content\ADM-LTE\vendor\jquery\jquery.min.js" />
     <Content Include="Content\ADM-LTE\vendor\jquery\jquery.slim.js" />
     <Content Include="Content\ADM-LTE\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Content\CSS\boostrap.css" />
     <Content Include="Content\CSS\Home.css" />
     <Content Include="Content\Imagens\Login\floresta.jpg" />
     <Content Include="Content\Imagens\LoyoutHome\facebook_cover_photo_1.png" />

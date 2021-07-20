@@ -38,9 +38,9 @@ namespace NIRAC_WEB.Controllers
         {
             int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
             var empresacadastrada = empresaService.EmpresaCadastrada(idUsuario);
-            if (empresacadastrada.Id > 0)
+            if (empresacadastrada != null)
             {
-                TempData["error"] = "Falha ao Cadastrar a Empresa!";
+                TempData["warning"] = "O Usuario ja possui uma Empresa!";
                 return RedirectToAction("Cadastrar", "Empresa");
             }
                 
