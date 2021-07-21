@@ -1,8 +1,43 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista de Emprestimos";
+    ViewBag.Emprestimo = "active";
+    ViewBag.IndexEmprestimo = "active";
+    ViewBag.AriaEmprestimo = "false";
+    ViewBag.ShowEmprestimo = "show";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<h2>Index</h2>
-
+<h2>Lista de Emprestimos</h2>
+@if (Model.Count > 0)
+{
+    <div class="table table-responsive-md">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">Código</th>
+                    <th scope="col" class="text-center">Nome</th>
+                    <th scope="col" class="text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var emprestimo in Model)
+                {
+                    <tr>
+                        <td scope="row" class="text-center">@emprestimo.Id</td>
+                        <td class="text-center">@emprestimo.Nome</td>
+                        <td width="250px" class="text-center">
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("EmprestimoEditar","Emprestimo", new { id = emprestimo.Id })">Editar</a>
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("EmprestimoDetalhe","Emprestimo", new { id = emprestimo.Id })">Detalhe</a>
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("EmprestimoDeletar","Emprestimo", new { id = emprestimo.Id })">Deletar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <h3 class="text-center">Nenhum emprestimo feito!</h3>
+}

@@ -1,8 +1,19 @@
 ﻿
 @{
-    ViewBag.Title = "Cadastrar";
+    ViewBag.Title = "Emprestimo";
+    ViewBag.CadastrarEmpresa = "active";
+    ViewBag.Empresa = "active";
+    ViewBag.AriaEmpresa = "false";
+    ViewBag.ShowEmpresa = "show";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<h2>Cadastrar</h2>
-
+<h3 class="TitlePage">Cadastrar Emprestimo</h3>
+@using (Html.BeginForm("Cadastrar", "Emprestimo", FormMethod.Post))
+{
+    <div class="text-center">
+        <button class="btn btn-primary btn-user my-3">
+            Cadastrar
+        </button>
+    </div>
+}

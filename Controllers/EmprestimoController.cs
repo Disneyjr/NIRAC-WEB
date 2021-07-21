@@ -17,5 +17,20 @@ namespace NIRAC_WEB.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult EmprestimoEditar()
+        {
+            return null;
+        }
+        [HttpPost]
+        public ActionResult EmprestimoCadastrar()
+        {
+            return null;
+        }
+        [HttpPost]
+        public ActionResult EmprestimoDeletar()
+        {
+            return null;
+        }
     }
 }
