@@ -69,16 +69,20 @@
     <Compile Include="Models\DAO\CidadeDAO.cs" />
     <Compile Include="Models\DAO\EmpresaDAO.cs" />
     <Compile Include="Models\DAO\EmpresaUsuarioDAO.cs" />
+    <Compile Include="Models\DAO\EmprestimoDAO.cs" />
     <Compile Include="Models\DAO\EstadoDAO.cs" />
     <Compile Include="Models\DAO\PaisDAO.cs" />
+    <Compile Include="Models\DAO\ParcelaDAO.cs" />
     <Compile Include="Models\DAO\UsuarioDAO.cs" />
     <Compile Include="Models\DTO\CentroCustoDTO.cs" />
     <Compile Include="Models\DTO\CentroCustoUsuarioDTO.cs" />
     <Compile Include="Models\DTO\CidadeDTO.cs" />
     <Compile Include="Models\DTO\EmpresaDTO.cs" />
     <Compile Include="Models\DTO\EmpresaUsuarioDTO.cs" />
+    <Compile Include="Models\DTO\EmprestimoDTO.cs" />
     <Compile Include="Models\DTO\EstadoDTO.cs" />
     <Compile Include="Models\DTO\PaisDTO.cs" />
+    <Compile Include="Models\DTO\ParcelaDTO.cs" />
     <Compile Include="Models\DTO\UsuarioDTO.cs" />
     <Compile Include="Interface\Service\IService.cs" />
     <Compile Include="Interface\Service\ServiceBase.cs" />
@@ -87,8 +91,10 @@
     <Compile Include="Models\Map\CidadeMap.cs" />
     <Compile Include="Models\Map\EmpresaMap.cs" />
     <Compile Include="Models\Map\EmpresaUsuarioMap.cs" />
+    <Compile Include="Models\Map\EmprestimoMap.cs" />
     <Compile Include="Models\Map\EstadoMap.cs" />
     <Compile Include="Models\Map\PaisMap.cs" />
+    <Compile Include="Models\Map\ParcelaMap.cs" />
     <Compile Include="Models\Map\UsuarioMap.cs" />
     <Compile Include="Models\PrivateMethods\ToFromEstadoCivil.cs" />
     <Compile Include="Models\PrivateMethods\ToFromFuncionarios.cs" />
@@ -99,16 +105,20 @@
     <Compile Include="Repository\CidadeRepository.cs" />
     <Compile Include="Repository\EmpresaRepository.cs" />
     <Compile Include="Repository\EmpresaUsuarioRepository.cs" />
+    <Compile Include="Repository\EmprestimoRepository.cs" />
     <Compile Include="Repository\EstadoRepository.cs" />
     <Compile Include="Repository\PaisRepository.cs" />
+    <Compile Include="Repository\ParcelaRepository.cs" />
     <Compile Include="Repository\UsuarioRepository.cs" />
     <Compile Include="Services\CentroCustoService.cs" />
     <Compile Include="Services\CentroCustoUsuarioService.cs" />
     <Compile Include="Services\CidadeService.cs" />
     <Compile Include="Services\EmpresaService.cs" />
     <Compile Include="Services\EmpresaUsuarioService.cs" />
+    <Compile Include="Services\EmprestimoService.cs" />
     <Compile Include="Services\EstadoService.cs" />
     <Compile Include="Services\PaisService.cs" />
+    <Compile Include="Services\ParcelaService.cs" />
     <Compile Include="Services\UsuarioService.cs" />
   </ItemGroup>
   <ItemGroup>

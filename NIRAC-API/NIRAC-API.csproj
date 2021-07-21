@@ -144,8 +144,10 @@
     <Compile Include="Controllers\CidadeController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\EmpresaUsuarioController.cs" />
+    <Compile Include="Controllers\EmprestimoController.cs" />
     <Compile Include="Controllers\EstadoController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="Controllers\ParcelaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -15,5 +15,7 @@ namespace NIRAC_BUSINESS.Context
         public virtual DbSet<CentroCustoUsuarioDAO> CentroCustoUsuarios { get; set; }
         public virtual DbSet<EstadoDAO> Estados { get; set; }
         public virtual DbSet<CidadeDAO> Cidades { get; set; }
+        public virtual DbSet<ParcelaDAO> Parcelas { get; set; }
+        public virtual DbSet<EmprestimoDAO> Emprestimos { get; set; }
     }
 }
