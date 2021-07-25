@@ -19,7 +19,7 @@ namespace NIRAC_WEB.WebServices
         {
             if (User == "" || Password == "")
                 throw new Exception("Usuario ou senha Nullo!");
-            var response = this._ususerviceBase.GetEntityFindString(User, "Usuario/ValidUserPassword/");
+            var response = this._ususerviceBase.GetEntityFindString(User, "Usuario/BuscaUsuarioPeloApelido/");
             if (response == null)
                 return null;
             if(HashingSenha.ValidarSenha(Password, response.Senha))
@@ -35,7 +35,7 @@ namespace NIRAC_WEB.WebServices
         public bool ExistEmail(string Email)
         {
             bool retorno = false;
-            var response = this._ususerviceBase.GetEntityFindString(Email, "Usuario/GetUserbyEmail/");
+            var response = this._ususerviceBase.GetEntityFindString(Email, "Usuario/BuscaUsuarioPeloEmail/");
             if (response != null)
             {
                 retorno = true;

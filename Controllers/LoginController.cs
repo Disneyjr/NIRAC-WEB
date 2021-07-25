@@ -34,12 +34,16 @@ namespace NIRAC_WEB.Controllers
                     TempData["error"] = "Usuario não cadastrado!"; 
                 HttpCookie cookie = new HttpCookie("Id");
                 HttpCookie cookieUsuarioTipo = new HttpCookie("Tipo");
+                HttpCookie cookieNomeUsuario = new HttpCookie("NomeUsuario");
                 cookie.Path = "/";
                 cookieUsuarioTipo.Path = "/";
+                cookieNomeUsuario.Path = "/";
                 cookie.Value = usuario.Id.ToString();
                 cookieUsuarioTipo.Value = usuario.TipoAcesso;
+                cookieNomeUsuario.Value = usuario.Nome;
                 Response.Cookies.Add(cookie);
                 Response.Cookies.Add(cookieUsuarioTipo);
+                Response.Cookies.Add(cookieNomeUsuario);
                 TempData["success"] = "Logado com Sucesso!";
                 Session["UsuarioLogado"] = usuario.Nome;
                 Session["IdUsuario"] = usuario.Id;

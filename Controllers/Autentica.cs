@@ -6,7 +6,6 @@ namespace NIRAC_WEB.Controllers
     {
         public string Modulo { get; set; }
         public string TipoAcesso { get; set; }
-        public string Funcionalidade { get; set; }
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             if(filterContext.HttpContext.Request.Cookies.Count > 0)

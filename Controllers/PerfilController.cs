@@ -2,7 +2,7 @@
 
 namespace NIRAC_WEB.Controllers
 {
-    [Autentica(Modulo = "Perfil", TipoAcesso = "NIRAC-ALL", Funcionalidade = "Perfil")]
+    [Autentica(Modulo = "Perfil", TipoAcesso = "NIRAC-ALL")]
     public class PerfilController : Controller
     {
         public ActionResult PerfilUsuario()

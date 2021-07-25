@@ -21,7 +21,9 @@ namespace NIRAC_BUSINESS.Models.DAO
         [Column("PorcentagemJuros")]
         public decimal PorcentagemJuros { get; set; }
         [Column("DiaPagamento")]
-        public int DiaPagamento { get; set; }
+        public int? DiaPagamento { get; set; }
+        [Column("DiaCobranca")]
+        public int? DiaCobranca { get; set; }
         [Column("DataCriacao")]
         public DateTime DataCriacao { get; set; }
         [Column("DataAtualizacao")]

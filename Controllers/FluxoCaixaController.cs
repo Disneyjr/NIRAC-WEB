@@ -2,7 +2,7 @@
 
 namespace NIRAC_WEB.Controllers
 {
-    [Autentica(Modulo = "FluxoCaixa", TipoAcesso = "NIRAC-ALL", Funcionalidade = "FluxoCaixa")]
+    [Autentica(Modulo = "FluxoCaixa", TipoAcesso = "NIRAC-ALL")]
     public class FluxoCaixaController : Controller
     {
         public ActionResult Index()

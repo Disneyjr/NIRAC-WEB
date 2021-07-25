@@ -25,11 +25,18 @@ namespace NIRAC_API.Controllers
             this._serv = new EstadoService(this.cx, this.rep, this.map);
         }
         [HttpGet]
-        [Route("EstadosIdPais/{idPais}")]
-        public List<EstadoDTO> EstadosIdPais(int idPais)
+        [Route("BuscaEstadosPeloIdPais/{idPais}")]
+        public List<EstadoDTO> BuscaEstadosPeloIdPais(int idPais)
         {
             return _serv.GetAll().FindAll(e=>e.IdPais == idPais);
         }
+        [HttpGet]
+        [Route("BuscaEstadoDAOPeloId/{id}")]
+        public EstadoDAO BuscaEstadoDAOPeloId(int id)
+        {
+            return _serv.GetDAO(id);
+        }
+        #region CRUD
         [HttpGet]
         public List<EstadoDTO> GetAll()
         {
@@ -39,12 +46,6 @@ namespace NIRAC_API.Controllers
         public EstadoDTO Get(int id)
         {
             return _serv.Get(id);
-        }
-        [HttpGet]
-        [Route("GetDAO/{id}")]
-        public EstadoDAO GetDAO(int id)
-        {
-            return _serv.GetDAO(id);
         }
         [HttpPost]
         public EstadoDTO Post(EstadoDAO dao)
@@ -61,5 +62,6 @@ namespace NIRAC_API.Controllers
         {
             return _serv.Delete(dao, dao.Id);
         }
+        #endregion
     }
 }

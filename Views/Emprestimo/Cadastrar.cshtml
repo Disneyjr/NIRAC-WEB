@@ -1,19 +1,88 @@
 ﻿
 @{
     ViewBag.Title = "Emprestimo";
-    ViewBag.CadastrarEmpresa = "active";
-    ViewBag.Empresa = "active";
-    ViewBag.AriaEmpresa = "false";
-    ViewBag.ShowEmpresa = "show";
+    ViewBag.CadastrarEmprestimo = "active";
+    ViewBag.Emprestimo = "active";
+    ViewBag.AriaEmprestimo = "false";
+    ViewBag.ShowEmprestimo = "show";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<h3 class="TitlePage">Cadastrar Emprestimo</h3>
-@using (Html.BeginForm("Cadastrar", "Emprestimo", FormMethod.Post))
+<h3 class="TitlePage">Simulação de Emprestimo</h3>
+@using (Html.BeginForm("EmprestimoCadastrar", "Emprestimo", FormMethod.Post))
 {
+    <div class="form-row">
+        <div class="col">
+            <label for="pais">Cliente</label>
+            <select class="form-control" id="pais" name="pais">
+                <option value="0" selected>Selecione um Cliente</option>
+                @if (ViewBag.ListaClientes != null)
+                {
+                    foreach (var cliente in ViewBag.ListaClientes)
+                    {
+                        <option value="@cliente.Id">@cliente.Nome</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <label for="Emprestimo.TotalEmprestimo" class="form-label">Montante Pego</label>
+            <input type="number"
+                   class="form-control"
+                   id="Emprestimo.TotalEmprestimo"
+                   name="Emprestimo.TotalEmprestimo"
+                   placeholder="Montante Pego" required>
+        </div>
+        <div class="col">
+            <label for="Emprestimo.QuantidadeParcela" class="form-label">Quantidade de Parcelas</label>
+            <input type="number"
+                   class="form-control"
+                   id="Emprestimo.QuantidadeParcela"
+                   name="Emprestimo.QuantidadeParcela"
+                   placeholder="Quantidade de Parcelas" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <label for="Emprestimo.PorcentagemJuros" class="form-label">Porcentagem de Juros</label>
+            <input type="number"
+                   class="form-control"
+                   id="Emprestimo.PorcentagemJuros"
+                   name="Emprestimo.PorcentagemJuros"
+                   placeholder="Porcentagem de Juros" required>
+        </div>
+        <div class="col">
+            <label for="Emprestimo.DiaCobranca" class="form-label">Dia para cobrança</label>
+            <input class="dinheiro form-control"
+                   id="Emprestimo.DiaCobranca"
+                   name="Emprestimo.DiaCobranca"
+                   placeholder="Dia para cobrança" required>
+        </div>
+    </div>
+    <br />
     <div class="text-center">
-        <button class="btn btn-primary btn-user my-3">
-            Cadastrar
-        </button>
+        <a class="btn btn-primary" onclick="AparecerParcelas()">Simular Emprestimo</a>
+    </div>
+    <div id="DivParcelas" hidden>
+        <div class="form-row">
+            <div class="col-11">
+                <h3>Parcelas</h3>
+            </div>
+            <div class="col-1">
+                <a href="#" onclick="EsconderParcelas()"><i class="fas fa-times-circle"> </i></a>
+            </div>
+        </div>
+        <div id="SimulacaoParcelas">
+            
+        </div>
+        <br />
+        <div class="text-center">
+            <button class="btn btn-primary btn-user my-3">
+                Fazer Emprestimo
+            </button>
+        </div>
     </div>
 }
+

@@ -24,7 +24,7 @@ namespace NIRAC_API.Controllers
             this.rep = new CentroCustoRepository(cx);
             this._serv = new CentroCustoService(this.cx, this.rep, this.map);
         }
-
+        #region CRUD
         [HttpGet]
         public List<CentroCustoDTO> GetAll()
         {
@@ -34,12 +34,6 @@ namespace NIRAC_API.Controllers
         public CentroCustoDTO Get(int id)
         {
             return _serv.Get(id);
-        }
-        [HttpGet]
-        [Route("GetDAO/{id}")]
-        public CentroCustoDAO GetDAO(int id)
-        {
-            return _serv.GetDAO(id);
         }
         [HttpPost]
         public CentroCustoDTO Post(CentroCustoDAO dao)
@@ -56,5 +50,6 @@ namespace NIRAC_API.Controllers
         {
             return _serv.Delete(dao, dao.Id);
         }
+        #endregion
     }
 }

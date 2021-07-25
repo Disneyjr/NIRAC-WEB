@@ -5,7 +5,7 @@ using NIRAC_WEB.WebServices;
 
 namespace NIRAC_WEB.Controllers
 {
-    [Autentica(Modulo = "Empresa", TipoAcesso = "NIRAC-ALL", Funcionalidade = "Empresa")]
+    [Autentica(Modulo = "Empresa", TipoAcesso = "NIRAC-ALL")]
     public class EmpresaController : Controller
     {
         private EmpresaWebService empresaService;

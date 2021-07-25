@@ -7,7 +7,7 @@ using NIRAC_WEB.WebServices;
 
 namespace NIRAC_WEB.Controllers
 {
-    [Autentica(Modulo = "Usuario", TipoAcesso = "NIRAC-ALL", Funcionalidade = "Usuario")]
+    [Autentica(Modulo = "Usuario", TipoAcesso = "NIRAC-ALL")]
     public class UsuarioController : Controller
     {
         private UsuarioWebService usuarioService;
@@ -25,7 +25,7 @@ namespace NIRAC_WEB.Controllers
         public ActionResult Funcionarios()
         {
             var idUsuario = Convert.ToInt16(Session["IdUsuario"]);
-            return View(usuarioService.GetUsuariosFindType("Funcionario/"+ idUsuario, "Usuario/GetUserType/"));
+            return View(usuarioService.GetUsuariosFindType("Funcionario/"+ idUsuario, "Usuario/BuscaUsuariosPeloTipoUsuarioEIdUsuario/"));
         }
         public ActionResult FuncionarioCadastrar()
         {
@@ -86,7 +86,7 @@ namespace NIRAC_WEB.Controllers
         public ActionResult Clientes()
         {
             var idUsuario = Convert.ToInt16(Session["IdUsuario"]);
-            return View(usuarioService.GetUsuariosFindType("Cliente/"+ idUsuario, "Usuario/GetUserType/"));
+            return View(usuarioService.GetUsuariosFindType("Cliente/"+ idUsuario, "Usuario/BuscaUsuariosPeloTipoUsuarioEIdUsuario/"));
         }
         public ActionResult ClienteCadastrar()
         {

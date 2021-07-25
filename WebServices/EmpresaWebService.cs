@@ -29,7 +29,7 @@ namespace NIRAC_WEB.WebServices
         }
         public EmpresaDAO EmpresaCadastrada(int idUsuario)
         {
-            return _empresaBase.GetEntityFindInt(idUsuario, "Empresa/EmpresaCadastrada/");
+            return _empresaBase.GetEntityFindInt(idUsuario, "Empresa/BuscaEmpresaCadastradaPeloIdUsuarioAdm/");
         }
         public List<PaisDTO> ListarPaises()
         {
@@ -37,11 +37,11 @@ namespace NIRAC_WEB.WebServices
         }
         public List<EstadoDTO> ListarEstados(int idPais)
         {
-            return _estadoBase.GetListFindInt(idPais, "Estado/EstadosIdPais/");
+            return _estadoBase.GetListFindInt(idPais, "Estado/BuscaEstadosPeloIdPais/");
         }
         public List<CidadeDTO> ListarCidades(int idEstado)
         {
-            return _cidadeBase.GetListFindInt(idEstado, "Cidade/CidadesIdEstado/");
+            return _cidadeBase.GetListFindInt(idEstado, "Cidade/BuscaCidadesPeloIdEstado/");
         }
     }
 }

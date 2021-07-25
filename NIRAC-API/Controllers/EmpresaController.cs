@@ -26,14 +26,14 @@ namespace NIRAC_API.Controllers
             this._serv = new EmpresaService(this.cx, this.rep, this.map);
         }
         [HttpGet]
-        [Route("GetDAO/{id}")]
-        public EmpresaDAO GetDAO(int id)
+        [Route("BuscaEmpresaDAOPeloId/{id}")]
+        public EmpresaDAO BuscaEmpresaDAOPeloId(int id)
         {
             return _serv.GetDAO(id);
         }
         [HttpGet]
-        [Route("EmpresaCadastrada/{idUsuario}")]
-        public EmpresaDTO EmpresaCadastrada(int idUsuario)
+        [Route("BuscaEmpresaCadastradaPeloIdUsuarioAdm/{idUsuario}")]
+        public EmpresaDTO BuscaEmpresaCadastradaPeloIdUsuarioAdm(int idUsuario)
         {
             return _serv.GetAll().Find(e=>e.IdUsuarioAdm == idUsuario);
         }

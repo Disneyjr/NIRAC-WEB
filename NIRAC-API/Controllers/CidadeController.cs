@@ -25,21 +25,22 @@ namespace NIRAC_API.Controllers
             this._serv = new CidadeService(this.cx, this.rep, this.map);
         }
         [HttpGet]
-        [Route("CidadesIdEstado/{idEstado}")]
-        public List<CidadeDTO> CidadesIdEstado(int idEstado)
+        [Route("BuscaCidadesPeloIdEstado/{idEstado}")]
+        public List<CidadeDTO> BuscaCidadesPeloIdEstado(int idEstado)
         {
             return _serv.GetAll().FindAll(e => e.IdEstado == idEstado);
         }
         [HttpGet]
+        [Route("BuscaCidadeDAOPeloId/{id}")]
+        public CidadeDAO BuscaCidadeDAOPeloId(int id)
+        {
+            return _serv.GetDAO(id);
+        }
+        #region CRUD
+        [HttpGet]
         public List<CidadeDTO> GetAll()
         {
             return _serv.GetAll();
-        }
-        [HttpGet]
-        [Route("GetDAO/{id}")]
-        public CidadeDAO GetDAO(int id)
-        {
-            return _serv.GetDAO(id);
         }
         [HttpGet]
         public CidadeDTO Get(int id)
@@ -61,5 +62,6 @@ namespace NIRAC_API.Controllers
         {
             return _serv.Delete(dao, dao.Id);
         }
+        #endregion
     }
 }

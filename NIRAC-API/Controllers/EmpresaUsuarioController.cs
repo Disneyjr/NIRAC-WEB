@@ -24,7 +24,13 @@ namespace NIRAC_API.Controllers
             this.rep = new EmpresaUsuarioRepository(cx);
             this._serv = new EmpresaUsuarioService(this.cx, this.rep, this.map);
         }
-
+        [HttpGet]
+        [Route("BuscaEmpresaUsuarioDAOPeloId/{id}")]
+        public EmpresaUsuarioDAO BuscaEmpresaUsuarioDAOPeloId(int id)
+        {
+            return _serv.GetDAO(id);
+        }
+        #region CRUD
         [HttpGet]
         public List<EmpresaUsuarioDTO> GetAll()
         {
@@ -34,12 +40,6 @@ namespace NIRAC_API.Controllers
         public EmpresaUsuarioDTO Get(int id)
         {
             return _serv.Get(id);
-        }
-        [HttpGet]
-        [Route("GetDAO/{id}")]
-        public EmpresaUsuarioDAO GetDAO(int id)
-        {
-            return _serv.GetDAO(id);
         }
         [HttpPost]
         public EmpresaUsuarioDTO Post(EmpresaUsuarioDAO dao)
@@ -56,5 +56,6 @@ namespace NIRAC_API.Controllers
         {
             return _serv.Delete(dao, dao.Id);
         }
+        #endregion
     }
 }

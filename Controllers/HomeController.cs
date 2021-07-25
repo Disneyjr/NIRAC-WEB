@@ -4,7 +4,7 @@ using System.Web.Mvc;
 namespace NIRAC_WEB.Controllers
 {
 
-    [Autentica(Modulo = "Home", TipoAcesso = "NIRAC-ALL", Funcionalidade = "Home")]
+    [Autentica(Modulo = "Home", TipoAcesso = "NIRAC-ALL")]
     public class HomeController : Controller
     {
         public ActionResult Index()

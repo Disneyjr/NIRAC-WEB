@@ -24,6 +24,31 @@ namespace NIRAC_API.Controllers
             this._serv = new UsuarioService(this.cx, this.rep, this.map);
         }
         [HttpGet]
+        [Route("BuscaUsuariosPeloTipoUsuarioEIdUsuario/{tipo}/{id}")]
+        public List<UsuarioDTO> BuscaUsuariosPeloTipoUsuarioEIdUsuario(string tipo, int id)
+        {
+            return _serv.GetAll().FindAll(u => u.Tipo == tipo && u.IdUsuarioAdm == id);
+        }
+        [HttpGet]
+        [Route("BuscaClientesPeloIdUsuarioAdm/{id}")]
+        public List<UsuarioDTO> BuscaClientesPeloIdUsuarioAdm(int id)
+        {
+            return _serv.GetAll().FindAll(u=> u.IdUsuarioAdm == id);
+        }
+        [HttpGet]
+        [Route("BuscaUsuarioPeloApelido/{apelido}")]
+        public UsuarioDTO BuscaUsuarioPeloApelido(string apelido)
+        {
+            return _serv.GetAll().Find(u => u.Apelido == apelido);
+        }
+        [HttpGet]
+        [Route("BuscaUsuarioPeloEmail/{email}")]
+        public UsuarioDTO BuscaUsuarioPeloEmail(string email)
+        {
+            return _serv.GetAll().Find(u => u.Email == email);
+        }
+        #region CRUD
+        [HttpGet]
         public List<UsuarioDTO> GetAll()
         {
             return _serv.GetAll();
@@ -38,24 +63,6 @@ namespace NIRAC_API.Controllers
         public UsuarioDTO Get(int id)
         {
             return _serv.Get(id);
-        }
-        [HttpGet]
-        [Route("GetUserType/{type}/{id}")]
-        public List<UsuarioDTO> GetUserType(string type, int id)
-        {
-            return _serv.GetAll().FindAll(u => u.Tipo == type && u.IdUsuarioAdm == id);
-        }
-        [HttpGet]
-        [Route("ValidUserPassword/{username}")]
-        public UsuarioDTO ValidUserPassword(string username)
-        {
-            return _serv.GetAll().Find(u => u.Apelido == username);
-        }
-        [HttpGet]
-        [Route("GetUserbyEmail/{email}")]
-        public UsuarioDTO GetUserbyEmail(string email)
-        {
-            return _serv.GetAll().Find(u => u.Email == email);
         }
         [HttpPost]
         public UsuarioDTO Post(UsuarioDAO dao)
@@ -72,5 +79,6 @@ namespace NIRAC_API.Controllers
         {
             return _serv.Delete(dao, dao.Id);
         }
+        #endregion
     }
 }
