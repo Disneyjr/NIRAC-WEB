@@ -9,6 +9,12 @@ namespace NIRAC_WEB.Controllers
     public class EmprestimoController : Controller
     {
         private EmprestimoWebService emprestimoWebService;
+
+        public EmprestimoController()
+        {
+            this.emprestimoWebService = new EmprestimoWebService();
+        }
+
         public ActionResult Index()
         {
             return View();
