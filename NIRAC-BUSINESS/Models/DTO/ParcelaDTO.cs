@@ -10,6 +10,7 @@ namespace NIRAC_BUSINESS.Models.DTO
         public decimal ValorPago { get; set; }
         public decimal ValorRestanteParcela { get; set; }
         public DateTime DataCriacao { get; set; }
+        public DateTime DataPagamento { get; set; }
         public DateTime DataAtualizacao { get; set; }
     }
 }

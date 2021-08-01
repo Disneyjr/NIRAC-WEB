@@ -16,6 +16,8 @@ namespace NIRAC_BUSINESS.Models.DAO
         public decimal ValorPago { get; set; }
         [Column("ValorRestanteParcela")]
         public decimal ValorRestanteParcela { get; set; }
+        [Column("DataPagamento")]
+        public DateTime DataPagamento { get; set; }
         [Column("DataCriacao")]
         public DateTime DataCriacao { get; set; }
         [Column("DataAtualizacao")]

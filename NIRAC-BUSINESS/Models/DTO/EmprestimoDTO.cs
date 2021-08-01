@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NIRAC_BUSINESS.Models.DTO
 {
@@ -15,5 +16,6 @@ namespace NIRAC_BUSINESS.Models.DTO
         public DateTime DataCriacao { get; set; }
         public DateTime DataAtualizacao { get; set; }
         public DateTime DataUltimoPagamento { get; set; }
+        public List<ParcelaDTO> parcelas { get; set; }
     }
 }

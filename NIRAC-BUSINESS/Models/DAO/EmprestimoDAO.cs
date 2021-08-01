@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using NIRAC_BUSINESS.Models.DTO;
 
 namespace NIRAC_BUSINESS.Models.DAO
 {
@@ -30,5 +32,6 @@ namespace NIRAC_BUSINESS.Models.DAO
         public DateTime DataAtualizacao { get; set; }
         [Column("DataUltimoPagamento")]
         public DateTime DataUltimoPagamento { get; set; }
+        public List<ParcelaDTO> parcelas { get; set; }
     }
 }

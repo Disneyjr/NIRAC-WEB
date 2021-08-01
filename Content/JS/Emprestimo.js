@@ -1,9 +1,9 @@
 ﻿const divparcelas = document.getElementById('DivParcelas');
 const table = document.getElementById('tabela');
-const montanteEmprestimo = document.getElementById('Emprestimo.TotalEmprestimo');
-const quantidadeParcelas = document.getElementById('Emprestimo.QuantidadeParcela');
-const diaCobranca = document.getElementById('Emprestimo.DiaCobranca');
-const juros = document.getElementById('Emprestimo.PorcentagemJuros');
+const montanteEmprestimo = document.getElementById('TotalEmprestimo');
+const quantidadeParcelas = document.getElementById('QuantidadeParcela');
+const diaCobranca = document.getElementById('DiaCobranca');
+const juros = document.getElementById('PorcentagemJuros');
 
 function AparecerParcelas() {
     divparcelas.hidden = false;
@@ -32,9 +32,9 @@ function GetTds() {
     const trs = [];
     Parcelas.forEach(function (parcela) {
         trs.push(`<tr>
-                            <td scope="row">${parcela.numero}</td>
-                            <td>RS: ${parcela.valorParcela}</td>
-                            <td>${parcela.DiaPagamento}</td>
+                            <td><input style="border:none; color:black;" disabled name="numeroParcela" value="${parcela.numeroParcela}"/></td>
+                            <td><input style="border:none; color:black;" disabled name="valorParcela" value="RS: ${parcela.valorParcela}"/></td>
+                            <td><input style="border:none; color:black;" disabled name="DiaPagamento" value="${parcela.DiaPagamento}"/></td>
                         </tr>`)
     })
     return trs;
@@ -43,20 +43,19 @@ function GetParcelaValores(numeroParcelas, juros, valorTotalParcela) {
     const Parcelas = [];
     let numeroParcela = 1;
     const valorAntigo = 0;
-    const dataAntiga = new Date();
+    const dataAtual = new Date();
     const valorParcela = valorTotalParcela / numeroParcelas;
     const jurosReal = juros / 100;
     for (var i = 0; i < numeroParcelas; i++) {
         const valor = CalculaValorParcela(valorParcela, jurosReal, valorTotalParcela, valorAntigo);
-        const DiadoPagamento = DiaPagamento(new Date(), dataAntiga, diaCobranca.value);
-        console.log(valor);
+        const DiadoPagamento = DiaPagamento(dataAtual, i, diaCobranca.value);
         var parcela = new Object();
         if (i == 0) {
             parcela.valorParcela = valorParcela;
         } else {
             parcela.valorParcela = valor;
         }
-        parcela.numero = numeroParcela;
+        parcela.numeroParcela = numeroParcela;
         parcela.DiaPagamento = DiadoPagamento;
         Parcelas.push(parcela);
         numeroParcela++;
@@ -70,27 +69,18 @@ function CalculaValorParcela(valorParcela, juros, valorTotalParcela, valorAntigo
         return (valorParcela * juros) + valorParcela;
     }
 }
-function AtualizaBody() {
-    const body = document.getElementById('tbody');
-    body.innerHTML = GetTds();
-}
-function DiaPagamento(dataAtual, dataAntiga, diaCobranca) {
+function DiaPagamento(dataAtual, iteracao, diaCobranca) {
     let dataFormatada;
-    if (ExisteSegundoMes(dataAtual, dataAntiga) === true) {
-        dataFormatada = ((diaCobranca)) + "/" + ((dataAtual.getMonth() + 2)) + "/" + dataAtual.getFullYear();
+    if (iteracao > 0) {
+        dataFormatada = ((diaCobranca)) + "/" + ((dataAtual.getMonth() + iteracao + 1)) + "/" + dataAtual.getFullYear();
     } else {
         dataFormatada = ((diaCobranca)) + "/" + ((dataAtual.getMonth() + 1)) + "/" + dataAtual.getFullYear();
     }
-    dataAntiga = dataAtual;
-    dataAntiga.setMonth(dataAntiga.getMonth() + "1");
     return dataFormatada;
 }
-function ExisteSegundoMes(dataAtual, dataAntiga) {
-    if (dataAtual > dataAntiga) {
-        return true;
-    } else {
-        return false;
-    }
+function AtualizaBody() {
+    const body = document.getElementById('tbody');
+    body.innerHTML = GetTds();
 }
 function EsconderParcelas() {
     divparcelas.hidden = true;
