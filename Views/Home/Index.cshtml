@@ -14,7 +14,7 @@
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Ganhos (Mensal)
                         </div>
-                        @if (ViewBag.GanhosMensal != null && ViewBag.GanhosMensal != "")
+                        @if (ViewBag.GanhosMensal != null)
                         {
                             <div class="h5 mb-0 font-weight-bold text-gray-800">R$ @ViewBag.GanhosMensal</div>
                         }
@@ -38,7 +38,7 @@
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Ganhos (Anual)
                         </div>
-                        @if (ViewBag.GanhosAnual != null && ViewBag.GanhosAnual != "")
+                        @if (ViewBag.GanhosAnual != null)
                         {
                             <div class="h5 mb-0 font-weight-bold text-gray-800">R$ @ViewBag.GanhosAnual</div>
                         }
@@ -62,7 +62,7 @@
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             Pendentes
                         </div>
-                        @if (ViewBag.Pendentes != null && ViewBag.Pendentes != "")
+                        @if (ViewBag.Pendentes != null)
                         {
                             <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.Pendentes</div>
                         }
@@ -88,7 +88,7 @@
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                @if (ViewBag.RecebidoMensal != null && ViewBag.RecebidoMensal != "")
+                                @if (ViewBag.RecebidoMensal != null)
                                 {
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@ViewBag.RecebidoMensal%</div>
                                 }

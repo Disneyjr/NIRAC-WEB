@@ -16,6 +16,7 @@
             <thead>
                 <tr>
                     <th scope="col" class="text-center">Nome</th>
+                    <th scope="col" class="text-center">Montante Pego</th>
                     <th scope="col" class="text-center">Data</th>
                     <th scope="col" class="text-center">Ações</th>
                 </tr>
@@ -32,6 +33,7 @@
                     {
                         <td class="text-center">@emprestimo.QuantidadeParcela</td>
                     }
+                    <td scope="row" class="text-center">R$: @emprestimo.TotalEmprestimo</td>
                     <td scope="row" class="text-center">@emprestimo.DataCriacao</td>
                     <td width="250px" class="text-center">
                         <a class="btn btn-primary btn-sm" href="@Url.Action("EmprestimoEditar","Emprestimo", new { id = emprestimo.Id })">Editar</a>
