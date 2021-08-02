@@ -19,13 +19,13 @@ namespace NIRAC_BUSINESS.Models.DAO
         [Column("IdUsuarioAdm")]
         public int? IdUsuarioAdm { get; set; }
         [Column("TotalGanhosMensal")]
-        public decimal TotalGanhosMensal { get; set; }
+        public decimal? TotalGanhosMensal { get; set; }
         [Column("TotalGanhosAnual")]
-        public decimal TotalGanhosAnual { get; set; }
+        public decimal? TotalGanhosAnual { get; set; }
         [Column("TotalRecebidoMensal")]
-        public decimal TotalRecebidoMensal { get; set; }
+        public decimal? TotalRecebidoMensal { get; set; }
         [Column("TotalPendentes")]
-        public decimal TotalPendentes { get; set; }
+        public decimal? TotalPendentes { get; set; }
         [ForeignKey("paisDAO")]
         public int? IdPais { get; set; }
         public PaisDAO paisDAO { get; set; }

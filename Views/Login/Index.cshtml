@@ -15,10 +15,12 @@
                     @using (Html.BeginForm("Login", "Login", FormMethod.Post))
                     {
                         <div class="form-group">
-                            <input type="text" value="059_Disney" class="form-control form-control-user" id="User" name="User" placeholder="Nome do Usuario">
+                            @* value="059_Disney" *@
+                            <input type="text" class="form-control form-control-user" id="User" name="User" placeholder="Nome do Usuario">
                         </div>
                         <div class="form-group">
-                            <input type="password" value="123" class="form-control form-control-user" id="Password" name="Password" placeholder="Senha">
+                            @* value="123" *@
+                            <input type="password" class="form-control form-control-user" id="Password" name="Password" placeholder="Senha">
                         </div>
                         <div class="form-group">
                             <div class="custom-control custom-checkbox small">
