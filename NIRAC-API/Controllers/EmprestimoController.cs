@@ -24,6 +24,12 @@ namespace NIRAC_API.Controllers
             this.rep = new EmprestimoRepository(cx);
             this._serv = new EmprestimoService(this.cx, this.rep, this.map);
         }
+        [HttpGet]
+        [Route("BuscaEmprestimoPeloIdCliente/{idCliente}")]
+        public EmprestimoDTO BuscaEmprestimoPeloIdCliente(int idCliente)
+        {
+            return _serv.GetAll().Find(e=>e.IdCliente == idCliente);
+        }
         #region CRUD
         [HttpGet]
         public List<EmprestimoDTO> GetAll()

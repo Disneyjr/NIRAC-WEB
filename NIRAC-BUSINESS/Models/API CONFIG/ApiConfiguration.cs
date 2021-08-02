@@ -6,6 +6,7 @@
         public ApiConfiguration()
         {
             URI_API = "https://www.api.nirac.com.br/";
+            //URI_API = "https://localhost:44356/";
         }
     }
 }

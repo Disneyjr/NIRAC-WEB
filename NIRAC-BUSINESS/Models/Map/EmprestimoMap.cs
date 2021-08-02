@@ -6,7 +6,7 @@ namespace NIRAC_BUSINESS.Models.Map
 {
     public class EmprestimoMap : MapBase<EmprestimoDAO, EmprestimoDTO>
     {
-        public EmprestimoMap()
+        public EmprestimoMap() : base()
         {
         }
     }

@@ -1,4 +1,4 @@
-﻿@model List<NIRAC_BUSINESS.Models.DTO.EmprestimoDTO>
+﻿@model NIRAC_WEB.ViewModel.EmprestimoVM
 @{
     ViewBag.Title = "Lista de Emprestimos";
     ViewBag.Emprestimo = "active";
@@ -9,29 +9,36 @@
 }
 
 <h2>Lista de Emprestimos</h2>
-@if (Model != null && Model.Count > 0)
+@if (Model.listaemprestimos != null && Model.listaemprestimos.Count > 0)
 {
     <div class="table table-responsive-md">
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col" class="text-center">Código</th>
                     <th scope="col" class="text-center">Nome</th>
+                    <th scope="col" class="text-center">Data</th>
                     <th scope="col" class="text-center">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var emprestimo in Model)
+                @foreach (var emprestimo in Model.listaemprestimos)
                 {
-                    <tr>
-                        <td scope="row" class="text-center">@emprestimo.Id</td>
-                        <td class="text-center">@emprestimo.DiaPagamento</td>
-                        <td width="250px" class="text-center">
-                            <a class="btn btn-primary btn-sm" href="@Url.Action("EmprestimoEditar","Emprestimo", new { id = emprestimo.Id })">Editar</a>
-                            <a class="btn btn-primary btn-sm" href="@Url.Action("EmprestimoDetalhe","Emprestimo", new { id = emprestimo.Id })">Detalhe</a>
-                            <a class="btn btn-primary btn-sm" href="@Url.Action("EmprestimoDeletar","Emprestimo", new { id = emprestimo.Id })">Deletar</a>
-                        </td>
-                    </tr>
+                <tr>
+                    @if (emprestimo.IdCliente > 0)
+                    {
+                        <td class="text-center">@Model.GetCliente(emprestimo)</td>
+                    }
+                    else
+                    {
+                        <td class="text-center">@emprestimo.QuantidadeParcela</td>
+                    }
+                    <td scope="row" class="text-center">@emprestimo.DataCriacao</td>
+                    <td width="250px" class="text-center">
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("EmprestimoEditar","Emprestimo", new { id = emprestimo.Id })">Editar</a>
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("EmprestimoDetalhe","Emprestimo", new { id = emprestimo.Id })">Detalhe</a>
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("EmprestimoDeletar","Emprestimo", new { id = emprestimo.Id })">Deletar</a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

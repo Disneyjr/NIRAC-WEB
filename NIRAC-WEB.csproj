@@ -215,8 +215,10 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validations\Multiple Buttons.cs" />
+    <Compile Include="ViewModel\EmprestimoVM.cs" />
     <Compile Include="WebServices\EmpresaWebService.cs" />
     <Compile Include="WebServices\EmprestimoWebService.cs" />
+    <Compile Include="WebServices\HomeWebService.cs" />
     <Compile Include="WebServices\LoginWebService.cs" />
     <Compile Include="WebServices\UsuarioWebService.cs" />
     <Compile Include="WebServices\WebServiceBase.cs" />
@@ -253,6 +255,7 @@
     <Content Include="Views\Emprestimo\Index.cshtml" />
     <Content Include="Views\Usuario\FuncionarioDetalhe.cshtml" />
     <Content Include="Views\Usuario\ClienteDetalhe.cshtml" />
+    <Content Include="Views\Emprestimo\EmprestimoDetalhe.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

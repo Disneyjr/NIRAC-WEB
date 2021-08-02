@@ -32,6 +32,6 @@ namespace NIRAC_BUSINESS.Models.DAO
         public DateTime DataAtualizacao { get; set; }
         [Column("DataUltimoPagamento")]
         public DateTime DataUltimoPagamento { get; set; }
-        public List<ParcelaDTO> parcelas { get; set; }
+        public List<ParcelaDAO> parcelas;
     }
 }
