@@ -69,8 +69,10 @@ namespace NIRAC_WEB.Controllers
             }
         }
         [HttpPost]
-        public ActionResult EmprestimoDeletar()
+        public ActionResult EmprestimoDeletar(EmprestimoDAO emprestimoDAO, FormCollection form)
         {
+            List<ParcelaDAO> parcelas = new List<ParcelaDAO>();
+            emprestimoWebService.Delete(emprestimoDAO, parcelas);
             return null;
         }
         #region PRIVATE METHODS

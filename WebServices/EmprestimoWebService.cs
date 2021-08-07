@@ -20,7 +20,26 @@ namespace NIRAC_WEB.WebServices
             this._emprestimoBaseDTO = new WebServiceBase<EmprestimoDTO>(this.api.URI_API);
             this._usuarioBase = new WebServiceBase<UsuarioDAO>(this.api.URI_API);
         }
-
+        public bool Delete(EmprestimoDAO emprestimoDAO, List<ParcelaDAO> parcelas)
+        {
+            if (parcelas.Count > 0)
+            {
+                foreach (var parcela in parcelas)
+                {
+                    var parceladeletada = _parcelaBase.Delete(parcela, parcela.Id, "Parcela");
+                    if (parceladeletada == null || parceladeletada.Id == 0 || parceladeletada.Id < 0)
+                    {
+                        return true;
+                    }
+                }
+            }
+            var emprestimodeletado = _emprestimoBase.Delete(emprestimoDAO, emprestimoDAO.Id, "Emprestimo");
+            if (emprestimodeletado.Id > 0)
+            {
+                return true;
+            }
+            return false;
+        }
         public List<UsuarioDAO> GetClientes(int idUsuario)
         {
             return _usuarioBase.GetListFindInt(idUsuario, "Usuario/BuscaClientesPeloIdUsuarioAdm/");
@@ -32,7 +51,7 @@ namespace NIRAC_WEB.WebServices
         public bool Add(EmprestimoDAO emprestimo)
         {
             EmprestimoDAO emp = _emprestimoBase.Add(emprestimo, "Emprestimo");
-            if(emp.Id > 0)
+            if (emp.Id > 0)
             {
                 foreach (var parcela in emp.parcelas)
                 {
@@ -47,7 +66,7 @@ namespace NIRAC_WEB.WebServices
         }
         public UsuarioDAO GetCliente(int idCliente)
         {
-            return _usuarioBase.Get(idCliente,"Usuario/");
+            return _usuarioBase.Get(idCliente, "Usuario/");
         }
     }
 }
