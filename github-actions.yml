@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - Desenvolvimento
-
       
 env:
   WEBAPP_NAME: SimpleFrameworkApp.sln     # set this to your application's name
