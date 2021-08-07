@@ -1,90 +1,45 @@
-name: "build-test-dev"
+name: NIRAC CI/CD
+
 on:
-  pull_request:
-    branches:
-      - master
-    paths-ignore:
-      - '*.md'
   push:
     branches:
       - master
-    paths-ignore:
-      - '*.md'
+      
+env:
+  WEBAPP_NAME: NIRAC-WEB.sln     # set this to your application's name
+  WEBAPP_PACKAGE_PATH: 'published'      # set this to the path to your web app project, defaults to the repository root
 
 jobs:
   build:
+    name: Build and deploy
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: google-github-actions/setup-gcloud@master
+    
+    - name: Setup MSBuild.exe
+      uses: Disneyjr/NIRAC-WEB@v1
+    
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.2
+    
+    - name: Restore NuGet packages
+      run: nuget restore ${{ env.WEBAPP_NAME }}
 
-    - name: Setup MSBuild (vswhere-path)
-      id: setup_msbuild_explicit
-      uses: ./
+    - name: Build
+      run: msbuild ${{ env.WEBAPP_NAME }} /p:Configuration=Release
+
+    - name: Publish to folder
+      run: msbuild ${{ env.WEBAPP_NAME }} /p:Configuration=Release /p:DeployOnBuild=true /t:WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=${{ env.WEBAPP_PACKAGE_PATH }} /p:PackageAsSingleFile=false
+
+    - name: Deploy to Azure WebApp
+      uses: azure/webapps-deploy@v1
       with:
-        vswhere-path: C:\ProgramData\chocolatey\bin
+        app-name: ${{ env.WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: ${{ env.WEBAPP_PACKAGE_PATH }}
 
-    - name: Setup MSBuild (PATH)
-      id: setup_msbuild_path
-      uses: ./
-    - name: Setup MSBuild (fallback)
-      id: setup_msbuild_fallback
-      uses: ./
-      env:
-        PATH: ''
-
-    - name: echo msbuild path
-      run: |
-        echo "vswhere-path: ${{ steps.setup_msbuild_explicit.outputs.msbuildPath }}"
-        echo "PATH: ${{ steps.setup_msbuild_path.outputs.msbuildPath }}"
-        echo "Fallback: ${{ steps.setup_msbuild_fallback.outputs.msbuildPath }}"
-
-    - name: echo MSBuild
-      run: msbuild -version
-#name: NIRAC CI/CD
-
-#on:
-#  push:
-#    branches:
-#      - master
-      
-#env:
-#  WEBAPP_NAME: NIRAC-WEB.sln     # set this to your application's name
-#  WEBAPP_PACKAGE_PATH: 'published'      # set this to the path to your web app project, defaults to the repository root
-
-#jobs:
-#  build:
-#    name: Build and deploy
-#    runs-on: windows-latest
-#    steps:
-#    - uses: actions/checkout@v2
-    
-#    - name: Setup MSBuild path
-#      uses: microsoft/setup-msbuild@v1.0.1
-#      with:
-#        vs-version: "[16.10)"
-    
-#    - name: Setup NuGet
-#      uses: NuGet/setup-nuget@v1.0.2
-    
-#    - name: Restore NuGet packages
-#      run: nuget restore ${{ env.WEBAPP_NAME }}
-
-#    - name: Build
-#      run: msbuild ${{ env.WEBAPP_NAME }} /p:Configuration=Release
-
-#    - name: Publish to folder
-#      run: msbuild ${{ env.WEBAPP_NAME }} /p:Configuration=Release /p:DeployOnBuild=true /t:WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=${{ env.WEBAPP_PACKAGE_PATH }} /p:PackageAsSingleFile=false
-
-#    - name: Deploy to Azure WebApp
-#      uses: azure/webapps-deploy@v1
-#      with:
-#        app-name: ${{ env.WEBAPP_NAME }}
-#        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-#        package: ${{ env.WEBAPP_PACKAGE_PATH }}
-
-#    - name: Publish artifacts
-#      uses: actions/upload-artifact@v1.0.0
-#      with:
-#        name: webapp
-#        path: ${{ env.WEBAPP_PACKAGE_PATH }}
+    - name: Publish artifacts
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: webapp
+        path: ${{ env.WEBAPP_PACKAGE_PATH }}
