@@ -2,12 +2,12 @@ name: "build-test-dev"
 on:
   pull_request:
     branches:
-      - dev
+      - master
     paths-ignore:
       - '*.md'
   push:
     branches:
-      - dev
+      - master
     paths-ignore:
       - '*.md'
 
