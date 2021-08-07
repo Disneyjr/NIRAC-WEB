@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - master
+
+env:
+  SOLUTION_NAME: NIRAC-WEB.sln    
+
 jobs:
   build:
     name: Build and deploy
@@ -17,7 +21,8 @@ jobs:
       with: 
         dotnet-version: '5.0.x'
     - name: Restore Dependencies
-      run: dotnet restore
+      run: dotnet restore 
+
     - name: Build App
       run: dotnet build -c Release --no-restore
     #- name: Setup NuGet
