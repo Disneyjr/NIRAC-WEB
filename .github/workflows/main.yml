@@ -38,10 +38,8 @@ jobs:
     - name: Build App
       run: msbuild ${{ env.SOLUTION_NAME }} /p:Configuration=Release 
 
+    - name: Build TESTE
+      run: msbuild ${{ env.TEST_API }} /p:Configuration=Release 
+
     - name: Testando a API
       run: dotnet test ${{ env.TEST_API }} -c Release --no-build
-    #- name: Publish artifacts
-    #  uses: actions/upload-artifact@v1.0.0
-    #  with:
-    #    name: webapp
-    #    path: ${{ env.WEBAPP_PACKAGE_PATH }}
