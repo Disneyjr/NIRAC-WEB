@@ -14,10 +14,10 @@ jobs:
     name: Build and deploy
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@master
     
     - name: Setup MSBuild.exe
-      uses: Disneyjr/NIRAC-WEB@v2
+      uses: Disneyjr/NIRAC-WEB@master
     
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.2
