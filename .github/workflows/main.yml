@@ -1,12 +1,12 @@
-name: NIRAC Desenvolvimento
+name: NIRAC CI/CD
 
 on:
   push:
     branches:
-      - Desenvolvimento
+      - master
       
 env:
-  WEBAPP_NAME: SimpleFrameworkApp.sln     # set this to your application's name
+  WEBAPP_NAME: NIRAC-WEB.sln     # set this to your application's name
   WEBAPP_PACKAGE_PATH: 'published'      # set this to the path to your web app project, defaults to the repository root
 
 jobs:
