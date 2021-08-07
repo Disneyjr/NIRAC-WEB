@@ -8,7 +8,6 @@ on:
 env:
   SOLUTION_NAME: NIRAC-APP.csproj
   SOLUTION_NAME_BUSINESS: NIRAC-BUSINESS/NIRAC-BUSINESS.csproj
-  SOLUTION_NAME_TEST_API: API TESTE/API TESTE.csproj
 
 jobs:
   build:
@@ -29,11 +28,13 @@ jobs:
     - name: Restore Dependencies BUSINESS PROJECT
       run: nuget restore ${{ env.SOLUTION_NAME_BUSINESS }} -o packages
 
-    - name: Restore Dependencies APP
+    - name: Restore Dependencies
       run: nuget restore ${{ env.SOLUTION_NAME }} -o packages
 
     - name: Build App
       run: msbuild ${{ env.SOLUTION_NAME }} /p:Configuration=Release 
-
-    - name: Testa toda a Aplicação
-      run: dotnet test ${{ env.SOLUTION_NAME_TEST_API }} -c Release --no-build 
+    #- name: Publish artifacts
+    #  uses: actions/upload-artifact@v1.0.0
+    #  with:
+    #    name: webapp
+    #    path: ${{ env.WEBAPP_PACKAGE_PATH }}
