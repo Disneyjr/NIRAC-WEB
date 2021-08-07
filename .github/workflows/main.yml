@@ -21,9 +21,6 @@ jobs:
       with: 
         dotnet-version: '5.0.x'
 
-    - name: Setup MSBuild Path
-      uses: Disneyjr/NIRAC-WEB@master
-    
     - name: Setup NuGet
       uses: nuget/setup-nuget@v1
 
