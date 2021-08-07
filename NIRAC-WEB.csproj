@@ -234,6 +234,7 @@
     <Content Include="Content\ADM-LTE\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Content\ADM-LTE\vendor\fontawesome-free\package.json" />
     <Content Include="github-actions.yml" />
+    <Content Include="github\workflows\github-actions.yml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
