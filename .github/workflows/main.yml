@@ -21,7 +21,7 @@ jobs:
       with: 
         dotnet-version: '5.0.x'
     - name: Restore Dependencies
-      run: dotnet restore ${{ env.SOLUTION_NAME }}
+      run: nuget restore ${{ env.SOLUTION_NAME }}
 
     - name: Build App
       run: msbuild ${{ env.SOLUTION_NAME }} /p:Configuration=Release 
