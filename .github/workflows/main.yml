@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  SOLUTION_NAME: NIRAC-APP.sln    
+  SOLUTION_NAME: NIRAC-APP.csproj
 
 jobs:
   build:
