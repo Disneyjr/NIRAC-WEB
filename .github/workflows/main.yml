@@ -24,7 +24,7 @@ jobs:
       run: dotnet restore ${{ env.SOLUTION_NAME }}
 
     - name: Build App
-      run: dotnet build -c Release --no-restore
+      run: dotnet build -c Release --no-restore ${{ env.SOLUTION_NAME }}
     #- name: Setup NuGet
     #  uses: NuGet/setup-nuget@v1.0.2
     
