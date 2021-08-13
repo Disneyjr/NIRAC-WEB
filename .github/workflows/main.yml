@@ -42,4 +42,4 @@ jobs:
       run: msbuild ${{ env.SOLUTION_NAME_API }} /p:Configuration=Release 
       
     - name: Executando os testes
-      run: dotnet test ${{ env.SOLUTION_NAME_API }} -c Release --no-build
+      run: dotnet test ${{ env.SOLUTION_NAME_API }}
