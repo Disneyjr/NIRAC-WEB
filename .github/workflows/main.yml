@@ -45,9 +45,13 @@ jobs:
     - name: Setando a pasta dos testes
       run: cd ..
     - name: Setando a pasta dos testes
+      run: cd ..
+    - name: Setando a pasta dos testes
       run: cd NIRAC-TESTE 
     - name: Setando a pasta dos testes
-      run: cd bin cd Debug 
+      run: cd bin
+    - name: Setando a pasta dos testes
+      run: cd Debug
 
     - name: Executando os testes
       run: ${{ env.TEST_API }}
