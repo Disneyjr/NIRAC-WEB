@@ -9,7 +9,7 @@ env:
   SOLUTION_NAME: NIRAC-APP.csproj
   SOLUTION_NAME_API: NIRAC-API/NIRAC-API.csproj
   SOLUTION_NAME_BUSINESS: NIRAC-BUSINESS/NIRAC-BUSINESS.csproj
-  SOLUTION_NAME_TESTE: NIRAC-TESTE/NIRAC-TESTE.csproj
+  SOLUTION_NAME_TESTE: ./NIRAC/NIRAC-TESTE/NIRAC-TESTE.csproj
 
 jobs:
   build:
@@ -27,9 +27,6 @@ jobs:
     - name: Setup NuGet
       uses: nuget/setup-nuget@v1
 
-    - name: Pasta testes
-      run: cd ..
-
     - name: Restore Dependencies TESTE
       run: nuget restore ${{ env.SOLUTION_NAME_TESTE }} -o packages
     
@@ -37,4 +34,4 @@ jobs:
       run: msbuild ${{ env.SOLUTION_NAME_TESTE }} /p:Configuration=Release 
       
     - name: Executando os testes
-      run: dotnet test ${{ env.SOLUTION_NAME_API }}
+      run: dotnet test ${{ env.SOLUTION_NAME_TESTE }}
