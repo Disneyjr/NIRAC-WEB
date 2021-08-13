@@ -5,11 +5,11 @@ on:
     branches:
       - master
 
-env:
-  SOLUTION_NAME: NIRAC-APP.csproj
-  SOLUTION_NAME_API: NIRAC-API/NIRAC-API.csproj
-  SOLUTION_NAME_BUSINESS: NIRAC-BUSINESS/NIRAC-BUSINESS.csproj
-  SOLUTION_NAME_TESTE: NIRAC-TESTE/NIRAC-TESTE.csproj
+#env:
+#  SOLUTION_NAME: NIRAC-APP.csproj
+#  SOLUTION_NAME_API: NIRAC-API/NIRAC-API.csproj
+#  SOLUTION_NAME_BUSINESS: NIRAC-BUSINESS/NIRAC-BUSINESS.csproj
+#  SOLUTION_NAME_TESTE: NIRAC-TESTE/NIRAC-TESTE.csproj
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
     steps:
     - name: Teste
       env:
-          GITHUB_workspace: ${{ github.workspace }}
+          GITHUB_WORKSPACE: ${{ github.workspace }}
     - name: Checkout the code
       uses: actions/checkout@v2
     
