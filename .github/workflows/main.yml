@@ -16,7 +16,7 @@ jobs:
     name: Build and deploy
     runs-on: ubuntu-latest
     steps:
-    - name: ${{ toJSON(github.workspace) }}
+    - uses: ${{ toJSON(github.workspace) }}
 
     - name: Checkout the code
       uses: actions/checkout@v2
