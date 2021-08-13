@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - run: CD ..\NIRAC-TESTE
+    - run: cd ..\NIRAC-TESTE
 
     - name: Checkout the code
       uses: actions/checkout@v2
