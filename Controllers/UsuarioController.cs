@@ -21,6 +21,7 @@ namespace NIRAC_WEB.Controllers
             toFromFuncionario = new ToFromFuncionarios();
             usuarioService = new UsuarioWebService();
         }
+
         #region FUNCIONARIO
         public ActionResult Funcionarios()
         {
@@ -29,7 +30,7 @@ namespace NIRAC_WEB.Controllers
         }
         public ActionResult FuncionarioCadastrar()
         {
-            ViewBag.ListaPaises = usuarioService.ListarPaises();
+            ViewBag.Cidades = usuarioService.ListarCidades();
             return View();
         }
         public ActionResult FuncionarioEditar(int id)
@@ -57,8 +58,8 @@ namespace NIRAC_WEB.Controllers
         [HttpPost]
         public ActionResult FuncionarioCadastrar(UsuarioDAO usuarioDAO, FormCollection form, string confirmarSenha)
         {
-            usuarioDAO.IdPais = Convert.ToInt16(form["pais"]);
-            usuarioDAO.IdEstado = Convert.ToInt16(form["estado"]);
+            usuarioDAO.IdPais = 1;
+            usuarioDAO.IdEstado = 1;
             usuarioDAO.IdCidade = Convert.ToInt16(form["cidade"]);
             usuarioDAO.Genero = toFromGenero.Genero(Convert.ToInt16(form["genero"]));
             usuarioDAO.Tipo = toFromFuncionario.Funcionario(Convert.ToInt16(form["tipo"]));
@@ -90,7 +91,7 @@ namespace NIRAC_WEB.Controllers
         }
         public ActionResult ClienteCadastrar()
         {
-            ViewBag.ListaPaises = usuarioService.ListarPaises();
+            ViewBag.Cidades = usuarioService.ListarCidades();
             return View();
         }
         public ActionResult ClienteEditar(int id)
@@ -118,8 +119,8 @@ namespace NIRAC_WEB.Controllers
         [HttpPost]
         public ActionResult ClienteCadastrar(UsuarioDAO usuarioDAO, FormCollection form, string confirmarSenha)
         {
-            usuarioDAO.IdPais = Convert.ToInt16(form["pais"]);
-            usuarioDAO.IdEstado = Convert.ToInt16(form["estado"]);
+            usuarioDAO.IdPais = 1;
+            usuarioDAO.IdEstado = 1;
             usuarioDAO.IdCidade = Convert.ToInt16(form["cidade"]);
             usuarioDAO.Genero = toFromGenero.Genero(Convert.ToInt16(form["genero"]));
             usuarioDAO.Tipo = toFromFuncionario.Funcionario(Convert.ToInt16(form["tipo"]));

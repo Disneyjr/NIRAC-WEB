@@ -10,13 +10,14 @@
 <h3 class="TitlePage">Cadastrar Funcionario</h3>
 @using (Html.BeginForm("FuncionarioCadastrar", "Usuario", FormMethod.Post))
 {
-    <div class="form-row">
+
+
+<div class="form-row">
         <div class="col">
             <label for="Nome" class="form-label">Nome Completo</label>
             <input type="text" class="form-control" id="Nome" name="UsuarioDAO.Nome" placeholder="Nome Completo" required>
         </div>
-    </div>
-    <div class="form-row">
+    </div><div class="form-row">
         <div class="col">
             <label for="CPF" class="form-label">CPF</label>
             <input class="cpf form-control"
@@ -26,8 +27,7 @@
             <label for="Email" class="form-label">E-mail</label>
             <input type="email" class="form-control" id="Email" name="UsuarioDAO.Email" placeholder="E-mail" required>
         </div>
-    </div>
-    <div class="form-row">
+    </div><div class="form-row">
         <div class="col">
             <label for="RG" class="form-label">RG</label>
             <input type="text" class="form-control" id="RG" name="UsuarioDAO.RG" placeholder="RG">
@@ -36,8 +36,7 @@
             <label for="Telefone" class="form-label">Telefone</label>
             <input type="text" class="form-control" id="Telefone" name="UsuarioDAO.Telefone" placeholder="Telefone">
         </div>
-    </div>
-    <div class="form-row">
+    </div><div class="form-row">
         <div class="col">
             <label for="Senha" class="form-label">Senha</label>
             <input type="password" class="form-control" id="Senha" name="UsuarioDAO.Senha" placeholder="Senha" required>
@@ -46,8 +45,7 @@
             <label for="ConfirmarSenha" class="form-label">Confirmar Senha</label>
             <input type="password" class="form-control" id="ConfirmarSenha" name="ConfirmarSenha" placeholder="Confirmar Senha" required>
         </div>
-    </div>
-    <div class="form-row">
+    </div><div class="form-row">
         <div class="col">
             <label for="estadocivil" class="form-label">Estado Civil</label>
             <select class="form-control" id="estadocivil" name="estadocivil">
@@ -76,31 +74,15 @@
                 <option value="3">Contador</option>
             </select>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="col">
-            <label for="pais">Pais</label>
-            <select class="form-control" id="pais" onchange="UpdateEstado()" name="pais">
-                <option value="0" selected>Selecione um pais</option>
-                @if (ViewBag.ListaPaises != null)
-                {
-                    foreach (var pais in ViewBag.ListaPaises)
-                    {
-                        <option value="@pais.Id">@pais.Nome</option>
-                    }
-                }
-            </select>
-        </div>
-        <div class="col">
-            <label for="estado">Estado</label>
-            <select class="form-control" id="estado" onchange="UpdateCidades()" name="estado">
-                <option value="0" selected>Selecione um estado</option>
-            </select>
-        </div>
+    </div><div class="form-row">
         <div class="col">
             <label for="cidade">Cidade</label>
             <select class="form-control" id="cidade" name="cidade">
                 <option value="0" selected>Selecione uma cidade</option>
+                @foreach (var cidade in ViewBag.Cidades)
+                {
+                    <option value="@cidade.Id">@cidade.Nome</option>
+                }
             </select>
         </div>
     </div>
@@ -110,47 +92,3 @@
         </button>
     </div>
 }
-<script type="text/javascript">
-
-    function UpdateEstado(){
-        var pais = document.getElementById("pais");
-        if (pais !== "") {
-            $.post("@Url.Action("ListarEstados", "Empresa")?id=" + pais.value, function(res) {
-                if (res.Success === "true") {
-                    var estado = document.getElementById("estado");
-                    for (let i = 0; i < res.EstadoDTOs.length; i++) {
-                        $.each(res.EstadoDTOs, function (i, d) {
-                            $('<option>').val(d.Id).text(d.Nome).appendTo(estado);
-                        });
-                    }
-                }
-                else {
-                        alert("Error getting data!");
-                    }
-                });
-            } else {
-                alert("Error getting data!");
-            }
-    };
-    function UpdateCidades(){
-        var pais = document.getElementById("pais");
-        if (pais !== "") {
-            $.post("@Url.Action("ListarCidades", "Empresa")?id=" + pais.value, function(res) {
-                if (res.Success === "true") {
-                    var cidade = document.getElementById("cidade");
-                    for (let i = 0; i < res.CidadeDTOs.length; i++) {
-                        $.each(res.CidadeDTOs, function (i, d) {
-                            $('<option>').val(d.Id).text(d.Nome).appendTo(cidade);
-                        });
-                    }
-                }
-                else {
-                        alert("Error getting data!");
-                    }
-                });
-            } else {
-                alert("Error getting data!");
-            }
-    };
-
-</script>

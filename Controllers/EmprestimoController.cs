@@ -20,8 +20,9 @@ namespace NIRAC_WEB.Controllers
 
         public ActionResult Index()
         {
+            int idUsuarioAdm = Convert.ToInt32(Session["IdUsuario"]);
             EmprestimoVM emprestimoVM = new EmprestimoVM();
-            emprestimoVM.listaemprestimos = emprestimoWebService.GetAll();
+            emprestimoVM.listaemprestimos = emprestimoWebService.GetAll(idUsuarioAdm);
             return View(emprestimoVM);
         }
         public ActionResult Cadastrar()
@@ -68,12 +69,13 @@ namespace NIRAC_WEB.Controllers
                 return RedirectToAction("Cadastrar", "Emprestimo");
             }
         }
-        [HttpPost]
-        public ActionResult EmprestimoDeletar(EmprestimoDAO emprestimoDAO, FormCollection form)
+        
+        public ActionResult EmprestimoDeletar(int id)
         {
-            List<ParcelaDAO> parcelas = new List<ParcelaDAO>();
-            emprestimoWebService.Delete(emprestimoDAO, parcelas);
-            return null;
+            List<ParcelaDAO> parcelas = emprestimoWebService.GetParcelas(id);
+            EmprestimoDAO emprestimoDAO = emprestimoWebService.GetEmprestimo(id);
+            emprestimoWebService.Delete(id, emprestimoDAO, parcelas);
+            return RedirectToAction("Index", "Emprestimo");
         }
         #region PRIVATE METHODS
         private List<ParcelaDAO> GetParcelas(FormCollection form)

@@ -10,11 +10,11 @@ namespace NIRAC_WEB.WebServices
         private ApiConfiguration api;
         private WebServiceBase<UsuarioDTO> _ususerviceBase;
         private WebServiceBase<UsuarioDAO> _ususerviceBaseDAO;
-        private WebServiceBase<PaisDTO> _paisBase;
+        private WebServiceBase<CidadeDTO> _cidadeBase;
         public UsuarioWebService()
         {
             this.api = new ApiConfiguration();
-            this._paisBase = new WebServiceBase<PaisDTO>(this.api.URI_API);
+            this._cidadeBase = new WebServiceBase<CidadeDTO>(this.api.URI_API);
             this._ususerviceBase = new WebServiceBase<UsuarioDTO>(this.api.URI_API);
             this._ususerviceBaseDAO = new WebServiceBase<UsuarioDAO>(this.api.URI_API);
         }
@@ -46,9 +46,9 @@ namespace NIRAC_WEB.WebServices
             }
             return retorno;
         }
-        public List<PaisDTO> ListarPaises()
+        public List<CidadeDTO> ListarCidades()
         {
-            return _paisBase.GetAll("Pais");
+            return _cidadeBase.GetAll("Cidade");
         }
     }
 }

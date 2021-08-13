@@ -20,33 +20,42 @@ namespace NIRAC_WEB.WebServices
             this._emprestimoBaseDTO = new WebServiceBase<EmprestimoDTO>(this.api.URI_API);
             this._usuarioBase = new WebServiceBase<UsuarioDAO>(this.api.URI_API);
         }
-        public bool Delete(EmprestimoDAO emprestimoDAO, List<ParcelaDAO> parcelas)
+        public bool Delete(int id, EmprestimoDAO emprestimoDAO, List<ParcelaDAO> parcelas)
         {
             if (parcelas.Count > 0)
             {
                 foreach (var parcela in parcelas)
                 {
-                    var parceladeletada = _parcelaBase.Delete(parcela, parcela.Id, "Parcela");
+                    var parceladeletada = _parcelaBase.Delete(parcela, parcela.Id, "Parcela/");
                     if (parceladeletada == null || parceladeletada.Id == 0 || parceladeletada.Id < 0)
                     {
                         return true;
                     }
                 }
             }
-            var emprestimodeletado = _emprestimoBase.Delete(emprestimoDAO, emprestimoDAO.Id, "Emprestimo");
+            var emprestimodeletado = _emprestimoBase.Delete(emprestimoDAO, id, "Emprestimo/");
             if (emprestimodeletado.Id > 0)
             {
                 return true;
             }
             return false;
         }
+        public List<ParcelaDAO> GetParcelas(int idEmprestimo)
+        {
+            List<ParcelaDAO> parcelas = _parcelaBase.GetListFindInt(idEmprestimo, "Parcela/BuscaParcelasPeloIdEmprestimo/");
+            return parcelas;
+        }
         public List<UsuarioDAO> GetClientes(int idUsuario)
         {
             return _usuarioBase.GetListFindInt(idUsuario, "Usuario/BuscaClientesPeloIdUsuarioAdm/");
         }
-        public List<EmprestimoDTO> GetAll()
+        public EmprestimoDAO GetEmprestimo(int idEmprestimo)
         {
-            return _emprestimoBaseDTO.GetAll("Emprestimo");
+            return _emprestimoBase.Get(idEmprestimo, "Emprestimo/");
+        }
+        public List<EmprestimoDTO> GetAll(int idUsuario)
+        {
+            return _emprestimoBaseDTO.GetListFindInt(idUsuario, "Emprestimo/BuscaEmprestimosPeloIdUsuario/");
         }
         public bool Add(EmprestimoDAO emprestimo)
         {

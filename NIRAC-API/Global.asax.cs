@@ -9,8 +9,14 @@ using System.Web.Routing;
 
 namespace NIRAC_API
 {
+    /// <summary>
+    /// API app
+    /// </summary>
     public class WebApiApplication : System.Web.HttpApplication
     {
+        /// <summary>
+        /// Configuração do start da aplicação
+        /// </summary>
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

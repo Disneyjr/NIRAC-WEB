@@ -9,42 +9,71 @@ using NIRAC_BUSINESS.Services;
 
 namespace NIRAC_API.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [RoutePrefix("api/CentroCustoUsuario")]
     public class CentroCustoUsuarioController : ApiController
     {
-        private ContextDb cx;
-        private CentroCustoUsuarioMap map;
-        private CentroCustoUsuarioRepository rep;
-        private CentroCustoUsuarioService _serv;
-
+        private readonly ContextDb cx;
+        private readonly CentroCustoUsuarioMap map;
+        private readonly CentroCustoUsuarioRepository rep;
+        private readonly CentroCustoUsuarioService _serv;
+        /// <summary>
+        /// 
+        /// </summary>
         public CentroCustoUsuarioController() : base()
         {
-            this.map = new CentroCustoUsuarioMap();
-            this.cx = new ContextDb();
-            this.rep = new CentroCustoUsuarioRepository(cx);
-            this._serv = new CentroCustoUsuarioService(this.cx, this.rep, this.map);
+            map = new CentroCustoUsuarioMap();
+            cx = new ContextDb();
+            rep = new CentroCustoUsuarioRepository(cx);
+            _serv = new CentroCustoUsuarioService(cx, rep, map);
         }
         #region CRUD
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public List<CentroCustoUsuarioDTO> GetAll()
         {
             return _serv.GetAll();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public CentroCustoUsuarioDTO Get(int id)
         {
             return _serv.Get(id);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dao"></param>
+        /// <returns></returns>
         [HttpPost]
         public CentroCustoUsuarioDTO Post(CentroCustoUsuarioDAO dao)
         {
             return _serv.Add(dao);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dao"></param>
+        /// <returns></returns>
         [HttpPut]
         public CentroCustoUsuarioDTO Put(CentroCustoUsuarioDAO dao)
         {
             return _serv.Update(dao, dao.Id);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dao"></param>
+        /// <returns></returns>
         [HttpDelete]
         public CentroCustoUsuarioDTO Delete(CentroCustoUsuarioDAO dao)
         {

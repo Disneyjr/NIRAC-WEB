@@ -70,28 +70,13 @@
     </div>
     <div class="form-row">
         <div class="col">
-            <label for="pais">Pais</label>
-            <select class="form-control" id="pais" onchange="UpdateEstado()" name="pais">
-                <option value="0" selected>Selecione um pais</option>
-                @if (ViewBag.ListaPaises != null)
-                {
-                    foreach (var pais in ViewBag.ListaPaises)
-                    {
-                        <option value="@pais.Id">@pais.Nome</option>
-                    }
-                }
-            </select>
-        </div>
-        <div class="col">
-            <label for="estado">Estado</label>
-            <select class="form-control" id="estado" onchange="UpdateCidades()" name="estado">
-                <option value="0" selected>Selecione um estado</option>
-            </select>
-        </div>
-        <div class="col">
             <label for="cidade">Cidade</label>
             <select class="form-control" id="cidade" name="cidade">
                 <option value="0" selected>Selecione uma cidade</option>
+                @foreach (var cidade in ViewBag.Cidades)
+                {
+                    <option value="@cidade.Id">@cidade.Nome</option>
+                }
             </select>
         </div>
     </div>
@@ -101,47 +86,3 @@
         </button>
     </div>
 }
-<script type="text/javascript">
-
-    function UpdateEstado(){
-        var pais = document.getElementById("pais");
-        if (pais !== "") {
-            $.post("@Url.Action("ListarEstados", "Empresa")?id=" + pais.value, function(res) {
-                if (res.Success === "true") {
-                    var estado = document.getElementById("estado");
-                    for (let i = 0; i < res.EstadoDTOs.length; i++) {
-                        $.each(res.EstadoDTOs, function (i, d) {
-                            $('<option>').val(d.Id).text(d.Nome).appendTo(estado);
-                        });
-                    }
-                }
-                else {
-                        alert("Error getting data!");
-                    }
-                });
-            } else {
-                alert("Error getting data!");
-            }
-    };
-    function UpdateCidades(){
-        var pais = document.getElementById("pais");
-        if (pais !== "") {
-            $.post("@Url.Action("ListarCidades", "Empresa")?id=" + pais.value, function(res) {
-                if (res.Success === "true") {
-                    var cidade = document.getElementById("cidade");
-                    for (let i = 0; i < res.CidadeDTOs.length; i++) {
-                        $.each(res.CidadeDTOs, function (i, d) {
-                            $('<option>').val(d.Id).text(d.Nome).appendTo(cidade);
-                        });
-                    }
-                }
-                else {
-                        alert("Error getting data!");
-                    }
-                });
-            } else {
-                alert("Error getting data!");
-            }
-    };
-
-</script>

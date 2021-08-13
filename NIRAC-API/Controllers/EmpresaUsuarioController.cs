@@ -9,21 +9,31 @@ using NIRAC_BUSINESS.Services;
 
 namespace NIRAC_API.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [RoutePrefix("api/EmpresaUsuario")]
     public class EmpresaUsuarioController : ApiController
     {
-        private ContextDb cx;
-        private EmpresaUsuarioMap map;
-        private EmpresaUsuarioRepository rep;
-        private EmpresaUsuarioService _serv;
-
+        private readonly ContextDb cx;
+        private readonly EmpresaUsuarioMap map;
+        private readonly EmpresaUsuarioRepository rep;
+        private readonly EmpresaUsuarioService _serv;
+        /// <summary>
+        /// 
+        /// </summary>
         public EmpresaUsuarioController() : base()
         {
-            this.map = new EmpresaUsuarioMap();
-            this.cx = new ContextDb();
-            this.rep = new EmpresaUsuarioRepository(cx);
-            this._serv = new EmpresaUsuarioService(this.cx, this.rep, this.map);
+            map = new EmpresaUsuarioMap();
+            cx = new ContextDb();
+            rep = new EmpresaUsuarioRepository(cx);
+            _serv = new EmpresaUsuarioService(cx, rep, map);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("BuscaEmpresaUsuarioDAOPeloId/{id}")]
         public EmpresaUsuarioDAO BuscaEmpresaUsuarioDAOPeloId(int id)
@@ -31,26 +41,50 @@ namespace NIRAC_API.Controllers
             return _serv.GetDAO(id);
         }
         #region CRUD
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public List<EmpresaUsuarioDTO> GetAll()
         {
             return _serv.GetAll();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public EmpresaUsuarioDTO Get(int id)
         {
             return _serv.Get(id);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dao"></param>
+        /// <returns></returns>
         [HttpPost]
         public EmpresaUsuarioDTO Post(EmpresaUsuarioDAO dao)
         {
             return _serv.Add(dao);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dao"></param>
+        /// <returns></returns>
         [HttpPut]
         public EmpresaUsuarioDTO Put(EmpresaUsuarioDAO dao)
         {
             return _serv.Update(dao, dao.Id);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dao"></param>
+        /// <returns></returns>
         [HttpDelete]
         public EmpresaUsuarioDTO Delete(EmpresaUsuarioDAO dao)
         {

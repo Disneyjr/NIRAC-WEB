@@ -1,0 +1,612 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NIRAC-API</name>
+    </assembly>
+    <members>
+        <member name="T:NIRAC_API.FilterConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.FilterConfig.RegisterGlobalFilters(System.Web.Mvc.GlobalFilterCollection)">
+            <summary>
+            
+            </summary>
+            <param name="filters"></param>
+        </member>
+        <member name="T:NIRAC_API.RouteConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.RouteConfig.RegisterRoutes(System.Web.Routing.RouteCollection)">
+            <summary>
+            
+            </summary>
+            <param name="routes"></param>
+        </member>
+        <member name="T:NIRAC_API.SwaggerConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.SwaggerConfig.Register">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NIRAC_API.WebApiConfig">
+            <summary>
+            Arquivo de Configuração da API
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.WebApiConfig.Register(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Registro da API
+            </summary>
+            <param name="config"></param>
+        </member>
+        <member name="T:NIRAC_API.Controllers.CentroCustoController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CentroCustoController.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CentroCustoController.GetAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CentroCustoController.Get(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CentroCustoController.Post(NIRAC_BUSINESS.Models.DAO.CentroCustoDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CentroCustoController.Put(NIRAC_BUSINESS.Models.DAO.CentroCustoDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CentroCustoController.Delete(NIRAC_BUSINESS.Models.DAO.CentroCustoDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NIRAC_API.Controllers.CentroCustoUsuarioController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CentroCustoUsuarioController.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CentroCustoUsuarioController.GetAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CentroCustoUsuarioController.Get(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CentroCustoUsuarioController.Post(NIRAC_BUSINESS.Models.DAO.CentroCustoUsuarioDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CentroCustoUsuarioController.Put(NIRAC_BUSINESS.Models.DAO.CentroCustoUsuarioDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CentroCustoUsuarioController.Delete(NIRAC_BUSINESS.Models.DAO.CentroCustoUsuarioDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NIRAC_API.Controllers.CidadeController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CidadeController.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CidadeController.BuscaCidadesPeloIdEstado(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="idEstado"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CidadeController.BuscaCidadeDAOPeloId(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CidadeController.GetAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CidadeController.Get(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CidadeController.Post(NIRAC_BUSINESS.Models.DAO.CidadeDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CidadeController.Put(NIRAC_BUSINESS.Models.DAO.CidadeDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.CidadeController.Delete(NIRAC_BUSINESS.Models.DAO.CidadeDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NIRAC_API.Controllers.EmpresaController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmpresaController.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmpresaController.BuscaEmpresaDAOPeloId(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmpresaController.BuscaEmpresaCadastradaPeloIdUsuarioAdm(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="idUsuario"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmpresaController.GetAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmpresaController.Get(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmpresaController.Post(NIRAC_BUSINESS.Models.DAO.EmpresaDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmpresaController.Put(NIRAC_BUSINESS.Models.DAO.EmpresaDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmpresaController.Delete(NIRAC_BUSINESS.Models.DAO.EmpresaDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NIRAC_API.Controllers.EmpresaUsuarioController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmpresaUsuarioController.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmpresaUsuarioController.BuscaEmpresaUsuarioDAOPeloId(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmpresaUsuarioController.GetAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmpresaUsuarioController.Get(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmpresaUsuarioController.Post(NIRAC_BUSINESS.Models.DAO.EmpresaUsuarioDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmpresaUsuarioController.Put(NIRAC_BUSINESS.Models.DAO.EmpresaUsuarioDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmpresaUsuarioController.Delete(NIRAC_BUSINESS.Models.DAO.EmpresaUsuarioDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NIRAC_API.Controllers.EmprestimoController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmprestimoController.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmprestimoController.BuscaEmprestimosPeloIdUsuario(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmprestimoController.GetAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmprestimoController.Get(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmprestimoController.Post(NIRAC_BUSINESS.Models.DAO.EmprestimoDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmprestimoController.Put(NIRAC_BUSINESS.Models.DAO.EmprestimoDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmprestimoController.Delete(NIRAC_BUSINESS.Models.DAO.EmprestimoDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NIRAC_API.Controllers.EstadoController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EstadoController.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EstadoController.BuscaEstadosPeloIdPais(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="idPais"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EstadoController.BuscaEstadoDAOPeloId(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EstadoController.GetAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EstadoController.Get(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EstadoController.Post(NIRAC_BUSINESS.Models.DAO.EstadoDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EstadoController.Put(NIRAC_BUSINESS.Models.DAO.EstadoDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EstadoController.Delete(NIRAC_BUSINESS.Models.DAO.EstadoDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NIRAC_API.Controllers.PaisController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.PaisController.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.PaisController.GetAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.PaisController.Get(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.PaisController.GetDAO(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.PaisController.Post(NIRAC_BUSINESS.Models.DAO.PaisDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.PaisController.Put(NIRAC_BUSINESS.Models.DAO.PaisDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.PaisController.Delete(NIRAC_BUSINESS.Models.DAO.PaisDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NIRAC_API.Controllers.ParcelaController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.ParcelaController.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.ParcelaController.BuscaParcelasPeloIdEmprestimo(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.ParcelaController.GetAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.ParcelaController.Get(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.ParcelaController.Post(NIRAC_BUSINESS.Models.DAO.ParcelaDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.ParcelaController.Put(NIRAC_BUSINESS.Models.DAO.ParcelaDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.ParcelaController.Delete(NIRAC_BUSINESS.Models.DAO.ParcelaDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NIRAC_API.Controllers.UsuarioController">
+            <summary>
+            Usuario Controller
+            </summary>
+        </member>
+        <member name="F:NIRAC_API.Controllers.UsuarioController._serv">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.UsuarioController.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.UsuarioController.BuscaUsuariosPeloTipoUsuarioEIdUsuario(System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="tipo"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.UsuarioController.BuscaClientesPeloIdUsuarioAdm(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.UsuarioController.BuscaUsuarioPeloApelido(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="apelido"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.UsuarioController.BuscaUsuarioPeloEmail(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="email"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.UsuarioController.GetAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.UsuarioController.GetDAO(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.UsuarioController.Get(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.UsuarioController.Post(NIRAC_BUSINESS.Models.DAO.UsuarioDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.UsuarioController.Put(NIRAC_BUSINESS.Models.DAO.UsuarioDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.UsuarioController.Delete(NIRAC_BUSINESS.Models.DAO.UsuarioDAO)">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NIRAC_API.WebApiApplication">
+            <summary>
+            API app
+            </summary>
+        </member>
+        <member name="M:NIRAC_API.WebApiApplication.Application_Start">
+            <summary>
+            Configuração do start da aplicação
+            </summary>
+        </member>
+    </members>
+</doc>

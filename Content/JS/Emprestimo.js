@@ -4,14 +4,18 @@ const montanteEmprestimo = document.getElementById('TotalEmprestimo');
 const quantidadeParcelas = document.getElementById('QuantidadeParcela');
 const diaCobranca = document.getElementById('DiaCobranca');
 const juros = document.getElementById('PorcentagemJuros');
+clienteSelecionado = document.getElementById('cliente');
+mensagemErro = document.getElementById('mensagemErro');
+
 
 function AparecerParcelas() {
-    divparcelas.hidden = false;
-    var existTable = document.getElementsByClassName('table');
-    if (existTable.length == 0) {
-        const tabela = document.createElement("table");
-        tabela.classList.add('table');
-        tabela.innerHTML = `<thead>
+    if (ValidaInputs()) {
+        divparcelas.hidden = false;
+        var existTable = document.getElementsByClassName('table');
+        if (existTable.length == 0) {
+            const tabela = document.createElement("table");
+            tabela.classList.add('table');
+            tabela.innerHTML = `<thead>
                         <tr>
                             <th scope="col">N° Parcelas</th>
                             <th scope="col">Valor</th>
@@ -21,11 +25,11 @@ function AparecerParcelas() {
                     <tbody id="tbody">
                     ${GetTds()}
                     </tbody>`;
-        table.appendChild(tabela);
-    } else {
-        AtualizaBody()
+            table.appendChild(tabela);
+        } else {
+            AtualizaBody()
+        }
     }
-    
 }
 function GetTds() {
     const Parcelas = GetParcelaValores(quantidadeParcelas.value, juros.value, montanteEmprestimo.value);
@@ -85,3 +89,44 @@ function AtualizaBody() {
 function EsconderParcelas() {
     divparcelas.hidden = true;
 }
+
+function ValidaInputs() {
+    //VERIFICAR SE O CLIENTE FOI SELECIONADO
+    if (clienteSelecionado.value == null || clienteSelecionado.value == 0) {
+        mensagemErro.innerHTML = '*** Selecione um cliente para simular um emprestimo ***';
+    } else {
+       let tipoCalculo = VerificaCalculo()
+    }
+    /*
+     Taxa de juros mensal = 1%
+Valor da prestação = 261,50
+Valor financiado = 2000
+
+Clique em 'Calcular' para obter o nº de meses.
+*/
+/*
+Nº de meses = 10
+Valor da prestação = 86
+Valor financiado = 750
+
+Clique em 'Calcular' para obter a taxa de juros mensal.
+*/
+    /*
+Nº de meses = 4
+Taxa de juros mensal = 1,99
+Valor financiado = 1290
+
+Clique em 'Calcular' para obter o valor da prestação.
+*/
+    /*
+Nº de meses = 24
+Taxa de juros mensal = 1,99
+Valor da prestação = 935
+
+Clique em 'Calcular' para obter o valor financiado.
+     */
+}
+//function VerificaCalculo(numeroMeses, taxaJuros, valorPrestacao, valorFinanciado) {
+
+//    while ()
+//}
