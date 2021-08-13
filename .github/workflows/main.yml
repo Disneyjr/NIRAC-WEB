@@ -9,7 +9,7 @@ env:
   SOLUTION_NAME: NIRAC-APP.csproj
   SOLUTION_NAME_API: NIRAC-API/NIRAC-API.csproj
   SOLUTION_NAME_BUSINESS: NIRAC-BUSINESS/NIRAC-BUSINESS.csproj
-  TEST_API: NIRAC-TESTE/NIRAC-TESTE.csproj
+  TEST_API: VsTest.Console.exe NIRAC-TESTE.dll
 
 jobs:
   build:
@@ -43,7 +43,6 @@ jobs:
       run: msbuild ${{ env.SOLUTION_NAME_API }} /p:Configuration=Release 
 
     - name: Setando a pasta dos testes
-      run: cd ..
-
+      run: cd .. /p:cd NIRAC-TESTE /p:cd bin /p:cd Debug 
     - name: Executando os testes
-      run: dotnet test  ${{ env.TEST_API }} -c Release --no-build
+      run: ${{ env.TEST_API }}
