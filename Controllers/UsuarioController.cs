@@ -10,10 +10,10 @@ namespace NIRAC_WEB.Controllers
     [Autentica(Modulo = "Usuario", TipoAcesso = "NIRAC-ALL")]
     public class UsuarioController : Controller
     {
-        private UsuarioWebService usuarioService;
-        private ToFromGenero toFromGenero;
-        private ToFromEstadoCivil toFromEstadoCivil;
-        private ToFromFuncionarios toFromFuncionario;
+        private readonly UsuarioWebService usuarioService;
+        private readonly ToFromGenero toFromGenero;
+        private readonly ToFromEstadoCivil toFromEstadoCivil;
+        private readonly ToFromFuncionarios toFromFuncionario;
         public UsuarioController()
         {
             toFromGenero = new ToFromGenero();

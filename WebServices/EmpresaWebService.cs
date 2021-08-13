@@ -7,11 +7,11 @@ namespace NIRAC_WEB.WebServices
 {
     public class EmpresaWebService
     {
-        private ApiConfiguration api;
-        private WebServiceBase<EmpresaDAO> _empresaBase;
-        private WebServiceBase<PaisDTO> _paisBase;
-        private WebServiceBase<EstadoDTO> _estadoBase;
-        private WebServiceBase<CidadeDTO> _cidadeBase;
+        private readonly ApiConfiguration api;
+        private readonly WebServiceBase<EmpresaDAO> _empresaBase;
+        private readonly WebServiceBase<PaisDTO> _paisBase;
+        private readonly WebServiceBase<EstadoDTO> _estadoBase;
+        private readonly WebServiceBase<CidadeDTO> _cidadeBase;
         public EmpresaWebService()
         {
             this.api = new ApiConfiguration();

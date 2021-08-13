@@ -7,10 +7,10 @@ namespace NIRAC_WEB.WebServices
 {
     public class UsuarioWebService
     {
-        private ApiConfiguration api;
-        private WebServiceBase<UsuarioDTO> _ususerviceBase;
-        private WebServiceBase<UsuarioDAO> _ususerviceBaseDAO;
-        private WebServiceBase<CidadeDTO> _cidadeBase;
+        private readonly ApiConfiguration api;
+        private readonly WebServiceBase<UsuarioDTO> _ususerviceBase;
+        private readonly WebServiceBase<UsuarioDAO> _ususerviceBaseDAO;
+        private readonly WebServiceBase<CidadeDTO> _cidadeBase;
         public UsuarioWebService()
         {
             this.api = new ApiConfiguration();
