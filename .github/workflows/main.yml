@@ -43,7 +43,11 @@ jobs:
       run: msbuild ${{ env.SOLUTION_NAME_API }} /p:Configuration=Release 
 
     - name: Setando a pasta dos testes
-      run: cd .. /p:cd NIRAC-TESTE /p:cd bin /p:cd Debug 
+      run: cd ..
+    - name: Setando a pasta dos testes
+      run: cd NIRAC-TESTE 
+    - name: Setando a pasta dos testes
+      run: cd bin cd Debug 
 
     - name: Executando os testes
       run: ${{ env.TEST_API }}
