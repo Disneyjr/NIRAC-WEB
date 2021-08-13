@@ -27,23 +27,11 @@ jobs:
     - name: Setup NuGet
       uses: nuget/setup-nuget@v1
 
-    - name: Restore Dependencies BUSINESS PROJECT
-      run: nuget restore ${{ env.SOLUTION_NAME_BUSINESS }} -o packages
-
-    - name: Restore Dependencies WebApp
-      run: nuget restore ${{ env.SOLUTION_NAME }} -o packages
-
-    - name: Restore Dependencies API
-      run: nuget restore ${{ env.SOLUTION_NAME_API }} -o packages
-
     - name: Restore Dependencies TESTE
       run: nuget restore ${{ env.SOLUTION_NAME_TESTE }} -o packages
-
-    - name: Build WebApp
-      run: msbuild ${{ env.SOLUTION_NAME }} /p:Configuration=Release 
     
-    - name: Build API
-      run: msbuild ${{ env.SOLUTION_NAME_API }} /p:Configuration=Release 
+    - name: Build TESTE
+      run: msbuild ${{ env.SOLUTION_NAME_TESTE }} /p:Configuration=Release 
       
     - name: Executando os testes
       run: dotnet test ${{ env.SOLUTION_NAME_API }}
