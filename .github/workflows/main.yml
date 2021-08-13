@@ -16,6 +16,11 @@ jobs:
     name: Build and deploy
     runs-on: ubuntu-latest
     steps:
+    - name: ${{ github.workspace }}
+    - name: ${{ github.event_path }}
+    - name: ${{ github.ref }}
+    - name: ${{ github.action_path }}
+
     - name: Checkout the code
       uses: actions/checkout@v2
     
