@@ -16,11 +16,9 @@ jobs:
     name: Build and deploy
     runs-on: ubuntu-latest
     steps:
-    - run: ${{ github.workspace }}
-    - run: ${{ github.event_path }}
-    - run: ${{ github.ref }}
-    - run: ${{ github.action_path }}
-
+    - name: Teste
+      env:
+          GITHUB_workspace: ${{ github.workspace }}
     - name: Checkout the code
       uses: actions/checkout@v2
     
