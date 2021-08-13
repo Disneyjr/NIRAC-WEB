@@ -17,8 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Teste
-      env:
-          GITHUB_WORKSPACE: ${{ toJSON(github.workspace) }}
+      uses: ${{ toJSON(github.workspace) }}
+
+    - name: Teste
+      uses: ${{ github.workspace }}
+
+    - name: ${{ github.workspace }}
+
     - name: Checkout the code
       uses: actions/checkout@v2
     
