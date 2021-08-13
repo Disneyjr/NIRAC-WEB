@@ -27,6 +27,9 @@ jobs:
     - name: Setup NuGet
       uses: nuget/setup-nuget@v1
 
+    - name: Pasta testes
+      run: cd ..
+
     - name: Restore Dependencies TESTE
       run: nuget restore ${{ env.SOLUTION_NAME_TESTE }} -o packages
     
