@@ -9,7 +9,7 @@ env:
   SOLUTION_NAME: NIRAC-APP.csproj
   SOLUTION_NAME_API: NIRAC-API/NIRAC-API.csproj
   SOLUTION_NAME_BUSINESS: NIRAC-BUSINESS/NIRAC-BUSINESS.csproj
-  SOLUTION_NAME_TESTE: NIRAC-TESTE/NIRAC-TESTE.csproj
+  SOLUTION_NAME_TESTE: NIRAC-TESTE.csproj
 
 jobs:
   build:
@@ -17,8 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - run: cd ..
-    - run: ${{ github.workspace }}
+    - run: cd .. && cd NIRAC-TESTE
 
     - name: Checkout the code
       uses: actions/checkout@v2
