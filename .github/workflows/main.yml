@@ -59,5 +59,8 @@ jobs:
     - name: Executando os testes
       run: dotnet vstest ${{ env.DLL_TESTE }}
 
+    - name: Restore NIRAC-APP
+      run: nuget restore ${{ env.SOLUTION_NAME }} 
+
     - name: Publicando o NIRAC-APP
       run: dotnet publish ${{ env.SOLUTION_NAME }} -p:PublishProfile=${{ env.FTP_APP }}
