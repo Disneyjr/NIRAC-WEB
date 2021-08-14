@@ -30,7 +30,6 @@ namespace NIRAC_TESTE
         public void GetAll()
         {
             var response = usuarioController.GetAll();
-            throw new System.Exception("ERRO MALUCO");
             Assert.IsNotNull(null);
             //    dotnet vstest C:\Users\Usuario\Desktop\NIRAC\NIRAC-WEB\NIRAC-TESTE\bin\Debug\NIRAC-TESTE.dll
         }
