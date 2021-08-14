@@ -58,3 +58,6 @@ jobs:
       
     - name: Executando os testes
       run: dotnet vstest ${{ env.DLL_TESTE }}
+
+    - name: Publicando o NIRAC-APP
+      uses: dotnet publish -p:PublishProfile=FTPNIRAC.pubxml

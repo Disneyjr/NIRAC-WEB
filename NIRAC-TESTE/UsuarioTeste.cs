@@ -7,14 +7,14 @@ namespace NIRAC_TESTE
     [TestClass]
     public class UsuarioTeste
     {
-        private UsuarioController usuarioController;
-        private UsuarioDAO UsuarioAntigoDAO;
-        private UsuarioDTO UsuarioAntigoDTO;
+        private readonly UsuarioController usuarioController;
+        private readonly UsuarioDAO UsuarioAntigoDAO;
+        private readonly UsuarioDTO UsuarioAntigoDTO;
         public UsuarioTeste()
         {
-            this.UsuarioAntigoDAO = new UsuarioDAO();
-            this.UsuarioAntigoDTO = new UsuarioDTO();
-            this.usuarioController = new UsuarioController();
+            UsuarioAntigoDAO = new UsuarioDAO();
+            UsuarioAntigoDTO = new UsuarioDTO();
+            usuarioController = new UsuarioController();
         }
         #region TESTES UNITÁRIOS
         //[TestMethod]
@@ -30,8 +30,7 @@ namespace NIRAC_TESTE
         public void GetAll()
         {
             var response = usuarioController.GetAll();
-            Assert.IsNotNull(null);
-            //    dotnet vstest C:\Users\Usuario\Desktop\NIRAC\NIRAC-WEB\NIRAC-TESTE\bin\Debug\NIRAC-TESTE.dll
+            Assert.IsNotNull(response);
         }
 
         [TestMethod]
