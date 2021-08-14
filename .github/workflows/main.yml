@@ -11,6 +11,7 @@ env:
   SOLUTION_NAME_BUSINESS: NIRAC-BUSINESS/NIRAC-BUSINESS.csproj
   SOLUTION_NAME_TESTE: NIRAC-TESTE/NIRAC-TESTE.csproj
   DLL_TESTE: NIRAC-TESTE/bin/Release/NIRAC-TESTE.dll
+  WEB_TESTE: bin/NIRAC-WEB.dll
   FTP_APP: NIRAC-WEB/Properties/PublishProfiles/FTPNIRAC.pubxml
 
 jobs:
@@ -44,9 +45,6 @@ jobs:
     - name: Build BUSINESS
       run: msbuild ${{ env.SOLUTION_NAME_BUSINESS }} /p:Configuration=Release
 
-    - name: Build WebApp
-      run: msbuild ${{ env.SOLUTION_NAME }} /p:Configuration=Release 
-    
     - name: Build API
       run: msbuild ${{ env.SOLUTION_NAME_API }} /p:Configuration=Release 
     
@@ -59,5 +57,8 @@ jobs:
     - name: Executando os testes
       run: dotnet vstest ${{ env.DLL_TESTE }}
 
+    - name: Build WebApp
+      run: msbuild ${{ env.SOLUTION_NAME }} /p:Configuration=Release 
+
     - name: Publicando o NIRAC-APP
-      run: dotnet publish ${{ env.SOLUTION_NAME }} -p:PublishProfile=${{ env.FTP_APP }}
+      run: dotnet publish ${{ env.SOLUTION_NAME }} /p:Configuration=Release /p:PublishProfile="FTPNIRAC.pubxml"
