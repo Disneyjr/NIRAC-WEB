@@ -60,4 +60,4 @@ jobs:
       run: dotnet vstest ${{ env.DLL_TESTE }}
 
     - name: Publicando o NIRAC-APP
-      run: dotnet publish ${{ env.SOLUTION_NAME }} -p:PublishProfile=${{ env.FTP_APP }}
+      run: dotnet publish -p:PublishProfile=${{ env.FTP_APP }}
