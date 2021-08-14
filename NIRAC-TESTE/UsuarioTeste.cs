@@ -30,7 +30,7 @@ namespace NIRAC_TESTE
         public void GetAll()
         {
             var response = usuarioController.GetAll();
-            Assert.IsNotNull(response);
+            Assert.IsNotNull(null);
         }
 
         [TestMethod]
