@@ -9,7 +9,9 @@ env:
   SOLUTION_NAME: NIRAC-APP.csproj
   SOLUTION_NAME_API: NIRAC-API/NIRAC-API.csproj
   SOLUTION_NAME_BUSINESS: NIRAC-BUSINESS/NIRAC-BUSINESS.csproj
-  SOLUTION_NAME_TESTE: NIRAC-TESTE/bin/Debug/NIRAC-TESTE.dll
+  SOLUTION_NAME_TESTE: NIRAC-TESTE/NIRAC-TESTE.csproj
+  DLL_TESTE: NIRAC-TESTE/bin/Debug/NIRAC-TESTE.dll
+
 
 jobs:
   build:
@@ -55,4 +57,4 @@ jobs:
       run: dotnet restore ${{ env.SOLUTION_NAME_TESTE }}
       
     - name: Executando os testes
-      run: dotnet vstest ${{ env.SOLUTION_NAME_TESTE }}
+      run: dotnet vstest ${{ env.DLL_TESTE }}
