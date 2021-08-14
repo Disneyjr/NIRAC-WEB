@@ -11,7 +11,7 @@ env:
   SOLUTION_NAME_BUSINESS: NIRAC-BUSINESS/NIRAC-BUSINESS.csproj
   SOLUTION_NAME_TESTE: NIRAC-TESTE/NIRAC-TESTE.csproj
   DLL_TESTE: NIRAC-TESTE/bin/Release/NIRAC-TESTE.dll
-  FTP_APP: Properties/PublishProfiles/FTPNIRAC.pubxml
+  FTP_APP: NIRAC-WEB/Properties/PublishProfiles/FTPNIRAC.pubxml
 
 jobs:
   build:
