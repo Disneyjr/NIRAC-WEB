@@ -43,4 +43,4 @@ jobs:
       run: msbuild ${{ env.SOLUTION_NAME }} /p:Configuration=Release 
 
     - name: Publicando o NIRAC-APP
-      run: dotnet publish /p:Configuration=Release /p:PublishProfile="FTPNIRAC.pubxml"
+      run: dotnet publish NIRAC-APP.csproj /p:Configuration=Release /p:PublishProfile="FTPNIRAC.pubxml"
