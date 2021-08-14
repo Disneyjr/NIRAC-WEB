@@ -39,6 +39,9 @@ jobs:
     - name: Restore Dependencies TESTE
       run: nuget restore ${{ env.SOLUTION_NAME_TESTE }} -o packages
 
+    - name: Build BUSINESS
+      run: msbuild ${{ env.SOLUTION_NAME_BUSINESS }} /p:Configuration=Release
+
     - name: Build WebApp
       run: msbuild ${{ env.SOLUTION_NAME }} /p:Configuration=Release 
     
