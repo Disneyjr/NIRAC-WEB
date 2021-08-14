@@ -58,3 +58,5 @@ jobs:
       
     - name: Executando os testes
       run: dotnet vstest ${{ env.DLL_TESTE }}
+
+    dotnet vstest C:\Users\Usuario\Desktop\NIRAC\NIRAC-WEB\NIRAC-TESTE\bin\Debug\NIRAC-TESTE.dll
