@@ -30,17 +30,32 @@ jobs:
     - name: Setup NuGet
       uses: nuget/setup-nuget@v1
 
-    - name: Restore Dependencies BUSINESS
+    - name: Restore Dependencies BUSINESS PROJECT
       run: nuget restore ${{ env.SOLUTION_NAME_BUSINESS }} -o packages
 
     - name: Restore Dependencies WebApp
       run: nuget restore ${{ env.SOLUTION_NAME }} -o packages
 
+    - name: Restore Dependencies API
+      run: nuget restore ${{ env.SOLUTION_NAME_API }} -o packages
+
+    - name: Restore Dependencies TESTE
+      run: nuget restore ${{ env.SOLUTION_NAME_TESTE }} -o packages
+
     - name: Build BUSINESS
       run: msbuild ${{ env.SOLUTION_NAME_BUSINESS }} /p:Configuration=Release
-
+   
     - name: Build WebApp
       run: msbuild ${{ env.SOLUTION_NAME }} /p:Configuration=Release 
 
-    - name: Publicando o NIRAC-APP
-      run: dotnet publish NIRAC-APP.csproj /p:Configuration=Release /p:PublishProfile="FTPNIRAC.pubxml" -o ./out
+    - name: Build API
+      run: msbuild ${{ env.SOLUTION_NAME_API }} /p:Configuration=Release 
+    
+    - name: Build TESTE
+      run: msbuild ${{ env.SOLUTION_NAME_TESTE }} /p:Configuration=Release
+      
+    - name: restore testes
+      run: dotnet restore ${{ env.SOLUTION_NAME_TESTE }}
+      
+    - name: Executando os testes
+      run: dotnet vstest ${{ env.DLL_TESTE }}
