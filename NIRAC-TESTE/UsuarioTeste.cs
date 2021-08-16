@@ -10,7 +10,7 @@ namespace NIRAC_TESTE
         private readonly UsuarioController usuarioController;
         private readonly UsuarioDAO UsuarioAntigoDAO;
         private readonly UsuarioDTO UsuarioAntigoDTO;
-        public UsuarioTeste()
+        public UsuarioTeste() 
         {
             UsuarioAntigoDAO = new UsuarioDAO();
             UsuarioAntigoDTO = new UsuarioDTO();
