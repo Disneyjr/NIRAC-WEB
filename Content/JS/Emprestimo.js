@@ -1,12 +1,13 @@
-﻿const divparcelas = document.getElementById('DivParcelas');
-const table = document.getElementById('tabela');
-const montanteEmprestimo = document.getElementById('TotalEmprestimo');
-const quantidadeParcelas = document.getElementById('QuantidadeParcela');
-const diaCobranca = document.getElementById('DiaCobranca');
-const juros = document.getElementById('PorcentagemJuros');
-clienteSelecionado = document.getElementById('cliente');
-mensagemErro = document.getElementById('mensagemErro');
-
+﻿const divparcelas = document.getElementById('DivParcelas')
+const table = document.getElementById('tabela')
+montanteEmprestimo = document.getElementById('MontantePego')
+quantidadeParcelas = document.getElementById('QuantidadeParcela')
+const diaCobranca = document.getElementById('DiaCobranca')
+juros = document.getElementById('Juros')
+clienteSelecionado = document.getElementById('cliente')
+valorParcela = document.getElementById('ValorParcela')
+mensagemErro = document.getElementById('mensagemErro')
+const jurosReal = juros.value / 100
 
 function AparecerParcelas() {
     if (ValidaInputs()) {
@@ -43,19 +44,19 @@ function GetTds() {
     })
     return trs;
 }
-function GetParcelaValores(numeroParcelas, juros, valorTotalParcela) {
+function GetParcelaValores(numeroParcelas, jurosReal, valorTotalParcela) {
     const Parcelas = [];
     let numeroParcela = 1;
     const valorAntigo = 0;
     const dataAtual = new Date();
-    const valorParcela = valorTotalParcela / numeroParcelas;
-    const jurosReal = juros / 100;
+    const ParcelaUnitaria = valorTotalParcela / numeroParcelas;
+
     for (var i = 0; i < numeroParcelas; i++) {
-        const valor = CalculaValorParcela(valorParcela, jurosReal, valorTotalParcela, valorAntigo);
+        const valor = CalculaValorParcela(ParcelaUnitaria, jurosReal, valorTotalParcela, valorAntigo);
         const DiadoPagamento = DiaPagamento(dataAtual, i, diaCobranca.value);
         var parcela = new Object();
         if (i == 0) {
-            parcela.valorParcela = valorParcela;
+            parcela.valorParcela = valorParcela.value;
         } else {
             parcela.valorParcela = valor;
         }
@@ -66,11 +67,11 @@ function GetParcelaValores(numeroParcelas, juros, valorTotalParcela) {
     }
     return Parcelas;
 }
-function CalculaValorParcela(valorParcela, juros, valorTotalParcela, valorAntigo) {
+function CalculaValorParcela(valorParcela, jurosReal, valorTotalParcela, valorAntigo) {
     if (valorTotalParcela == valorAntigo || valorAntigo > valorTotalParcela) {
-        return (valorAntigo * juros) + valorAntigo;
+        return (valorAntigo * jurosReal) + valorAntigo;
     } else {
-        return (valorParcela * juros) + valorParcela;
+        return (valorParcela * jurosReal) + valorParcela;
     }
 }
 function DiaPagamento(dataAtual, iteracao, diaCobranca) {
@@ -89,44 +90,88 @@ function AtualizaBody() {
 function EsconderParcelas() {
     divparcelas.hidden = true;
 }
-
-function ValidaInputs() {
-    //VERIFICAR SE O CLIENTE FOI SELECIONADO
-    if (clienteSelecionado.value == null || clienteSelecionado.value == 0) {
-        mensagemErro.innerHTML = '*** Selecione um cliente para simular um emprestimo ***';
-    } else {
-       let tipoCalculo = VerificaCalculo()
-    }
-    /*
-     Taxa de juros mensal = 1%
-Valor da prestação = 261,50
-Valor financiado = 2000
-
-Clique em 'Calcular' para obter o nº de meses.
-*/
+function SimularEmprestimo() {
+    if (ValidaInputs()) {
+        if (juros.value != null && juros.value != ""
+            && valorParcela.value != null && valorParcela.value != ""
+            && montanteEmprestimo.value != null && montanteEmprestimo.value != "") {
+            let valorTotalJuros = ValorTotalJuros(montanteEmprestimo.value, jurosReal)
+            let sobraJuros = montanteEmprestimo.value * jurosReal
+            quantidadeParcelas.value = valorTotalJuros / valorParcela.value
+            mensagemErro.style.color = 'black';
+            mensagemErro.innerHTML = `*** O total desse financiamento de ${quantidadeParcelas.value} parcelas de ${valorParcela.value} reais é ${valorTotalJuros} reais, sendo ${sobraJuros} de juros. ***`
+        }
+        else if (juros.value != null && juros.value != ""
+            && quantidadeParcelas.value != null && quantidadeParcelas.value != ""
+            && montanteEmprestimo.value != null && montanteEmprestimo.value != "") {
+            valorParcela.value = ValorPrestacao(montanteEmprestimo.value, juros.value/100, quantidadeParcelas.value)
+            let valorTotalJuros = valorParcela.value * quantidadeParcelas.value
+            let sobraJuros = valorTotalJuros - montanteEmprestimo.value
+            mensagemErro.style.color = 'black';
+            mensagemErro.innerHTML = `*** O total desse financiamento de ${quantidadeParcelas.value} 
+                                      parcelas de ${valorParcela.value} reais é ${valorTotalJuros} reais, 
+                                      sendo ${sobraJuros} de juros. ***`
+        }
 /*
+CASO 2
 Nº de meses = 10
 Valor da prestação = 86
 Valor financiado = 750
 
-Clique em 'Calcular' para obter a taxa de juros mensal.
-*/
-    /*
-Nº de meses = 4
-Taxa de juros mensal = 1,99
-Valor financiado = 1290
-
-Clique em 'Calcular' para obter o valor da prestação.
-*/
-    /*
+Clique em 'Calcular' para obter a taxa de juros mensal.*/
+/*
+CASO 4
 Nº de meses = 24
 Taxa de juros mensal = 1,99
 Valor da prestação = 935
 
-Clique em 'Calcular' para obter o valor financiado.
-     */
-}
-//function VerificaCalculo(numeroMeses, taxaJuros, valorPrestacao, valorFinanciado) {
+Clique em 'Calcular' para obter o valor financiado.*/
+        else if (juros.value != null && juros.value != ""
+            && quantidadeParcelas.value != null && quantidadeParcelas.value != ""
+            && valorParcela.value != null && valorParcela.value != "") {
+            let valorTotalJuros = parseInt(valorParcela.value) * parseInt(quantidadeParcelas.value)
+            montanteEmprestimo.value = 1
+            sobraJuros = 1
+            mensagemErro.style.color = 'black';
+            mensagemErro.innerHTML = `*** O total desse financiamento de ${quantidadeParcelas.value} 
+                                      parcelas de ${valorParcela.value} reais é ${valorTotalJuros} reais, 
+                                      sendo ${sobraJuros} de juros. ***`
+        }
+        else {
+            mensagemErro.style.color = 'red';
+            mensagemErro.innerHTML = '*** Selecione no minimo 3 valores ***';
+        }
+    }
 
-//    while ()
-//}
+
+}
+function ValidaInputs() {
+    //VERIFICAR SE O CLIENTE FOI SELECIONADO
+    if (clienteSelecionado.value == null || clienteSelecionado.value == 0 || clienteSelecionado.value == "") {
+        mensagemErro.style.color = 'red';
+        mensagemErro.innerHTML = '*** Selecione um cliente para simular um emprestimo ***';
+    } else {
+        return true
+    }
+}
+function ValorTotalJuros(montanteEmprestimo, juros) {
+    return (montanteEmprestimo * juros) + parseInt(montanteEmprestimo)
+}
+function ValorPrestacao(montanteEmprestimo, juros, quantidadeParcelas) {
+    let cont = 1
+    let E = 1
+    for (let i = 0; i < quantidadeParcelas; i++) {
+        cont = cont * (1 + juros)
+        E = E + cont
+    }
+    E = E - cont
+    montanteEmprestimo = montanteEmprestimo * cont
+    return montanteEmprestimo / E
+}
+function ResetarEmprestimo() {
+    juros.value = null
+    quantidadeParcelas.value = null
+    valorParcela.value = null
+    montanteEmprestimo.value = null
+    mensagemErro.hidden = true
+}

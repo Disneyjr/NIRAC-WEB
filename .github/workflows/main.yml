@@ -1,9 +1,9 @@
 name: NIRAC CI/CD
 
 on:
-  push:
+  pull_request:
     branches:
-      - master
+      - Desenvolvimento
 
 env:
   SOLUTION_NAME: NIRAC-APP.csproj
