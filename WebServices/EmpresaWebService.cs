@@ -12,6 +12,7 @@ namespace NIRAC_WEB.WebServices
         private readonly WebServiceBase<PaisDTO> _paisBase;
         private readonly WebServiceBase<EstadoDTO> _estadoBase;
         private readonly WebServiceBase<CidadeDTO> _cidadeBase;
+        private readonly WebServiceBase<EmpresaUsuarioDTO> _empresaUsuarioBase;
         public EmpresaWebService()
         {
             this.api = new ApiConfiguration();
@@ -19,6 +20,7 @@ namespace NIRAC_WEB.WebServices
             this._paisBase = new WebServiceBase<PaisDTO>(this.api.URI_API);
             this._estadoBase = new WebServiceBase<EstadoDTO>(this.api.URI_API);
             this._cidadeBase = new WebServiceBase<CidadeDTO>(this.api.URI_API);
+            this._empresaUsuarioBase = new WebServiceBase<EmpresaUsuarioDTO>(this.api.URI_API);
         }
         public bool Add(EmpresaDAO empresaDAO)
         {
@@ -42,6 +44,11 @@ namespace NIRAC_WEB.WebServices
         public List<CidadeDTO> ListarCidades(int idEstado)
         {
             return _cidadeBase.GetListFindInt(idEstado, "Cidade/BuscaCidadesPeloIdEstado/");
+        }
+
+        public List<EmpresaUsuarioDTO> ListarEmpresaUsuario()
+        {
+            return _empresaUsuarioBase.GetAll("EmpresaUsuario");
         }
     }
 }
