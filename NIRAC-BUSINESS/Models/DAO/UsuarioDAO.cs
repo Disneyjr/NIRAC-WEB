@@ -43,6 +43,8 @@ namespace NIRAC_BUSINESS.Models.DAO
         public DateTime Data_Update { get; set; }
         [Column("IdUsuarioAdm")]
         public int? IdUsuarioAdm { get; set; }
+        [Column("Indicacao")]
+        public string Indicacao { get; set; }
         [Column("IdCidade")]
         public int? IdCidade { get; set; }
 
