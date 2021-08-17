@@ -130,6 +130,7 @@ namespace NIRAC_WEB.Controllers
             usuarioDAO.TipoAcesso = "NIRAC-CLIENTE";
             usuarioDAO.Status = "Ativo";
             usuarioDAO.Tipo = "Cliente";
+            usuarioDAO.Indicacao = usuarioDAO.Indicacao;
             usuarioDAO.IdUsuarioAdm = Convert.ToInt16(Session["IdUsuario"]);
 
             if (usuarioService.AdicionarUsuario(usuarioDAO))
