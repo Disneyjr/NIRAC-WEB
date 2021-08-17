@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using NIRAC_BUSINESS.Models.DAO;
+using NIRAC_BUSINESS.Models.DTO;
+using NIRAC_BUSINESS.Services;
 using NIRAC_WEB.WebServices;
 
 namespace NIRAC_WEB.Controllers
@@ -18,11 +21,19 @@ namespace NIRAC_WEB.Controllers
             int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
             return View(empresaService.EmpresaCadastrada(idUsuario));
         }
+
         public ActionResult Cadastrar()
         {
             ViewBag.ListaPaises = empresaService.ListarPaises();
-            return View();
+            List<EmpresaUsuarioDTO> empresaUsuarioDTOs = empresaService.ListarEmpresaUsuario();
+            int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
+            EmpresaUsuarioDTO empresaUsuarioDTO = empresaUsuarioDTOs.Find(l => l.IdUsuario == idUsuario);
+            if(empresaUsuarioDTO == null)
+                return View();
+            else
+                return RedirectToAction("Index", "Empresa");
         }
+
         [HttpPost]
         public ActionResult ListarEstados(int id)
         {
