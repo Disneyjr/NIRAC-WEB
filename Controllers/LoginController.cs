@@ -108,7 +108,6 @@ namespace NIRAC_WEB.Controllers
             usuario.Senha = HashingSenha.HashSenha(usuario.Senha);
             if (loginService.AdicionarUsuario(usuario))
             {
-                TempData["success"] = "Usuario Cadastrado com Sucesso!";
                 return RedirectToAction("Index", "Login");
             }
             else
