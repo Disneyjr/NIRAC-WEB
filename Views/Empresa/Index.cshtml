@@ -40,9 +40,9 @@
                     id="pais"
                     name="pais"
                     disabled>
-                @if (Model.paisDAO != null)
+                @if (ViewData["pais"] != null)
                 {
-                    <option value="0" selected>@Model.paisDAO.Nome</option>
+                <option value="0" selected>@Convert.ToString(ViewData["pais"])</option>
                 }
                 else
                 {
@@ -56,9 +56,9 @@
                     id="estado"
                     name="estado"
                     disabled>
-                @if (Model.estadoDAO != null)
+                @if (ViewData["estado"] != null)
                 {
-                    <option value="0" selected>@Model.estadoDAO.Nome</option>
+                    <option value="0" selected>@Convert.ToString(ViewData["estado"])</option>
                 }
                 else
                 {
@@ -72,9 +72,9 @@
                     id="cidade"
                     name="cidade"
                     disabled>
-                @if (Model.cidadeDAO != null)
+                @if (ViewData["cidade"] != null)
                 {
-                    <option value="0" selected>@Model.cidadeDAO.Nome</option>
+                    <option value="0" selected>@Convert.ToString(ViewData["cidade"])</option>
                 }
                 else
                 {

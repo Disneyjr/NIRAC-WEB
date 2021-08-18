@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using NIRAC_BUSINESS.Models.DAO;
+using NIRAC_BUSINESS.Models.DTO;
 using NIRAC_WEB.WebServices;
 
 namespace NIRAC_WEB.Controllers
@@ -16,7 +19,17 @@ namespace NIRAC_WEB.Controllers
         public ActionResult Index()
         {
             int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
-            return View(empresaService.EmpresaCadastrada(idUsuario));
+            EmpresaDAO empresaDAO = empresaService.EmpresaCadastrada(idUsuario);
+            int idPais = Convert.ToInt32(empresaDAO.IdPais);
+            List<EstadoDTO> estadoDTOs = empresaService.ListarEstados(idPais);
+            PaisDTO paisDTO = empresaService.ListarPaises().Find(l => l.Id == idPais);
+            EstadoDTO estadoDTO = estadoDTOs.Find(l => l.Id == empresaDAO.IdEstado);
+            CidadeDTO cidadeDTO = empresaService.ListarCidades(estadoDTO.Id).Find(l => l.Id == empresaDAO.IdCidade);
+            ViewData["pais"] = paisDTO.Nome;
+            ViewData["estado"] = estadoDTO.Nome;
+            ViewData["cidade"] = cidadeDTO.Nome;
+
+            return View(empresaDAO);
         }
         public ActionResult Cadastrar()
         {
