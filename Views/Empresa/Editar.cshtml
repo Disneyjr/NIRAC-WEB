@@ -25,9 +25,9 @@
             <div class="col">
                 <label for="pais">Pais</label>
                 <select class="form-control" id="pais" onchange="UpdateEstado()" name="pais">
-                    @if (Model.paisDAO != null)
+                    @if (ViewData["pais"] != null)
                     {
-                        <option value="@Model.paisDAO.Id">@Model.paisDAO.Nome</option>
+                        <option value="0" selected>@Convert.ToString(ViewData["pais"])</option>
                     }
                     else
                     {
@@ -45,9 +45,9 @@
             <div class="col">
                 <label for="estado">Estado</label>
                 <select class="form-control" id="estado" onchange="UpdateCidades()" name="estado">
-                    @if (Model.estadoDAO != null)
+                    @if (ViewData["estado"] != null)
                     {
-                        <option value="@Model.estadoDAO.Id">@Model.estadoDAO.Nome</option>
+                        <option value="0" selected>@Convert.ToString(ViewData["estado"])</option>
                     }
                     else
                     {
@@ -58,9 +58,9 @@
             <div class="col">
                 <label for="cidade">Cidade</label>
                 <select class="form-control" id="cidade" name="cidade">
-                    @if (Model.cidadeDAO != null)
+                    @if (ViewData["cidade"] != null)
                     {
-                        <option value="@Model.cidadeDAO.Id">@Model.cidadeDAO.Nome</option>
+                        <option value="0" selected>@Convert.ToString(ViewData["cidade"])</option>
                     }
                     else
                     {

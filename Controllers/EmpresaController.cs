@@ -17,19 +17,10 @@ namespace NIRAC_WEB.Controllers
         {
             empresaService = new EmpresaWebService();
         }
+
         public ActionResult Index()
         {
-            int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
-            EmpresaDAO empresaDAO = empresaService.EmpresaCadastrada(idUsuario);
-            int idPais = Convert.ToInt32(empresaDAO.IdPais);
-            List<EstadoDTO> estadoDTOs = empresaService.ListarEstados(idPais);
-            PaisDTO paisDTO = empresaService.ListarPaises().Find(l => l.Id == idPais);
-            EstadoDTO estadoDTO = estadoDTOs.Find(l => l.Id == empresaDAO.IdEstado);
-            CidadeDTO cidadeDTO = empresaService.ListarCidades(estadoDTO.Id).Find(l => l.Id == empresaDAO.IdCidade);
-            ViewData["pais"] = paisDTO.Nome;
-            ViewData["estado"] = estadoDTO.Nome;
-            ViewData["cidade"] = cidadeDTO.Nome;
-
+            EmpresaDAO empresaDAO = BuscarPaisEstadoCidade();
             return View(empresaDAO);
         }
 
@@ -93,7 +84,7 @@ namespace NIRAC_WEB.Controllers
         }
         public ActionResult Editar()
         {
-            ViewBag.ListaPaises = empresaService.ListarPaises();
+            EmpresaDAO empresaDAO = BuscarPaisEstadoCidade();
             int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
             return View(empresaService.EmpresaCadastrada(idUsuario));
         }
@@ -101,6 +92,21 @@ namespace NIRAC_WEB.Controllers
         public ActionResult Editar(FormCollection form)
         {
             return View();
+        }
+
+        public EmpresaDAO BuscarPaisEstadoCidade(  )
+        {
+            int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
+            EmpresaDAO empresaDAO = empresaService.EmpresaCadastrada(idUsuario);
+            int idPais = Convert.ToInt32(empresaDAO.IdPais);
+            List<EstadoDTO> estadoDTOs = empresaService.ListarEstados(idPais);
+            PaisDTO paisDTO = empresaService.ListarPaises().Find(l => l.Id == idPais);
+            EstadoDTO estadoDTO = estadoDTOs.Find(l => l.Id == empresaDAO.IdEstado);
+            CidadeDTO cidadeDTO = empresaService.ListarCidades(estadoDTO.Id).Find(l => l.Id == empresaDAO.IdCidade);
+            ViewData["pais"] = paisDTO.Nome;
+            ViewData["estado"] = estadoDTO.Nome;
+            ViewData["cidade"] = cidadeDTO.Nome;
+            return empresaDAO;
         }
     }
 }
