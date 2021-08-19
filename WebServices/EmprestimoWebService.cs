@@ -14,11 +14,11 @@ namespace NIRAC_WEB.WebServices
         private WebServiceBase<UsuarioDAO> _usuarioBase;
         public EmprestimoWebService()
         {
-            this.api = new ApiConfiguration();
-            this._parcelaBase = new WebServiceBase<ParcelaDAO>(this.api.URI_API);
-            this._emprestimoBase = new WebServiceBase<EmprestimoDAO>(this.api.URI_API);
-            this._emprestimoBaseDTO = new WebServiceBase<EmprestimoDTO>(this.api.URI_API);
-            this._usuarioBase = new WebServiceBase<UsuarioDAO>(this.api.URI_API);
+            api = new ApiConfiguration();
+            _parcelaBase = new WebServiceBase<ParcelaDAO>(this.api.URI_API);
+            _emprestimoBase = new WebServiceBase<EmprestimoDAO>(this.api.URI_API);
+            _emprestimoBaseDTO = new WebServiceBase<EmprestimoDTO>(this.api.URI_API);
+            _usuarioBase = new WebServiceBase<UsuarioDAO>(this.api.URI_API);
         }
         public bool Delete(int id, EmprestimoDAO emprestimoDAO, List<ParcelaDAO> parcelas)
         {
