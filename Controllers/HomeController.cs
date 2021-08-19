@@ -6,13 +6,19 @@ using System.Web.Mvc;
 namespace NIRAC_WEB.Controllers
 {
 
-    [Autentica(Modulo = "Home", TipoAcesso = "NIRAC-ALL")]
+    
     public class HomeController : Controller
     {
         private HomeWebService _service = new HomeWebService();
+        [Autentica(Modulo = "Home", TipoAcesso = "NIRAC-ALL")]
         public ActionResult Index()
         {
             GetTotais(_service.GetEmpresa(Convert.ToInt32(Session["IdUsuario"])));
+            return View();
+        }
+        [Autentica(Modulo = "Home", TipoAcesso = "NIRAC-FUNCIONARIO")]
+        public ActionResult IndexCobrador()
+        {
             return View();
         }
         private void GetTotais(EmpresaDTO empresa)

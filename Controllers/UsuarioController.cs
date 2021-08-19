@@ -64,6 +64,8 @@ namespace NIRAC_WEB.Controllers
             usuarioDAO.Genero = toFromGenero.Genero(Convert.ToInt16(form["genero"]));
             usuarioDAO.Tipo = toFromFuncionario.Funcionario(Convert.ToInt16(form["tipo"]));
             usuarioDAO.EstadoCivil = toFromEstadoCivil.EstadoCivil(Convert.ToInt16(form["estadocivil"]));
+            int local = usuarioDAO.Nome.IndexOf(" ");
+            usuarioDAO.Apelido = usuarioDAO.CPF.Substring(0, 3) + "_" + usuarioDAO.Nome.Remove(local);
             usuarioDAO.Data_Cadastro = DateTime.Now;
             usuarioDAO.Data_Update = DateTime.Now;
             usuarioDAO.TipoAcesso = "NIRAC-FUNCIONARIO";
@@ -73,7 +75,7 @@ namespace NIRAC_WEB.Controllers
             usuarioDAO.Senha = HashingSenha.HashSenha(usuarioDAO.Senha);
             if (usuarioService.AdicionarUsuario(usuarioDAO))
             {
-                TempData["success"] = "Funcionario Cadastrada com Sucesso!";
+                TempData["success"] = "Funcionario Cadastrado com Sucesso!";
                 return RedirectToAction("Funcionarios", "Usuario");
             }
             else
