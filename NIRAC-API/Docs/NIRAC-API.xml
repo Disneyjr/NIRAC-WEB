@@ -479,6 +479,13 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:NIRAC_API.Controllers.ParcelaController.PostList(System.Collections.Generic.List{NIRAC_BUSINESS.Models.DAO.ParcelaDAO})">
+            <summary>
+            
+            </summary>
+            <param name="dao"></param>
+            <returns></returns>
+        </member>
         <member name="M:NIRAC_API.Controllers.ParcelaController.GetAll">
             <summary>
             

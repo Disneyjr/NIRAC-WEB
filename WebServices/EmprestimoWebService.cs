@@ -62,10 +62,8 @@ namespace NIRAC_WEB.WebServices
             EmprestimoDAO emp = _emprestimoBase.Add(emprestimo, "Emprestimo");
             if (emp.Id > 0)
             {
-                foreach (var parcela in emp.parcelas)
-                {
-                    _parcelaBase.Add(parcela, "Parcela");
-                }
+                emp.parcelas.ForEach(p=>p.IdEmprestimo = emp.Id);
+                _parcelaBase.AddList(emp.parcelas, "Parcela/ParcelaList");
                 return true;
             }
             else
