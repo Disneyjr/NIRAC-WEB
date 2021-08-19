@@ -13,10 +13,10 @@ namespace NIRAC_WEB.WebServices
         private readonly WebServiceBase<CidadeDTO> _cidadeBase;
         public UsuarioWebService()
         {
-            this.api = new ApiConfiguration();
-            this._cidadeBase = new WebServiceBase<CidadeDTO>(this.api.URI_API);
-            this._ususerviceBase = new WebServiceBase<UsuarioDTO>(this.api.URI_API);
-            this._ususerviceBaseDAO = new WebServiceBase<UsuarioDAO>(this.api.URI_API);
+            api = new ApiConfiguration();
+            _cidadeBase = new WebServiceBase<CidadeDTO>(this.api.URI_API);
+            _ususerviceBase = new WebServiceBase<UsuarioDTO>(this.api.URI_API);
+            _ususerviceBaseDAO = new WebServiceBase<UsuarioDAO>(this.api.URI_API);
         }
         public List<UsuarioDTO> GetUsuariosFindType(string FieldString, string Research)
         {

@@ -16,13 +16,13 @@ namespace NIRAC_WEB.WebServices
         private readonly WebServiceBase<EmpresaUsuarioDAO> _empresaUsuBase;
         public EmpresaWebService()
         {
-            this.api = new ApiConfiguration();
-            this._empresaBase = new WebServiceBase<EmpresaDAO>(this.api.URI_API);
-            this._empresaUsuBase = new WebServiceBase<EmpresaUsuarioDAO>(this.api.URI_API);
-            this._paisBase = new WebServiceBase<PaisDTO>(this.api.URI_API);
-            this._estadoBase = new WebServiceBase<EstadoDTO>(this.api.URI_API);
-            this._cidadeBase = new WebServiceBase<CidadeDTO>(this.api.URI_API);
-            this._empresaUsuarioBase = new WebServiceBase<EmpresaUsuarioDTO>(this.api.URI_API);
+            api = new ApiConfiguration();
+            _empresaBase = new WebServiceBase<EmpresaDAO>(this.api.URI_API);
+            _empresaUsuBase = new WebServiceBase<EmpresaUsuarioDAO>(this.api.URI_API);
+            _paisBase = new WebServiceBase<PaisDTO>(this.api.URI_API);
+            _estadoBase = new WebServiceBase<EstadoDTO>(this.api.URI_API);
+            _cidadeBase = new WebServiceBase<CidadeDTO>(this.api.URI_API);
+            _empresaUsuarioBase = new WebServiceBase<EmpresaUsuarioDTO>(this.api.URI_API);
         }
 
         public bool Add(EmpresaDAO empresaDAO)

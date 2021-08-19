@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json;
@@ -13,8 +12,8 @@ namespace NIRAC_WEB.WebServices
         private string Url;
         public WebServiceBase(string url)
         {
-            this.wc = new WebClient();
-            this.Url = url + "api/";
+            wc = new WebClient();
+            Url = url + "api/";
         }
         public T GetEntityFindString(string FieldString, string Research)
         {

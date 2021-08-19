@@ -9,8 +9,8 @@ namespace NIRAC_WEB.WebServices
         private WebServiceBase<EmpresaDTO> _empresaService;
         public HomeWebService()
         {
-            this.api = new ApiConfiguration();
-            this._empresaService = new WebServiceBase<EmpresaDTO>(this.api.URI_API);
+            api = new ApiConfiguration();
+            _empresaService = new WebServiceBase<EmpresaDTO>(this.api.URI_API);
         }
         public EmpresaDTO GetEmpresa(int idUsuario)
         {

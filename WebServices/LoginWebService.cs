@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web;
 using NIRAC_BUSINESS.API_CONFIG;
 using NIRAC_BUSINESS.Models.DAO;
 using NIRAC_BUSINESS.Models.API_CONFIG;
@@ -12,8 +11,8 @@ namespace NIRAC_WEB.WebServices
         private WebServiceBase<UsuarioDAO> _ususerviceBase;
         public LoginWebService()
         {
-            this.api = new ApiConfiguration();
-            this._ususerviceBase = new WebServiceBase<UsuarioDAO>(this.api.URI_API);
+            api = new ApiConfiguration();
+            _ususerviceBase = new WebServiceBase<UsuarioDAO>(this.api.URI_API);
         }
         public UsuarioDAO VerificaLogin(string User, string Password)
         {
