@@ -53,13 +53,9 @@ namespace NIRAC_WEB.Controllers
             emprestimoDAO.DataAtualizacao = DateTime.Now;
             emprestimoDAO.DataCriacao = DateTime.Now;
             emprestimoDAO.DataUltimoPagamento = DateTime.Now;
-            emprestimoDAO.PorcentagemJuros = emprestimoDAO.PorcentagemJuros;
-            emprestimoDAO.QuantidadeParcela = emprestimoDAO.QuantidadeParcela;
-            emprestimoDAO.TotalEmprestimo = emprestimoDAO.TotalEmprestimo;
-            emprestimoDAO.TotalHaver = emprestimoDAO.TotalEmprestimo;
             emprestimoDAO.IdCliente = Convert.ToInt32(form["cliente"].ToString());
             emprestimoDAO.IdUsuario = Convert.ToInt32(Session["IdUsuario"]);
-            emprestimoDAO.parcelas = GetParcelas(form);
+            emprestimoDAO.parcelas = GetParcelas(emprestimoDAO, form);
             if (emprestimoWebService.Add(emprestimoDAO))
             {
                 return RedirectToAction("Index", "Emprestimo");
@@ -78,46 +74,36 @@ namespace NIRAC_WEB.Controllers
             return RedirectToAction("Index", "Emprestimo");
         }
         #region PRIVATE METHODS
-        private List<ParcelaDAO> GetParcelas(FormCollection form)
+        private List<ParcelaDAO> GetParcelas(EmprestimoDAO emprestimoDAO, FormCollection form)
         {
-            int quantidadeParcela = Convert.ToInt16(form["QuantidadeParcela"].ToString());
+            int quantidadeParcela = Convert.ToInt16(emprestimoDAO.QuantidadeParcela);
             int diaCobranca = Convert.ToInt16(form["DiaCobranca"].ToString());
-            decimal juros = Convert.ToInt16(form["PorcentagemJuros"].ToString());
+            decimal juros = Convert.ToInt16(form["Juros"].ToString());
             decimal jurosReal = juros / 100;
-            int valorTotalParcela = Convert.ToInt16(form["TotalEmprestimo"].ToString());
-            decimal valorParcela = valorTotalParcela / quantidadeParcela;
-            decimal valorParcelaAntigo = 0;
+            decimal valorTotalJuros = Convert.ToInt16(form["valorTotalJuros"].ToString());
+            decimal valorParcela = valorTotalJuros / quantidadeParcela;
             List<ParcelaDAO> parcelas = new List<ParcelaDAO>();
             for (int i = 0; i < quantidadeParcela; i++)
             {
                 ParcelaDAO parcela = new ParcelaDAO();
                 parcela.DataCriacao = DateTime.Now;
                 parcela.DataAtualizacao = DateTime.Now;
-                
                 parcela.IdEmprestimo = 0;
                 if (i == 0)
                 {
                     parcela.DataPagamento = DateTime.Now;
-                    parcela.Valor = valorParcela;
-                    valorParcelaAntigo = valorParcela;
                 }
                 else
                 {
                     parcela.DataPagamento = GetDataPagamento(DateTime.Now, diaCobranca, i);
-                    valorParcelaAntigo = CalculaValoresParcela(jurosReal, valorParcelaAntigo);
-                    parcela.Valor = valorParcelaAntigo;
                 }
+                parcela.Valor = valorParcela;
                 parcela.ValorPago = 0;
                 parcela.ValorRestanteParcela = 0;
                 parcelas.Add(parcela);
             }
             return parcelas;
         }
-        private decimal CalculaValoresParcela(decimal juros, decimal valor)
-        {
-            return (valor * juros) + valor;
-        }
-
         private DateTime GetDataPagamento(DateTime dataAtual, int diaCobranca, int indice)
         {
             DateTime DataPagamento = new DateTime();

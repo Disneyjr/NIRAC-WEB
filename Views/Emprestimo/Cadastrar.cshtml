@@ -11,12 +11,12 @@
 <h3 class="TitlePage">Simulação de Emprestimo</h3>
 @using (Html.BeginForm("EmprestimoCadastrar", "Emprestimo", FormMethod.Post))
 {
+    <input hidden id="valorTotalJuros" name="valorTotalJuros" />
     <div class="form-row">
         <div class="col">
-            <div class="text-center"><label style="color:red" id="mensagemErro"></label></div>
             <label for="cliente">Cliente</label>
             <select class="form-control" id="cliente" name="cliente">
-                <option value="15" selected>Cliente 1</option>
+                <option value="0" selected>Selecione um Cliente</option>
                 @if (ViewBag.ListaClientes != null)
                 {
                     foreach (var cliente in ViewBag.ListaClientes)
@@ -42,7 +42,6 @@
                    class="dinheiro form-control"
                    id="QuantidadeParcela"
                    name="QuantidadeParcela"
-                   value="24"
                    placeholder="Quantidade de Parcelas" required>
         </div>
     </div>
@@ -52,20 +51,9 @@
             <input type="number"
                    class="form-control"
                    id="Juros"
-                   value="1.99"
                    name="Juros"
                    placeholder="Porcentagem de Juros" required>
         </div>
-        <div class="col">
-            <label for="ValorParcela" class="form-label">Valor da Parcela</label>
-            <input class="dinheiro form-control"
-                   id="ValorParcela"
-                   name="ValorParcela"
-                   value="935.00"
-                   placeholder="Valor da Parcela" required>
-        </div>
-    </div>
-    <div class="form-row">
         <div class="col">
             <label for="DiaCobranca" class="form-label">Dia para cobrança</label>
             <input class="form-control"
@@ -73,15 +61,34 @@
                    name="DiaCobranca"
                    placeholder="Dia para cobrança" required>
         </div>
+        @*<div class="col">
+                <label for="ValorParcela" class="form-label">Valor da Parcela</label>
+                <input class="dinheiro form-control"
+                       id="ValorParcela"
+                       name="ValorParcela"
+                       placeholder="Valor da Parcela" required>
+            </div>*@
     </div>
+    @*<div class="form-row">
+            <div class="col">
+                <label for="DiaCobranca" class="form-label">Dia para cobrança</label>
+                <input class="form-control"
+                       id="DiaCobranca"
+                       name="DiaCobranca"
+                       placeholder="Dia para cobrança" required>
+            </div>
+        </div>*@
     <br />
-    <div class="text-right">
+    <div class="text-right" hidden>
         <a class="btn btn-danger" onclick="ResetarEmprestimo()">Limpar Simulação</a>
         <a class="btn btn-primary" onclick="SimularEmprestimo()">Simular Emprestimo</a>
     </div>
     <div class="text-center">
-        <a class="btn btn-primary" onclick="AparecerParcelas()">Gerar Parcelas</a>
+        <a class="btn btn-primary" id="btnGerarParcelas" onclick="AparecerParcelas()">Gerar Parcelas</a>
     </div>
+    <br />
+    <div class="text-center"><label style="color:red" id="mensagemErro"></label></div>
+
     <div id="DivParcelas" hidden style="margin-top:35px">
         <div class="card">
             <div class="card-header">
