@@ -22,10 +22,15 @@ namespace NIRAC_WEB.Controllers
         }
         public ActionResult Index()
         {
+            HttpCookie httpCookie = Request.Cookies.Get("manterLogin");
+            if(httpCookie != null)
+                return RedirectToAction("Index", "Home");
+
             return View();
         }
         [HttpPost]
-        public ActionResult Login(string User, string Password)
+        
+        public ActionResult Login(string User, string Password, string ManterLogin)
         {
             try
             {
@@ -46,6 +51,14 @@ namespace NIRAC_WEB.Controllers
                 Response.Cookies.Add(cookieNomeUsuario);
                 Session["UsuarioLogado"] = usuario.Nome;
                 Session["IdUsuario"] = usuario.Id;
+
+                if (ManterLogin == "on")
+                {
+                    HttpCookie httpCookie = new HttpCookie("manterLogin");
+                    httpCookie.Expires = DateTime.Now.AddMinutes(720);
+                    Response.SetCookie(httpCookie);
+                }
+
                 return RedirectToAction("Index", "Home");
             }
             catch
