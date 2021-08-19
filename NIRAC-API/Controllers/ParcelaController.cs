@@ -40,6 +40,17 @@ namespace NIRAC_API.Controllers
         {
             return _serv.GetAll().FindAll(u => u.IdEmprestimo == id);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dao"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("ParcelaList")]
+        public void PostList(List<ParcelaDAO> daos)
+        {
+            daos.ForEach(a => _serv.Add(a));
+        }
         #region CRUD
         /// <summary>
         /// 

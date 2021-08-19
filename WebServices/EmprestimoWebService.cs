@@ -14,11 +14,11 @@ namespace NIRAC_WEB.WebServices
         private WebServiceBase<UsuarioDAO> _usuarioBase;
         public EmprestimoWebService()
         {
-            this.api = new ApiConfiguration();
-            this._parcelaBase = new WebServiceBase<ParcelaDAO>(this.api.URI_API);
-            this._emprestimoBase = new WebServiceBase<EmprestimoDAO>(this.api.URI_API);
-            this._emprestimoBaseDTO = new WebServiceBase<EmprestimoDTO>(this.api.URI_API);
-            this._usuarioBase = new WebServiceBase<UsuarioDAO>(this.api.URI_API);
+            api = new ApiConfiguration();
+            _parcelaBase = new WebServiceBase<ParcelaDAO>(this.api.URI_API);
+            _emprestimoBase = new WebServiceBase<EmprestimoDAO>(this.api.URI_API);
+            _emprestimoBaseDTO = new WebServiceBase<EmprestimoDTO>(this.api.URI_API);
+            _usuarioBase = new WebServiceBase<UsuarioDAO>(this.api.URI_API);
         }
         public bool Delete(int id, EmprestimoDAO emprestimoDAO, List<ParcelaDAO> parcelas)
         {
@@ -62,10 +62,8 @@ namespace NIRAC_WEB.WebServices
             EmprestimoDAO emp = _emprestimoBase.Add(emprestimo, "Emprestimo");
             if (emp.Id > 0)
             {
-                foreach (var parcela in emp.parcelas)
-                {
-                    _parcelaBase.Add(parcela, "Parcela");
-                }
+                emp.parcelas.ForEach(p=>p.IdEmprestimo = emp.Id);
+                _parcelaBase.AddList(emp.parcelas, "Parcela/ParcelaList");
                 return true;
             }
             else

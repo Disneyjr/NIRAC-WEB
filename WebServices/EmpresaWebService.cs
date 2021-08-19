@@ -12,19 +12,30 @@ namespace NIRAC_WEB.WebServices
         private readonly WebServiceBase<PaisDTO> _paisBase;
         private readonly WebServiceBase<EstadoDTO> _estadoBase;
         private readonly WebServiceBase<CidadeDTO> _cidadeBase;
+        private readonly WebServiceBase<EmpresaUsuarioDTO> _empresaUsuarioBase;
+        private readonly WebServiceBase<EmpresaUsuarioDAO> _empresaUsuBase;
         public EmpresaWebService()
         {
-            this.api = new ApiConfiguration();
-            this._empresaBase = new WebServiceBase<EmpresaDAO>(this.api.URI_API);
-            this._paisBase = new WebServiceBase<PaisDTO>(this.api.URI_API);
-            this._estadoBase = new WebServiceBase<EstadoDTO>(this.api.URI_API);
-            this._cidadeBase = new WebServiceBase<CidadeDTO>(this.api.URI_API);
+            api = new ApiConfiguration();
+            _empresaBase = new WebServiceBase<EmpresaDAO>(this.api.URI_API);
+            _empresaUsuBase = new WebServiceBase<EmpresaUsuarioDAO>(this.api.URI_API);
+            _paisBase = new WebServiceBase<PaisDTO>(this.api.URI_API);
+            _estadoBase = new WebServiceBase<EstadoDTO>(this.api.URI_API);
+            _cidadeBase = new WebServiceBase<CidadeDTO>(this.api.URI_API);
+            _empresaUsuarioBase = new WebServiceBase<EmpresaUsuarioDTO>(this.api.URI_API);
         }
+
         public bool Add(EmpresaDAO empresaDAO)
         {
             var response = _empresaBase.Add(empresaDAO, "Empresa");
             if (response.Id > 0)
+            {
+                EmpresaUsuarioDAO empresaUsuarioDAO = new EmpresaUsuarioDAO();
+                empresaUsuarioDAO.IdEmpresa = response.Id;
+                empresaUsuarioDAO.IdUsuario = empresaDAO.IdUsuarioAdm;
+                _empresaUsuBase.Add(empresaUsuarioDAO, "EmpresaUsuario");
                 return true;
+            }
             return false;
         }
         public EmpresaDAO EmpresaCadastrada(int idUsuario)
@@ -42,6 +53,11 @@ namespace NIRAC_WEB.WebServices
         public List<CidadeDTO> ListarCidades(int idEstado)
         {
             return _cidadeBase.GetListFindInt(idEstado, "Cidade/BuscaCidadesPeloIdEstado/");
+        }
+
+        public List<EmpresaUsuarioDTO> ListarEmpresaUsuario()
+        {
+            return _empresaUsuarioBase.GetAll("EmpresaUsuario");
         }
     }
 }

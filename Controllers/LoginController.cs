@@ -22,10 +22,15 @@ namespace NIRAC_WEB.Controllers
         }
         public ActionResult Index()
         {
+            HttpCookie httpCookie = Request.Cookies.Get("manterLogin");
+            if(httpCookie != null)
+                return RedirectToAction("Index", "Home");
+
             return View();
         }
         [HttpPost]
-        public ActionResult Login(string User, string Password)
+        
+        public ActionResult Login(string User, string Password, string ManterLogin)
         {
             try
             {
@@ -44,9 +49,19 @@ namespace NIRAC_WEB.Controllers
                 Response.Cookies.Add(cookie);
                 Response.Cookies.Add(cookieUsuarioTipo);
                 Response.Cookies.Add(cookieNomeUsuario);
-                TempData["success"] = "Logado com Sucesso!";
                 Session["UsuarioLogado"] = usuario.Nome;
                 Session["IdUsuario"] = usuario.Id;
+
+                if (ManterLogin == "on")
+                {
+                    HttpCookie httpCookie = new HttpCookie("manterLogin");
+                    httpCookie.Expires = DateTime.Now.AddMinutes(720);
+                    Response.SetCookie(httpCookie);
+                }
+                if (usuario.TipoAcesso == "NIRAC-FUNCIONARIO")
+                {
+                    return RedirectToAction("IndexCobrador", "Home");
+                }
                 return RedirectToAction("Index", "Home");
             }
             catch
@@ -101,14 +116,13 @@ namespace NIRAC_WEB.Controllers
             usuario.Data_Cadastro = DateTime.Now;
             usuario.Data_Update = DateTime.Now;
             usuario.Tipo = "Pre-Cadastrado";
-            usuario.TipoAcesso = "Pre-Cadastrado";
+            usuario.TipoAcesso = "NIRAC-ALL";
             usuario.IdCidade = 1;
             usuario.IdEstado = 1;
             usuario.IdPais = 1;
             usuario.Senha = HashingSenha.HashSenha(usuario.Senha);
             if (loginService.AdicionarUsuario(usuario))
             {
-                TempData["success"] = "Usuario Cadastrado com Sucesso!";
                 return RedirectToAction("Index", "Login");
             }
             else

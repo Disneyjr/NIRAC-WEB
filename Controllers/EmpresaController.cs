@@ -1,6 +1,10 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using NIRAC_BUSINESS.Models.DAO;
+using NIRAC_BUSINESS.Models.DTO;
+using NIRAC_BUSINESS.Services;
 using NIRAC_WEB.WebServices;
 
 namespace NIRAC_WEB.Controllers
@@ -13,16 +17,25 @@ namespace NIRAC_WEB.Controllers
         {
             empresaService = new EmpresaWebService();
         }
+
         public ActionResult Index()
         {
-            int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
-            return View(empresaService.EmpresaCadastrada(idUsuario));
+            EmpresaDAO empresaDAO = BuscarPaisEstadoCidade();
+            return View(empresaDAO);
         }
+
         public ActionResult Cadastrar()
         {
             ViewBag.ListaPaises = empresaService.ListarPaises();
-            return View();
+            List<EmpresaUsuarioDTO> empresaUsuarioDTOs = empresaService.ListarEmpresaUsuario();
+            int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
+            EmpresaUsuarioDTO empresaUsuarioDTO = empresaUsuarioDTOs.Find(l => l.IdUsuario == idUsuario);
+            if(empresaUsuarioDTO == null)
+                return View();
+            else
+                return RedirectToAction("Index", "Empresa");
         }
+
         [HttpPost]
         public ActionResult ListarEstados(int id)
         {
@@ -71,7 +84,7 @@ namespace NIRAC_WEB.Controllers
         }
         public ActionResult Editar()
         {
-            ViewBag.ListaPaises = empresaService.ListarPaises();
+            EmpresaDAO empresaDAO = BuscarPaisEstadoCidade();
             int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
             return View(empresaService.EmpresaCadastrada(idUsuario));
         }
@@ -79,6 +92,21 @@ namespace NIRAC_WEB.Controllers
         public ActionResult Editar(FormCollection form)
         {
             return View();
+        }
+
+        public EmpresaDAO BuscarPaisEstadoCidade(  )
+        {
+            int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
+            EmpresaDAO empresaDAO = empresaService.EmpresaCadastrada(idUsuario);
+            int idPais = Convert.ToInt32(empresaDAO.IdPais);
+            List<EstadoDTO> estadoDTOs = empresaService.ListarEstados(idPais);
+            PaisDTO paisDTO = empresaService.ListarPaises().Find(l => l.Id == idPais);
+            EstadoDTO estadoDTO = estadoDTOs.Find(l => l.Id == empresaDAO.IdEstado);
+            CidadeDTO cidadeDTO = empresaService.ListarCidades(estadoDTO.Id).Find(l => l.Id == empresaDAO.IdCidade);
+            ViewData["pais"] = paisDTO.Nome;
+            ViewData["estado"] = estadoDTO.Nome;
+            ViewData["cidade"] = cidadeDTO.Nome;
+            return empresaDAO;
         }
     }
 }

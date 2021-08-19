@@ -1,7 +1,187 @@
-﻿
+﻿@model NIRAC_BUSINESS.Models.DTO.UsuarioDTO
 @{
     ViewBag.Title = "Perfil Usuario";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<h2>Perfil Usuario</h2>
+<h3 class="TitlePage">Perfil</h3>
+
+<div class="form-row">
+    <div class="col">
+        <label for="Nome" class="form-label">Nome</label>
+        <input type="text"
+               value="@Model.Nome"
+               class="form-control"
+               id="Nome"
+               style="color:black"
+               name="UsuarioDTO.Nome"
+               placeholder="Nome"
+               disabled>
+    </div>
+    <div class="col">
+        <label for="Apelido" class="form-label">Apelido</label>
+        <input class="form-control"
+               value="@Model.Apelido"
+               id="Apelido"
+               style="color:black"
+               name="UsuarioDTO.Apelido"
+               placeholder="Apelido"
+               disabled>
+    </div>
+</div>
+<div class="form-row">
+    <div class="col">
+        <label for="Email" class="form-label">Email</label>
+        <input type="text"
+               value="@Model.Email"
+               class="form-control"
+               id="Email"
+               style="color:black"
+               name="UsuarioDTO.Email"
+               placeholder="Email"
+               disabled>
+    </div>
+    <div class="col">
+        <label for="Endereco" class="form-label">Endereço</label>
+        <input class="form-control"
+               value="@Model.Endereco"
+               id="Endereco"
+               style="color:black"
+               name="UsuarioDTO.Endereco"
+               placeholder="Endereço"
+               disabled>
+    </div>
+</div>
+<div class="form-row">
+    <div class="col">
+        <label for="CPF" class="form-label">CPF</label>
+        <input type="text"
+               value="@Model.CPF"
+               class="form-control"
+               id="CPF"
+               style="color:black"
+               name="UsuarioDTO.CPF"
+               placeholder="CPF"
+               disabled>
+    </div>
+    <div class="col">
+        <label for="RG" class="form-label">RG</label>
+        <input class="form-control"
+               value="@Model.RG"
+               id="RG"
+               style="color:black"
+               name="UsuarioDTO.RG"
+               placeholder="RG"
+               disabled>
+    </div>
+    <div class="col">
+        <label for="Telefone" class="form-label">Telefone</label>
+        <input type="text"
+               value="@Model.Telefone"
+               class="form-control"
+               id="Telefone"
+               style="color:black"
+               name="UsuarioDTO.Telefone"
+               placeholder="Telefone"
+               disabled>
+    </div>
+</div>
+<div class="form-row">
+    <div class="col">
+        <label for="EstadoCivil" class="form-label">Estado Civil</label>
+        <input type="text"
+               value="@Model.EstadoCivil"
+               class="form-control"
+               id="EstadoCivil"
+               style="color:black"
+               name="UsuarioDTO.EstadoCivil"
+               placeholder="Estado Civil"
+               disabled>
+    </div>
+    <div class="col">
+        <label for="Genero" class="form-label">Gênero</label>
+        <input class="form-control"
+               value="@Model.Genero"
+               id="Genero"
+               style="color:black"
+               name="UsuarioDTO.Genero"
+               placeholder="Gênero"
+               disabled>
+    </div>
+    <div class="col">
+        <label for="Data_Cadastro" class="form-label">Data Cadastro</label>
+        <input class="form-control"
+               value="@Model.Data_Cadastro"
+               id="Data_Cadastro"
+               style="color:black"
+               name="UsuarioDTO.Data_Cadastro"
+               placeholder="Data Cadastro"
+               disabled>
+    </div>
+    <div class="col">
+        <label for="Data_Update" class="form-label">Data Update</label>
+        <input class="form-control"
+               value="@Model.Data_Update"
+               id="Data_Update"
+               style="color:black"
+               name="UsuarioDTO.Data_Update"
+               placeholder="Data Update"
+               disabled>
+    </div>
+</div>
+<div class="form-row">
+    <div class="col">
+        <label for="Indicacao" class="form-label">Indicação</label>
+        <input type="text"
+               value="@Model.Indicacao"
+               class="form-control"
+               id="Indicacao"
+               style="color:black"
+               name="UsuarioDTO.Indicacao"
+               placeholder="Indicação"
+               disabled>
+    </div>
+    <div class="col">
+        <label for="Observacao" class="form-label">Observação</label>
+        <input class="form-control"
+               value="@Model.Observacao"
+               id="Observacao"
+               style="color:black"
+               name="UsuarioDTO.Observacao"
+               placeholder="Observação"
+               disabled>
+    </div>
+</div>
+<div class="form-row">
+    <div class="col">
+        <label for="Tipo" class="form-label">Tipo</label>
+        <input type="text"
+               value="@Model.Tipo"
+               class="form-control"
+               id="Tipo"
+               style="color:black"
+               name="UsuarioDTO.Tipo"
+               placeholder="Tipo"
+               disabled>
+    </div>
+    <div class="col">
+        <label for="TipoAcesso" class="form-label">Tipo Acesso</label>
+        <input class="form-control"
+               value="@Model.TipoAcesso"
+               id="TipoAcesso"
+               style="color:black"
+               name="UsuarioDTO.TipoAcesso"
+               placeholder="Tipo Acesso"
+               disabled>
+    </div>
+    <div class="col">
+        <label for="Status" class="form-label">Status</label>
+        <input class="form-control"
+               value="@Model.Status"
+               id="Status"
+               style="color:black"
+               name="UsuarioDTO.Status"
+               placeholder="Status"
+               disabled>
+    </div>
+</div>
