@@ -259,6 +259,8 @@
     <Content Include="Views\Usuario\ClienteDetalhe.cshtml" />
     <Content Include="Views\Emprestimo\EmprestimoDetalhe.cshtml" />
     <None Include="Properties\PublishProfiles\FTPNIRAC.pubxml" />
+    <Content Include="Views\Shared\_LayoutCobrador.cshtml" />
+    <Content Include="Views\Home\IndexCobrador.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -58,7 +58,10 @@ namespace NIRAC_WEB.Controllers
                     httpCookie.Expires = DateTime.Now.AddMinutes(720);
                     Response.SetCookie(httpCookie);
                 }
-
+                if (usuario.TipoAcesso == "NIRAC-FUNCIONARIO")
+                {
+                    return RedirectToAction("IndexCobrador", "Home");
+                }
                 return RedirectToAction("Index", "Home");
             }
             catch
@@ -113,7 +116,7 @@ namespace NIRAC_WEB.Controllers
             usuario.Data_Cadastro = DateTime.Now;
             usuario.Data_Update = DateTime.Now;
             usuario.Tipo = "Pre-Cadastrado";
-            usuario.TipoAcesso = "Pre-Cadastrado";
+            usuario.TipoAcesso = "NIRAC-ALL";
             usuario.IdCidade = 1;
             usuario.IdEstado = 1;
             usuario.IdPais = 1;
