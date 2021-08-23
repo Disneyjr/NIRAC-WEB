@@ -6,6 +6,8 @@ using NIRAC_BUSINESS.Models.API_CONFIG;
 using NIRAC_WEB.Validations;
 using NIRAC_WEB.WebServices;
 using NIRAC_BUSINESS.Models.PrivateMethods;
+using System.Net.Mail;
+using System.Net;
 
 namespace NIRAC_WEB.Controllers
 {
@@ -22,9 +24,9 @@ namespace NIRAC_WEB.Controllers
         }
         public ActionResult Index()
         {
-            HttpCookie httpCookie = Request.Cookies.Get("manterLogin");
-            if(httpCookie != null)
-                return RedirectToAction("Index", "Home");
+            //HttpCookie httpCookie = Request.Cookies.Get("manterLogin");
+            //if(httpCookie != null)
+            //    return RedirectToAction("Index", "Home");
 
             return View();
         }
@@ -41,11 +43,14 @@ namespace NIRAC_WEB.Controllers
                 HttpCookie cookieUsuarioTipo = new HttpCookie("Tipo");
                 HttpCookie cookieNomeUsuario = new HttpCookie("NomeUsuario");
                 cookie.Path = "/";
+                cookie.Expires = DateTime.Now.AddHours(12);
                 cookieUsuarioTipo.Path = "/";
                 cookieNomeUsuario.Path = "/";
                 cookie.Value = usuario.Id.ToString();
                 cookieUsuarioTipo.Value = usuario.TipoAcesso;
+                cookieUsuarioTipo.Expires = DateTime.Now.AddHours(12);
                 cookieNomeUsuario.Value = usuario.Nome;
+                cookieNomeUsuario.Expires = DateTime.Now.AddHours(12);
                 Response.Cookies.Add(cookie);
                 Response.Cookies.Add(cookieUsuarioTipo);
                 Response.Cookies.Add(cookieNomeUsuario);
@@ -162,6 +167,44 @@ namespace NIRAC_WEB.Controllers
                 }
             }
             return retorno;
+        }
+
+        public ActionResult EsqueceuSenha()
+        {
+            int idUsuario = Convert.ToInt32(Request.Cookies.Get("Id").Value);
+
+            try
+            {
+                var Assunto = "Login - Recuperar Senha";
+                var Remetente = "dineyteixeira@gmail.com";
+                var enviaMensagem = String.Format("Login - Recuperar Senha" + "https://localhost:44308/Login/RecuperarSenha?idUsuario=" + idUsuario + "");
+
+                // cria uma mensagem
+                MailMessage mensagemEmail = new MailMessage(Remetente, "gabrielcs482@gmail.com", Assunto, enviaMensagem);
+                SmtpClient client = new SmtpClient("dineyteixeira@gmail.com", 587);
+                client.EnableSsl = false;
+                client.UseDefaultCredentials = false;
+                //NetworkCredential cred = new NetworkCredential("NOME DE USUARIO", "SENHA");
+                //client.Credentials = cred;
+                client.Send(mensagemEmail);
+
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public ActionResult RecuperarSenha(int idUsuario)
+        {
+
+            return View();
+        }
+
+        public ActionResult ConfirmarSenha(string Password, string ConfirmPass)
+        {
+            return null;
         }
     }
 }
