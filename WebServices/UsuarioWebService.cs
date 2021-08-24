@@ -11,6 +11,7 @@ namespace NIRAC_WEB.WebServices
         private readonly WebServiceBase<UsuarioDTO> _ususerviceBase;
         private readonly WebServiceBase<UsuarioDAO> _ususerviceBaseDAO;
         private readonly WebServiceBase<CidadeDTO> _cidadeBase;
+        
         public UsuarioWebService()
         {
             api = new ApiConfiguration();
@@ -18,14 +19,17 @@ namespace NIRAC_WEB.WebServices
             _ususerviceBase = new WebServiceBase<UsuarioDTO>(this.api.URI_API);
             _ususerviceBaseDAO = new WebServiceBase<UsuarioDAO>(this.api.URI_API);
         }
+        
         public List<UsuarioDTO> GetUsuariosFindType(string FieldString, string Research)
         {
             return _ususerviceBase.GetListFindString(FieldString, Research);
         }
+        
         public UsuarioDTO GetUsuario(int id)
         {
             return _ususerviceBase.Get(id, "Usuario/");
         }
+        
         public bool AdicionarUsuario(UsuarioDAO usuario)
         {
             bool retorno = false;
@@ -36,6 +40,18 @@ namespace NIRAC_WEB.WebServices
             }
             return retorno;
         }
+
+        public bool EditarUsuario(UsuarioDAO usuario)
+        {
+            bool retorno = false;
+            var response = _ususerviceBaseDAO.Update(usuario, "Usuario");
+            if (response != null)
+            {
+                retorno = true;
+            }
+            return retorno;
+        }
+
         public bool DeletarUsuario(int id, UsuarioDTO usuarioDTO)
         {
             bool retorno = false;
@@ -46,6 +62,7 @@ namespace NIRAC_WEB.WebServices
             }
             return retorno;
         }
+        
         public List<CidadeDTO> ListarCidades()
         {
             return _cidadeBase.GetAll("Cidade");

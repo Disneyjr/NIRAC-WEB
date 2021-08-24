@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using NIRAC_BUSINESS.Models.API_CONFIG;
 using NIRAC_BUSINESS.Models.DAO;
+using NIRAC_BUSINESS.Models.DTO;
 using NIRAC_BUSINESS.Models.PrivateMethods;
 using NIRAC_WEB.WebServices;
 
@@ -98,8 +100,30 @@ namespace NIRAC_WEB.Controllers
         }
         public ActionResult ClienteEditar(int id)
         {
-            return View(usuarioService.GetUsuario(id));
+            ViewBag.Cidades = usuarioService.ListarCidades();
+            UsuarioDTO usuarioDTO = usuarioService.GetUsuario(id);
+            return View(usuarioDTO);
         }
+
+        public ActionResult Editar(UsuarioDAO usuarioDAO, FormCollection form)
+        {
+            usuarioDAO.IdCidade = Convert.ToInt16(form["cidade"]);
+            usuarioDAO.Genero = toFromGenero.Genero(Convert.ToInt16(form["genero"]));
+            usuarioDAO.EstadoCivil = toFromEstadoCivil.EstadoCivil(Convert.ToInt16(form["estadocivil"]));
+            usuarioDAO.Id = Convert.ToInt32(Request.Cookies.Get("Id").Value);
+
+            if (usuarioService.EditarUsuario(usuarioDAO))
+            {
+                TempData["success"] = "Cliente Alterado com Sucesso!";
+                return RedirectToAction("Clientes", "Usuario");
+            }
+            else
+            {
+                TempData["error"] = "Falha ao Editar o Cliente!";
+                return RedirectToAction("ClienteCadastrar", "Usuario");
+            }
+        }
+
         public ActionResult ClienteDetalhe(int id)
         {
             return View(usuarioService.GetUsuario(id));
