@@ -89,9 +89,9 @@ namespace NIRAC_WEB.WebServices
             var mater = JsonConvert.DeserializeObject<List<T>>(result);
             return mater;
         }
-        public T Update(T Obj, int FieldInt, string Research)
+        public T Update(T Obj, string Research)
         {
-            string url = Url + Research + FieldInt;
+            string url = Url + Research;
             var upload = JsonConvert.SerializeObject(Obj);
             wc.Headers[HttpRequestHeader.ContentType] = "application/json";
             wc.Encoding = Encoding.UTF8;
