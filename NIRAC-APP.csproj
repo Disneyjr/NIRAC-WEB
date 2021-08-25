@@ -196,6 +196,7 @@
     <Content Include="Content\JS\jquery.mask.min.js" />
     <Content Include="Content\JS\Mascaras.js" />
     <Content Include="Content\JS\toast.js" />
+    <Content Include="Content\JS\validator.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -263,6 +264,7 @@
     <None Include="Properties\PublishProfiles\FTPNIRAC.pubxml" />
     <Content Include="Views\Shared\_LayoutCobrador.cshtml" />
     <Content Include="Views\Home\IndexCobrador.cshtml" />
+    <Content Include="Views\Login\RecuperarSenha.cshtml" />
     <Content Include="Views\Cobranca\CobrancaIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
