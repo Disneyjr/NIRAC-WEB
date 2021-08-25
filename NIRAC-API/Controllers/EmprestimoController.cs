@@ -32,6 +32,17 @@ namespace NIRAC_API.Controllers
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="IdEmpresa"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("BuscaEmprestimosPeloIdEmpresa/{IdEmpresa}")]
+        public List<EmprestimoDTO> BuscaEmprestimosPeloIdEmpresa(int IdEmpresa)
+        {
+            return _serv.GetAll().FindAll(u => u.IdEmpresa == IdEmpresa);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]

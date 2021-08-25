@@ -261,6 +261,13 @@
             
             </summary>
         </member>
+        <member name="M:NIRAC_API.Controllers.EmpresaUsuarioController.BuscaEmpresaUsuarioDTOPeloIdUsuario(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="idUsuario"></param>
+            <returns></returns>
+        </member>
         <member name="M:NIRAC_API.Controllers.EmpresaUsuarioController.BuscaEmpresaUsuarioDAOPeloId(System.Int32)">
             <summary>
             
@@ -311,6 +318,13 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmprestimoController.BuscaEmprestimosPeloIdEmpresa(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="IdEmpresa"></param>
+            <returns></returns>
         </member>
         <member name="M:NIRAC_API.Controllers.EmprestimoController.BuscaEmprestimosPeloIdUsuario(System.Int32)">
             <summary>

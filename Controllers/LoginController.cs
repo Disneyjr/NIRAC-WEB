@@ -8,6 +8,7 @@ using NIRAC_WEB.WebServices;
 using NIRAC_BUSINESS.Models.PrivateMethods;
 using System.Net.Mail;
 using System.Net;
+using NIRAC_BUSINESS.Models.DTO;
 
 namespace NIRAC_WEB.Controllers
 {
@@ -36,16 +37,22 @@ namespace NIRAC_WEB.Controllers
         {
             try
             {
+                EmpresaUsuarioDTO empresa = new EmpresaUsuarioDTO();
                 var usuario = loginService.VerificaLogin(User, Password);
+                empresa =  loginService.GetEmpresa(usuario.Id);
+
                 if(usuario == null)
                     TempData["error"] = "Usuario não cadastrado!"; 
+
                 HttpCookie cookie = new HttpCookie("Id");
                 HttpCookie cookieUsuarioTipo = new HttpCookie("Tipo");
                 HttpCookie cookieNomeUsuario = new HttpCookie("NomeUsuario");
+
                 cookie.Path = "/";
                 cookie.Expires = DateTime.Now.AddHours(12);
                 cookieUsuarioTipo.Path = "/";
                 cookieNomeUsuario.Path = "/";
+
                 cookie.Value = usuario.Id.ToString();
                 cookieUsuarioTipo.Value = usuario.TipoAcesso;
                 cookieUsuarioTipo.Expires = DateTime.Now.AddHours(12);
@@ -54,8 +61,10 @@ namespace NIRAC_WEB.Controllers
                 Response.Cookies.Add(cookie);
                 Response.Cookies.Add(cookieUsuarioTipo);
                 Response.Cookies.Add(cookieNomeUsuario);
+
                 Session["UsuarioLogado"] = usuario.Nome;
                 Session["IdUsuario"] = usuario.Id;
+                Session["IdEmpresa"] = empresa != null ? empresa.IdEmpresa.ToString() : string.Empty;
 
                 if (ManterLogin == "on")
                 {

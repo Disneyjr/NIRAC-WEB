@@ -9,6 +9,7 @@ namespace NIRAC_BUSINESS.Models.DTO
         public int Id { get; set; }
         public int IdUsuario { get; set; }
         public int IdCliente { get; set; }
+        public int IdEmpresa { get; set; }
         public decimal TotalEmprestimo { get; set; }
         public decimal TotalHaver { get; set; }
         public int QuantidadeParcela { get; set; }

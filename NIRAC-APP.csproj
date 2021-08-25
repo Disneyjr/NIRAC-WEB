@@ -204,6 +204,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Autentica.cs" />
+    <Compile Include="Controllers\CobrancaController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\EmprestimoController.cs" />
     <Compile Include="Controllers\FluxoCaixaController.cs" />
@@ -217,6 +218,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validations\Multiple Buttons.cs" />
     <Compile Include="ViewModel\EmprestimoVM.cs" />
+    <Compile Include="WebServices\CobrancaWebService.cs" />
     <Compile Include="WebServices\EmpresaWebService.cs" />
     <Compile Include="WebServices\EmprestimoWebService.cs" />
     <Compile Include="WebServices\HomeWebService.cs" />
@@ -263,6 +265,7 @@
     <Content Include="Views\Shared\_LayoutCobrador.cshtml" />
     <Content Include="Views\Home\IndexCobrador.cshtml" />
     <Content Include="Views\Login\RecuperarSenha.cshtml" />
+    <Content Include="Views\Cobranca\CobrancaIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

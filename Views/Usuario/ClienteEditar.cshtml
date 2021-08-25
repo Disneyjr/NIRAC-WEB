@@ -11,14 +11,91 @@
 <h2>Cliente Editar</h2>
 @if (Model != null)
 {
-    using (Html.BeginForm("Editar", "Cliente", FormMethod.Post))
+    using (Html.BeginForm("Editar", "Usuario", FormMethod.Post))
     {
+        <input type="text" class="form-control" id="Nome" name="UsuarioDAO.Data_Cadastro" hidden required value="@Model.Data_Cadastro">
+        <input type="text" class="form-control" id="Nome" name="UsuarioDAO.Data_Update" hidden value="@Model.Data_Update">
+
+
         <div class="form-row">
             <div class="col">
                 <label for="Nome" class="form-label">Nome Completo</label>
-                <input type="text" class="form-control" id="Nome" name="UsuarioDAO.Nome" placeholder="Nome Completo" required>
+                <input type="text" class="form-control" id="Nome" name="UsuarioDAO.Nome" placeholder="Nome Completo" required value="@Model.Nome">
             </div>
         </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="CPF" class="form-label">CPF</label>
+                <input class="cpf form-control"
+                       id="CPF" name="UsuarioDAO.CPF" placeholder="CPF" required value="@Model.CPF">
+            </div>
+            <div class="col">
+                <label for="Email" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="Email" name="UsuarioDAO.Email" placeholder="E-mail" value="@Model.Email">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="RG" class="form-label">RG</label>
+                <input type="text" class="form-control" id="RG" name="UsuarioDAO.RG" placeholder="RG" value="@Model.RG">
+            </div>
+            <div class="col">
+                <label for="Telefone" class="form-label">Telefone</label>
+                <input type="text" class="form-control" id="Telefone" name="UsuarioDAO.Telefone" placeholder="Telefone" value="@Model.Telefone">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="Endereco" class="form-label">Endereço</label>
+                <input type="text" class="form-control" id="Endereco" name="UsuarioDAO.Endereco" placeholder="Endereço" value="@Model.Endereco ">
+            </div>
+            <div class="col">
+                <label for="Observacao" class="form-label">Observação</label>
+                <input type="text" class="form-control" id="Observacao" name="UsuarioDAO.Observacao" placeholder="Observação" value="@Model.Observacao">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="estadocivil" class="form-label">Estado Civil</label>
+                <select class="form-control" id="estadocivil" name="estadocivil">
+                    <option value="0" selected>@Model.EstadoCivil</option>
+                    <option value="1">Solteiro</option>
+                    <option value="2">Casado</option>
+                    <option value="3">Separado</option>
+                    <option value="4">Divorciado</option>
+                    <option value="5">Viúvo</option>
+                </select>
+            </div>
+            <div class="col">
+                <label for="genero" class="form-label">Genero</label>
+                <select class="form-control" id="genero" name="genero">
+                    <option value="0" selected>@Model.Genero</option>
+                    <option value="1">Masculino</option>
+                    <option value="2">Feminino</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="cidade">Cidade</label>
+                <select class="form-control" id="cidade" name="cidade" required>
+                    @{
+                        List<NIRAC_BUSINESS.Models.DTO.CidadeDTO> cidadeDTOs = ViewBag.Cidades as List<NIRAC_BUSINESS.Models.DTO.CidadeDTO>;
+                        var cidadeNome = cidadeDTOs.Find(c => c.Id == Model.IdCidade).Nome;
+                    }
+                    <option value="@Model.IdCidade" selected>@cidadeNome</option>
+                    @foreach (var cidade in ViewBag.Cidades)
+                    {
+                        <option value="@cidade.Id">@cidade.Nome</option>
+                    }
+                </select>
+            </div>
+            <div class="col">
+                <label for="cidade">Indicação</label>
+                <input type="text" class="form-control" id="Indicacao" name="UsuarioDAO.Indicacao" placeholder="Indicação" value="@Model.Indicacao">
+            </div>
+        </div>
+
         <div class="text-center">
             <button type="submit" class="btn btn-primary btn-user my-3">
                 Editar

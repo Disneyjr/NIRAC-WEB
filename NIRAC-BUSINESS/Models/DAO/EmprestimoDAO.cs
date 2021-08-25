@@ -14,6 +14,8 @@ namespace NIRAC_BUSINESS.Models.DAO
         public int? IdUsuario { get; set; }
         [Column("IdCliente")]
         public int? IdCliente { get; set; }
+        [Column("IdEmpresa")]
+        public int? IdEmpresa { get; set; }
         [Column("TotalEmprestimo")]
         public decimal TotalEmprestimo { get; set; }
         [Column("TotalHaver")]
