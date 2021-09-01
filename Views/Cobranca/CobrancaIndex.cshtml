@@ -1,0 +1,22 @@
+﻿@model NIRAC_WEB.ViewModel.EmprestimoVM
+@{
+    ViewBag.Title = "CobrancaIndex";
+    Layout = "~/Views/Shared/_LayoutCobrador.cshtml";
+}
+
+<h2>Lista de Cobrança</h2>
+@if (ViewBag.ListaCobranca != null && ViewBag.ListaCobranca.Count != 0)
+{
+    foreach (var emprestimo in ViewBag.ListaCobranca)
+    {
+        <div class="card" style="margin-top:10px">
+            <div class="card-body">
+                @Model.GetCliente(emprestimo.IdCliente)
+            </div>
+        </div>
+    }
+}
+else
+{
+    <h3 class="text-center">Nenhum emprestimo feito!</h3>
+}

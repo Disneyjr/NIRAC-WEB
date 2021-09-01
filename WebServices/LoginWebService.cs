@@ -2,6 +2,7 @@
 using NIRAC_BUSINESS.API_CONFIG;
 using NIRAC_BUSINESS.Models.DAO;
 using NIRAC_BUSINESS.Models.API_CONFIG;
+using NIRAC_BUSINESS.Models.DTO;
 
 namespace NIRAC_WEB.WebServices
 {
@@ -9,10 +10,12 @@ namespace NIRAC_WEB.WebServices
     {
         private ApiConfiguration api;
         private WebServiceBase<UsuarioDAO> _ususerviceBase;
+        private WebServiceBase<EmpresaUsuarioDTO> _empresaUsuarioBase;
         public LoginWebService()
         {
             api = new ApiConfiguration();
             _ususerviceBase = new WebServiceBase<UsuarioDAO>(this.api.URI_API);
+            _empresaUsuarioBase = new WebServiceBase<EmpresaUsuarioDTO>(this.api.URI_API);
         }
         public UsuarioDAO VerificaLogin(string User, string Password)
         {
@@ -30,6 +33,10 @@ namespace NIRAC_WEB.WebServices
                 throw new Exception("Senha invalida!");
             }
             
+        }
+        public EmpresaUsuarioDTO GetEmpresa(int idUsuario)
+        {
+            return _empresaUsuarioBase.GetEntityFindInt(idUsuario, "EmpresaUsuario/BuscaEmpresaUsuarioDTOPeloIdUsuario/");
         }
         public bool ExistEmail(string Email)
         {

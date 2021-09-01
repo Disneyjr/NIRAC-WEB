@@ -5,8 +5,6 @@ using System.Web.Mvc;
 
 namespace NIRAC_WEB.Controllers
 {
-
-    
     public class HomeController : Controller
     {
         private HomeWebService _service = new HomeWebService();
