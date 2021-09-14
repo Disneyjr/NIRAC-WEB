@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace NIRAC_API
 {
@@ -17,6 +18,8 @@ namespace NIRAC_API
 
             // Rotas da API da Web
             config.MapHttpAttributeRoutes();
+            var cors = new EnableCorsAttribute("https://localhost:44308,https://www.nirac.com.br", "*", "*");
+            config.EnableCors(cors);
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

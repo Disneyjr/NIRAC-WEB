@@ -16,7 +16,7 @@
         <div class="col">
             <label for="cliente">Cliente</label>
             <select class="form-control" id="cliente" name="cliente">
-                <option value="0" selected>Selecione um Cliente</option>
+                <option value="15" selected>Cliente 1</option>
                 @if (ViewBag.ListaClientes != null)
                 {
                     foreach (var cliente in ViewBag.ListaClientes)
@@ -34,6 +34,7 @@
                    class="form-control"
                    id="MontantePego"
                    name="MontantePego"
+                   value="1000"
                    placeholder="Montante Pego" required>
         </div>
         <div class="col">
@@ -42,6 +43,7 @@
                    class="dinheiro form-control"
                    id="QuantidadeParcela"
                    name="QuantidadeParcela"
+                   value="4"
                    placeholder="Quantidade de Parcelas" required>
         </div>
     </div>
@@ -52,6 +54,7 @@
                    class="form-control"
                    id="Juros"
                    name="Juros"
+                   value="10"
                    placeholder="Porcentagem de Juros" required>
         </div>
         <div class="col">
@@ -59,25 +62,10 @@
             <input class="form-control"
                    id="DiaCobranca"
                    name="DiaCobranca"
+                   value="4"
                    placeholder="Dia para cobrança" required>
         </div>
-        @*<div class="col">
-                <label for="ValorParcela" class="form-label">Valor da Parcela</label>
-                <input class="dinheiro form-control"
-                       id="ValorParcela"
-                       name="ValorParcela"
-                       placeholder="Valor da Parcela" required>
-            </div>*@
     </div>
-    @*<div class="form-row">
-            <div class="col">
-                <label for="DiaCobranca" class="form-label">Dia para cobrança</label>
-                <input class="form-control"
-                       id="DiaCobranca"
-                       name="DiaCobranca"
-                       placeholder="Dia para cobrança" required>
-            </div>
-        </div>*@
     <br />
     <div class="text-right" hidden>
         <a class="btn btn-danger" onclick="ResetarEmprestimo()">Limpar Simulação</a>
@@ -94,8 +82,7 @@
             <div class="card-header">
                 <h3>Parcelas</h3>
             </div>
-            <div id="tabela" class="card-body">
-            </div>
+            <div id="tabela" class="card-body"></div>
         </div>
         <br />
         <div class="text-center">

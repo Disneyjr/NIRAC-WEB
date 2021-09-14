@@ -56,6 +56,10 @@ namespace NIRAC_WEB.Controllers
             emprestimoDAO.IdCliente = Convert.ToInt32(form["cliente"].ToString());
             emprestimoDAO.IdUsuario = Convert.ToInt32(Session["IdUsuario"]);
             emprestimoDAO.parcelas = GetParcelas(emprestimoDAO, form);
+            emprestimoDAO.TotalEmprestimo = Convert.ToInt16(form["MontantePego"].ToString());
+            emprestimoDAO.PorcentagemJuros = Convert.ToInt16(form["Juros"].ToString());
+            emprestimoDAO.DiaPagamento = Convert.ToInt16(form["DiaCobranca"].ToString());
+            emprestimoDAO.QuantidadeParcela = Convert.ToInt16(emprestimoDAO.QuantidadeParcela);
             if (emprestimoWebService.Add(emprestimoDAO))
             {
                 return RedirectToAction("Index", "Emprestimo");
@@ -78,10 +82,10 @@ namespace NIRAC_WEB.Controllers
         {
             int quantidadeParcela = Convert.ToInt16(emprestimoDAO.QuantidadeParcela);
             int diaCobranca = Convert.ToInt16(form["DiaCobranca"].ToString());
+            decimal montantePego = Convert.ToInt16(form["MontantePego"].ToString());
             decimal juros = Convert.ToInt16(form["Juros"].ToString());
             decimal jurosReal = juros / 100;
-            decimal valorTotalJuros = Convert.ToInt16(form["valorTotalJuros"].ToString());
-            decimal valorParcela = valorTotalJuros / quantidadeParcela;
+            decimal valorParcela = Convert.ToDecimal(emprestimoWebService.GetValorParcela(montantePego, quantidadeParcela, juros));
             List<ParcelaDAO> parcelas = new List<ParcelaDAO>();
             for (int i = 0; i < quantidadeParcela; i++)
             {

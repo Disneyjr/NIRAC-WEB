@@ -60,6 +60,23 @@ namespace NIRAC_WEB.WebServices
             T t = JsonConvert.DeserializeObject<T>(response);
             return t;
         }
+        public T Get(string Research)
+        {
+            string url = Url + Research;
+            wc.Headers[HttpRequestHeader.ContentType] = "application/json";
+            wc.Encoding = Encoding.UTF8;
+            var response = wc.DownloadString(url);
+            T t = JsonConvert.DeserializeObject<T>(response);
+            return t;
+        }
+        public string Gets(string Research)
+        {
+            string url = Url + Research;
+            wc.Headers[HttpRequestHeader.ContentType] = "application/json";
+            wc.Encoding = Encoding.UTF8;
+            var response = wc.DownloadString(url);
+            return response;
+        }
         public List<T> GetAll(string Research)
         {
             string url = Url + Research;

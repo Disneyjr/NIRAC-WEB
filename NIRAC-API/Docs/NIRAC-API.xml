@@ -333,6 +333,24 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:NIRAC_API.Controllers.EmprestimoController.CalculaParcela(System.Double,System.Int32,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="valorFinanciado"></param>
+            <param name="numeroParcelas"></param>
+            <param name="juros"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NIRAC_API.Controllers.EmprestimoController.TotalFinanciamento(System.Double,System.Int32,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="valorFinanciado"></param>
+            <param name="numeroParcelas"></param>
+            <param name="juros"></param>
+            <returns></returns>
+        </member>
         <member name="M:NIRAC_API.Controllers.EmprestimoController.GetAll">
             <summary>
             
