@@ -8,16 +8,31 @@ clienteSelecionado = document.getElementById('cliente')
 valorParcela = document.getElementById('ValorParcela')
 mensagemErro = document.getElementById('mensagemErro')
 TotalJuros = document.getElementById('valorTotalJuros')
-const jurosReal = juros.value / 100
-
-function AparecerParcelas() {
+const url = 'https://www.api.nirac.com.br/api/Emprestimo/CalculaParcela/' + montanteEmprestimo.value + '/' + quantidadeParcelas.value + '/' + juros.value;
+parcelaValor = 0;
+function getData(ajaxUrl) {
+    return $.ajax({
+        url: ajaxUrl,
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (result) {
+            console.log(result)
+        },
+        done: function (resp) {
+            console.log(resp)
+        }
+    })
+}
+async function AparecerParcelas() {
     if (ValidaInputs()) {
-        divparcelas.hidden = false;
-        var existTable = document.getElementsByClassName('table');
-        if (existTable.length == 0) {
-            const tabela = document.createElement("table");
-            tabela.classList.add('table');
-            tabela.innerHTML = `<thead>
+        try {
+            const res = await getData(url)
+            divparcelas.hidden = false;
+            var existTable = document.getElementsByClassName('table');
+            if (existTable.length == 0) {
+                const tabela = document.createElement("table");
+                tabela.classList.add('table');
+                tabela.innerHTML = `<thead>
                         <tr>
                             <th scope="col">N° Parcelas</th>
                             <th scope="col">Valor</th>
@@ -25,16 +40,19 @@ function AparecerParcelas() {
                         </tr>
                     </thead>
                     <tbody id="tbody">
-                    ${GetTds()}
+                    ${GetTds(res)}
                     </tbody>`;
-            table.appendChild(tabela);
-        } else {
-            AtualizaBody()
+                table.appendChild(tabela);
+            } else {
+                AtualizaBody()
+            }
+        } catch (err) {
+            console.log("ERROR: " + err);
         }
     }
 }
-function GetTds() {
-    const Parcelas = GetParcelaValores(quantidadeParcelas.value);
+function GetTds(res) {
+    const Parcelas = GetParcelaValores(quantidadeParcelas.value, res);
     const trs = [];
     Parcelas.forEach(function (parcela) {
         trs.push(`<tr>
@@ -45,33 +63,21 @@ function GetTds() {
     })
     return trs;
 }
-function GetParcelaValores(numeroParcelas) {
+function GetParcelaValores(numeroParcelas, res) {
     const Parcelas = [];
     let numeroParcela = 1;
     const dataAtual = new Date();
-    let sobraJuros = montanteEmprestimo.value * juros.value / 100
-    let valorTotalJuros = ValorTotalJuros(montanteEmprestimo.value, juros.value / 100)
-    let valorParcela = valorTotalJuros / quantidadeParcelas.value;
-    TotalJuros.value = valorTotalJuros;
+
     for (var i = 0; i < numeroParcelas; i++) {
         const DiadoPagamento = DiaPagamento(dataAtual, i, diaCobranca.value);
         var parcela = new Object();
-        parcela.valorParcela = valorParcela
+        parcela.valorParcela = res;
         parcela.numeroParcela = numeroParcela;
         parcela.DiaPagamento = DiadoPagamento;
         Parcelas.push(parcela);
         numeroParcela++;
     }
-    mensagemErro.style.color = 'black';
-    mensagemErro.innerHTML = `*** O total desse financiamento de ${quantidadeParcelas.value} parcelas de ${parcela.valorParcela} reais é ${valorTotalJuros} reais, sendo ${sobraJuros} de juros. ***`
     return Parcelas;
-}
-function CalculaValorParcela(valorParcela, jurosReal, valorTotalParcela, valorAntigo) {
-    if (valorTotalParcela == valorAntigo || valorAntigo > valorTotalParcela) {
-        return (valorAntigo * jurosReal) + valorAntigo;
-    } else {
-        return (valorParcela * jurosReal) + valorParcela;
-    }
 }
 function DiaPagamento(dataAtual, iteracao, diaCobranca) {
     let dataFormatada;
@@ -88,87 +94,6 @@ function AtualizaBody() {
 }
 function EsconderParcelas() {
     divparcelas.hidden = true;
-}
-function SimularEmprestimo() {
-    if (ValidaInputs()) {
-       
-        if (juros.value != null && juros.value != ""
-            && valorParcela.value != null && valorParcela.value != ""
-            && montanteEmprestimo.value != null && montanteEmprestimo.value != "") {
-            btnGerarParcelas.hidden = false;
-            let valorTotalJuros = ValorTotalJuros(montanteEmprestimo.value, jurosReal)
-            let sobraJuros = montanteEmprestimo.value * jurosReal
-            quantidadeParcelas.value = valorTotalJuros / valorParcela.value
-            mensagemErro.style.color = 'black';
-            mensagemErro.innerHTML = `*** O total desse financiamento de ${quantidadeParcelas.value} parcelas de ${valorParcela.value} reais é ${valorTotalJuros} reais, sendo ${sobraJuros} de juros. ***`
-        }
-        else if (juros.value != null && juros.value != ""
-            && quantidadeParcelas.value != null && quantidadeParcelas.value != ""
-            && montanteEmprestimo.value != null && montanteEmprestimo.value != "") {
-            btnGerarParcelas.hidden = false;
-            valorParcela.value = ValorPrestacao(montanteEmprestimo.value, juros.value/100, quantidadeParcelas.value)
-            let valorTotalJuros = valorParcela.value * quantidadeParcelas.value
-            let sobraJuros = valorTotalJuros - montanteEmprestimo.value
-            mensagemErro.style.color = 'black';
-            mensagemErro.innerHTML = `*** O total desse financiamento de ${quantidadeParcelas.value} 
-                                      parcelas de ${valorParcela.value} reais é ${valorTotalJuros} reais, 
-                                      sendo ${sobraJuros} de juros. ***`
-        }
-/*
-CASO 2
-Nº de meses = 10
-Valor da prestação = 86
-Valor financiado = 750
-
-Clique em 'Calcular' para obter a taxa de juros mensal.*/
-/*
-CASO 4
-Nº de meses = 24
-Taxa de juros mensal = 1,99
-Valor da prestação = 935
-
-Clique em 'Calcular' para obter o valor financiado.*/
-        else if (juros.value != null && juros.value != ""
-            && quantidadeParcelas.value != null && quantidadeParcelas.value != ""
-            && valorParcela.value != null && valorParcela.value != "") {
-            btnGerarParcelas.hidden = false;
-            let valorTotalJuros = parseInt(valorParcela.value) * parseInt(quantidadeParcelas.value)
-            montanteEmprestimo.value = 1
-            sobraJuros = 1
-            mensagemErro.style.color = 'black';
-            mensagemErro.innerHTML = `*** O total desse financiamento de ${quantidadeParcelas.value} 
-                                      parcelas de ${valorParcela.value} reais é ${valorTotalJuros} reais, 
-                                      sendo ${sobraJuros} de juros. ***`
-        }
-        else if (juros.value != null && juros.value != ""
-            && quantidadeParcelas.value != null && quantidadeParcelas.value != ""
-            && valorParcela.value != null && valorParcela.value != ""
-            && montanteEmprestimo.value != null && montanteEmprestimo.value != ""        ) {
-            mensagemErro.style.color = 'red';
-            mensagemErro.innerHTML = '*** Preencha no maximo 3 valores ***';
-        }
-        else {
-            mensagemErro.style.color = 'red';
-            mensagemErro.innerHTML = '*** Preencha no minimo 3 valores ***';
-        }
-    }
-
-
-}
-
-function ValorTotalJuros(montanteEmprestimo, juros) {
-    return (montanteEmprestimo * juros) + parseInt(montanteEmprestimo)
-}
-function ValorPrestacao(montanteEmprestimo, juros, quantidadeParcelas) {
-    let cont = 1
-    let E = 1
-    for (let i = 0; i < quantidadeParcelas; i++) {
-        cont = cont * (1 + juros)
-        E = E + cont
-    }
-    E = E - cont
-    montanteEmprestimo = montanteEmprestimo * cont
-    return montanteEmprestimo / E
 }
 function ResetarEmprestimo() {
     juros.value = null

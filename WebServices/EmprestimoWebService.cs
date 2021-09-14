@@ -1,6 +1,7 @@
 ﻿using NIRAC_BUSINESS.API_CONFIG;
 using NIRAC_BUSINESS.Models.DAO;
 using NIRAC_BUSINESS.Models.DTO;
+using System;
 using System.Collections.Generic;
 
 namespace NIRAC_WEB.WebServices
@@ -52,6 +53,10 @@ namespace NIRAC_WEB.WebServices
         public EmprestimoDAO GetEmprestimo(int idEmprestimo)
         {
             return _emprestimoBase.Get(idEmprestimo, "Emprestimo/");
+        }
+        public string GetValorParcela(decimal valorFinanciado, int numeroParcelas, decimal juros)
+        {
+            return _emprestimoBase.Gets($"Emprestimo/CalculaParcela/{valorFinanciado}/{numeroParcelas}/{juros}");
         }
         public List<EmprestimoDTO> GetAll(int idUsuario)
         {
