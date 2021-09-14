@@ -16,7 +16,7 @@
         <div class="col">
             <label for="cliente">Cliente</label>
             <select class="form-control" id="cliente" name="cliente">
-                <option value="15" selected>Cliente 1</option>
+                <option value="0" selected>Selecione o Cliente</option>
                 @if (ViewBag.ListaClientes != null)
                 {
                     foreach (var cliente in ViewBag.ListaClientes)
@@ -34,7 +34,6 @@
                    class="form-control"
                    id="MontantePego"
                    name="MontantePego"
-                   value="1000"
                    placeholder="Montante Pego" required>
         </div>
         <div class="col">
@@ -43,7 +42,6 @@
                    class="dinheiro form-control"
                    id="QuantidadeParcela"
                    name="QuantidadeParcela"
-                   value="4"
                    placeholder="Quantidade de Parcelas" required>
         </div>
     </div>
@@ -54,7 +52,6 @@
                    class="form-control"
                    id="Juros"
                    name="Juros"
-                   value="10"
                    placeholder="Porcentagem de Juros" required>
         </div>
         <div class="col">
@@ -62,7 +59,6 @@
             <input class="form-control"
                    id="DiaCobranca"
                    name="DiaCobranca"
-                   value="4"
                    placeholder="Dia para cobrança" required>
         </div>
     </div>
