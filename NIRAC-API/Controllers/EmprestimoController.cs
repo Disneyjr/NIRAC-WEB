@@ -4,8 +4,10 @@ using NIRAC_BUSINESS.Models.DTO;
 using NIRAC_BUSINESS.Models.Map;
 using NIRAC_BUSINESS.Repository;
 using NIRAC_BUSINESS.Services;
+using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace NIRAC_API.Controllers
 {
@@ -50,6 +52,37 @@ namespace NIRAC_API.Controllers
         public List<EmprestimoDTO> BuscaEmprestimosPeloIdUsuario(int id)
         {
             return _serv.GetAll().FindAll(u => u.IdUsuario == id);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="valorFinanciado"></param>
+        /// <param name="numeroParcelas"></param>
+        /// <param name="juros"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("CalculaParcela/{valorFinanciado}/{numeroParcelas}/{juros}")]
+        public double CalculaParcela(double valorFinanciado, int numeroParcelas,double juros)
+        {
+            double jurosReal = juros / 100;
+            double calculoJuros = (valorFinanciado * Math.Pow((1 + jurosReal), numeroParcelas) * jurosReal) / (Math.Pow((1 + jurosReal), numeroParcelas) - 1);
+            return Math.Round(calculoJuros, 2); 
+        }
+          
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="valorFinanciado"></param>
+        /// <param name="numeroParcelas"></param>
+        /// <param name="juros"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("TotalFinanciamento/{valorFinanciado}/{numeroParcelas}/{juros}")]
+        public double TotalFinanciamento(double valorFinanciado, int numeroParcelas, double juros)
+        {
+            double jurosReal = juros / 100;
+            double calculoJuros = (valorFinanciado * Math.Pow((1 + jurosReal), numeroParcelas) * jurosReal) / (Math.Pow((1 + jurosReal), numeroParcelas) - 1);
+            return Math.Round((calculoJuros * numeroParcelas), 2);
         }
         #region CRUD
         /// <summary>
